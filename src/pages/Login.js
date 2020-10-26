@@ -1,4 +1,6 @@
-import React, { useContext, useState } from 'react';
+import axios from 'axios';
+
+import React, { useState } from 'react';
 import { Switch } from 'react-router';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
@@ -6,8 +8,54 @@ import Colors from '../utils/Colors';
 
 
 const Login = () => {
-    const [firstTime, setFirstTime] = useState(false)
-  
+    const [firstTime, setFirstTime] = useState(false);
+    const [user, setUser] = useState({});
+    const [email, setEmail] = useState('');
+    const [password, setPassWord]=useState('');
+    const [userName, setUserName]=useState('');
+    const [pictureUrl, setPictureUrl]=useState('');
+
+    
+    const singUpUser = () => {
+        const request = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/sign_up", { user: user});
+        request.then(anwser => {
+            console.log(anwser);
+            }).catch(error => {
+                console.log(error)
+        });
+    } 
+
+    const singInUser = () => {
+        const request = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/sign_up", { user: user});
+        request.then(anwser => {
+            console.log(anwser);
+            }).catch(error => {
+                console.log(error)
+        });
+    }
+
+
+    const verifyInputSingUp = (event) => {
+        event.preventDefault();
+        if (email && password ) {
+            setUser()
+            singUpUser({...user, "email": email, "password": password});
+        }else {
+            alert('Por favor preencha tods os dados!')
+        }
+    }
+
+    const verifyInputLogIn = (event) => {
+        event.preventDefault();
+        if (email && password && userName && pictureUrl ) {
+            setUser( {...user, "email": email , "password": password, "username": userName, "pictureUrl": pictureUrl });
+            singInUser();
+        }else {
+            alert('Por favor preencha tods os dados!')
+        }
+
+
+    }
   
 
     return (
@@ -18,14 +66,20 @@ const Login = () => {
             </StyledTitle>
             <StyledLogin>
                 <form>
-                    <input type='email' placeholder='e-mail'/>
-                    <input type='password' placeholder='password'/>
+                    <input type='email' placeholder='e-mail'  onChange={e => setEmail(e.target.value)} value={email}/>
+                    <input type='password' placeholder='password' onChange={e => setPassWord(e.target.value)} value={password}/>
                         {firstTime && (
                         <>        
-                            <input type='text' placeholder='username'/>
-                            <input type='text' placeholder='picture url'/> 
+                            <input type='text' placeholder='username' onChange={e => setUserName(e.target.value)} value={userName}/>
+                            <input type='text' placeholder='picture url' onChange={e => setPictureUrl(e.target.value)} value={pictureUrl}/> 
                         </>)}
-                    <button type='submit'>Sing Up</button>
+                    {
+                        firstTime ?
+                                <button onClick={(e) => verifyInputSingUp(e)} type='submit'>Sing Up</button>
+                            :
+                                <button onClick={(e) => verifyInputLogIn(e)} type='submit'>Log In</button>
+                    }
+                    
                 </form>
                         <p onClick={() => setFirstTime(!firstTime)}>{firstTime ? 'Switch back to log in' : 'Firts time? Creat an account!'}</p>
             </StyledLogin>
