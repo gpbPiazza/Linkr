@@ -5,21 +5,22 @@ import {
   Route
 } from "react-router-dom";
 import Login from './pages/Login';
-
-
-// import Header from './components/Header';
+import Timeline from './pages/Timeline';
 
 export default function App() {
 
- 
   return (
-          <Router >
-            {/* <Header /> */}
-            <Switch>
-              <Route path="/">
-                <Login />
-              </Route>
-            </Switch>
-          </Router>
+    <Router >
+
+      <Switch>
+        <Route exact path="/">
+          <Login />
+        </Route>
+
+        <Route>
+          <Timeline path= '/timeline'/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }

@@ -1,91 +1,100 @@
 import axios from 'axios';
-
-import React, { useState } from 'react';
-import { Switch } from 'react-router';
+import React, { useState, useHistory } from 'react';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
 
-
-
 const Login = () => {
-    const [firstTime, setFirstTime] = useState(false);
-    const [user, setUser] = useState({});
-    const [email, setEmail] = useState('');
-    const [password, setPassWord]=useState('');
-    const [userName, setUserName]=useState('');
-    const [pictureUrl, setPictureUrl]=useState('');
 
-    
-    const singUpUser = () => {
-        const request = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/sign_up", { user: user});
+    const [firstTime, setFirstTime] = useState(false);
+    const [user, setUser] = useState(null);
+    const [email, setEmail] = useState('');
+    const [password, setPassWord]= useState('');
+    const [userName, setUserName]= useState('');
+    const [pictureUrl, setPictureUrl]= useState('');
+
+    const singUpRequest = () => {
+        const request = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/sign_up", user);
         request.then(anwser => {
             console.log(anwser);
-            }).catch(error => {
-                console.log(error)
+            const history = useHistory();
+            history.push('/timeline')
+        }).catch(error => {
+            console.log(error)
+
         });
     } 
 
-    const singInUser = () => {
-        const request = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/sign_up", { user: user});
+    const logInRequest = () => {
+        const request = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/sign_up", user);
         request.then(anwser => {
             console.log(anwser);
-            }).catch(error => {
-                console.log(error)
+            const history = useHistory();
+            history.push('/timeline')
+            
+
+        }).catch(error => {
+            console.log(error)
+
         });
     }
 
+    const verifyInputLogIn= (event) => {
+        event.preventDefault();
+        if (email && password ) {
+            const newUser = {"email": email, "password": password};
+            setUser(newUser);
+            logInRequest();
+        } else {
+            alert('Por favor preencha tods os dados!')
+        }
+    }
 
     const verifyInputSingUp = (event) => {
         event.preventDefault();
-        if (email && password ) {
-            setUser()
-            singUpUser({...user, "email": email, "password": password});
-        }else {
-            alert('Por favor preencha tods os dados!')
-        }
-    }
-
-    const verifyInputLogIn = (event) => {
-        event.preventDefault();
         if (email && password && userName && pictureUrl ) {
-            setUser( {...user, "email": email , "password": password, "username": userName, "pictureUrl": pictureUrl });
-            singInUser();
-        }else {
+            const newUser = {"email": email , "password": password, "username": userName, "pictureUrl": pictureUrl};
+            setUser(newUser);
+            singUpRequest();
+        } else {
             alert('Por favor preencha tods os dados!')
         }
-
-
     }
-  
 
     return (
         <MainContainer>
             <StyledTitle>
-                <h1>Linkdr</h1>
-                <h2>save, share and discover<br/>the best links on the web</h2>
+                <h1> Linkdr </h1>
+                <h2> save, share and discover<br/>the best links on the web </h2>
             </StyledTitle>
+
             <StyledLogin>
                 <form>
-                    <input type='email' placeholder='e-mail'  onChange={e => setEmail(e.target.value)} value={email}/>
-                    <input type='password' placeholder='password' onChange={e => setPassWord(e.target.value)} value={password}/>
-                        {firstTime && (
+                    <input type= 'email' placeholder= 'e-mail'  onChange= {e => setEmail(e.target.value)} value= {email} />
+                    <input type= 'password' placeholder= 'password' onChange= {e => setPassWord(e.target.value)} value= {password} />
+
+                    {firstTime && (
                         <>        
-                            <input type='text' placeholder='username' onChange={e => setUserName(e.target.value)} value={userName}/>
-                            <input type='text' placeholder='picture url' onChange={e => setPictureUrl(e.target.value)} value={pictureUrl}/> 
-                        </>)}
-                    {
-                        firstTime ?
-                                <button onClick={(e) => verifyInputSingUp(e)} type='submit'>Sing Up</button>
-                            :
-                                <button onClick={(e) => verifyInputLogIn(e)} type='submit'>Log In</button>
+                            <input type= 'text' placeholder= 'username' onChange= {e => setUserName(e.target.value)} value= {userName} />
+                            <input type= 'text' placeholder= 'picture url' onChange= {e => setPictureUrl(e.target.value)} value= {pictureUrl} />
+                        </>
+                    )}
+
+                    {firstTime ?
+                        <button onClick= {(e) => verifyInputSingUp(e)} type= 'submit'> Sing Up </button>
+                        :
+                        <button onClick= {(e) => verifyInputLogIn(e)} type= 'submit'> Log In </button>
                     }
-                    
                 </form>
-                        <p onClick={() => setFirstTime(!firstTime)}>{firstTime ? 'Switch back to log in' : 'Firts time? Creat an account!'}</p>
+
+                <p onClick={() => setFirstTime(!firstTime)}> {firstTime ? 'Switch back to log in' : 'Firts time? Creat an account!'} </p>
+
             </StyledLogin>
         </MainContainer>
     );
 }
+
+export default Login;
+
 const MainContainer = styled.main`
     display: flex;
 `;
@@ -156,10 +165,4 @@ const StyledLogin = styled.div`
         color: ${Colors.white};
         cursor: pointer;
     }
-
-    
-    
 `;
-
-
-export default Login;
