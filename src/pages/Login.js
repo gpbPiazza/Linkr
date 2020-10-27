@@ -1,11 +1,22 @@
 import axios from 'axios';
-import React, { useState, useHistory } from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
 
-const Login = () => {
+/* Fiz o botão desabilitar (preventDefault nao funciona aparentemente),
+o useHistory ta funcionando para a rota timeline, comunicação com o servidor ta funcionando, e os alertas. */
 
+/* O link da imagem tenta pegar o da api da certo para logar */
+
+/* To Do: Refatorar essas 4 funções para duas, colocar os alertas em html (Eu amanha)
+ criar o context-api para salvar a resposta do servidor (se quiser fazer)*/
+
+const Login = () => {
+    let history = useHistory();
     const [firstTime, setFirstTime] = useState(false);
+    const [serverResponse, setServerResponse] = useState(null);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassWord]= useState('');
     const [userName, setUserName]= useState('');
@@ -14,39 +25,51 @@ const Login = () => {
     const singUpRequest = (newUser) => {
         console.log(newUser)
         const request = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/sign_up", newUser);
+        setButtonDisabled(true);
         request.then(anwser => {
-            console.log(anwser);
-            const history = useHistory();
-            history.push('/timeline')
-        }).catch(error => {
-            console.log(error.response.data)
+            setServerResponse(anwser.data);
+            history.push('/timeline');
 
+        }).catch(error => {
+            if(error.response.status === 401) {
+                alert('Email inserido já cadastrado');
+            }
+
+            if(error.response.status === 400) {
+                alert('Formato de email ou link invalido');
+            }
+
+            console.log(error.response);
+            setButtonDisabled(false);
         });
     } 
 
     const logInRequest = (loginUser) => {
         console.log(loginUser);
+        setButtonDisabled(true);
         const request = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/sign_in", loginUser);
+
         request.then(anwser => {
-            console.log(anwser);
-            const history = useHistory();
-            history.push('/timeline')
+            setServerResponse(anwser.data);
+            history.push('/timeline');
             
-
         }).catch(error => {
-            console.log(error)
+            if(error.response.status === 401) {
+                alert('Email ou senha incorretos');
+            }
 
+            if(error.response.status === 400) {
+                alert('Formato de email invalido');
+            }
+            
+            console.log(error.response)
+            setButtonDisabled(false);
         });
     }
 
-    //VERIFICAR A RESPOSTA DO SERVIDOR.
-    //E 
-    //GUARDAR AS RESPOSTA DO SERVIDOR E TEMOS QUE ADCIONAR O REACT ROUTES NA TELA DE LOGIN
-
-
-
     const verifyInputLogIn= (event) => {
         event.preventDefault();
+        if(buttonDisabled) return ;
         if (email && password ) {
             const loginUser = {"email": email, "password": password};
             logInRequest(loginUser);
@@ -57,6 +80,7 @@ const Login = () => {
 
     const verifyInputSingUp = (event) => {
         event.preventDefault();
+        if(buttonDisabled) return ;
         if (email && password && userName && pictureUrl ) {
             const newUser = {"email": email , "password": password, "username": userName, "pictureUrl": pictureUrl};
             singUpRequest(newUser);
