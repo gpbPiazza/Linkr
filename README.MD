@@ -1,7 +1,13 @@
 # Requisitos
 
-WIP = WORKING IN PROGRESS
-TESTE MILHOMEM
+
+## Legenda de marcações {
+- wip = working in progress
+- P = PIAZZA TASK
+- M = MILHOMEM TASK
+- X = DONE
+
+
 - Geral
     - [x]  Manipule o HTML usando somente React (sem usar o document nem bibliotecas como jQuery)
     - [x]  Seu projeto deverá ser desenvolvido utilizando Git e GitHub
@@ -18,30 +24,30 @@ TESTE MILHOMEM
         - [x]  Ao clicar em entrar, caso algum dos campos esteja vazio, deverá aparecer um alert solicitando o preenchimento dos campos
         - [x]  Ao clicar em entrar, caso os campos estejam preenchidos, deverá ser enviado um request `post` para o servidor, seguindo documentação
         - [wip]  Caso o servidor retorne uma falha (status 401), deverá ser lançado um alert para o usuário de email/senha incorretos
-        - []  Caso o servidor retorne sucesso (status 200), o usuário deve ser redirecionado para a rota "/timeline"
+        - [x]  Caso o servidor retorne sucesso (status 200), o usuário deve ser redirecionado para a rota "/timeline"
         - [utilizar-context]  Em caso de sucesso, o servidor retornará na resposta também um código identificador do usuário que você deve **guardar** para usar nos próximos requests pro servidor, assim como dados sobre usuário (como nome e foto)
-        - [ ]  Ao clicar em entrar, o botão deve ser desabilitado até o servidor responder, evitando que o usuário clique no botão várias vezes
+        - [wip]  Ao clicar em entrar, o botão deve ser desabilitado até o servidor responder, evitando que o usuário clique no botão várias vezes
         - [X]  Ao clicar em "First time? Create an account!", os campos devem mudar pro formato da tela 2
     - Cadastro
         - [x]  Ao clicar em cadastrar, caso algum dos campos esteja vazio, deverá aparecer um alert solicitando o preenchimento dos campos
-        - [ ]  Ao clicar em entrar, caso os campos estejam preenchidos, deverá ser enviado um request `post` para o servidor, seguindo documentação
-        - [ ]  Caso o servidor retorne uma falha (status 400), deverá ser lançado um alert para o usuário informando que o email inserido já está cadastrado
-        - [ ]  Caso o servidor retorne sucesso (status 201), o usuário deve ser redirecionado para a rota "/timeline"
-        - [ ]  Em caso de sucesso, o servidor retornará na resposta também um código identificador do usuário que você deve **guardar** para usar nos próximos requests pro servidor, assim como dados sobre usuário (como nome e foto)
-        - [ ]  Ao clicar em cadastrar, o botão deve ser desabilitado até o servidor responder, evitando que o usuário clique no botão várias vezes
-        - [ ]  Ao clicar em "Switch back to Log In", os campos devem mudar pro formato da tela 1
+        - [x]  Ao clicar em entrar, caso os campos estejam preenchidos, deverá ser enviado um request `post` para o servidor, seguindo documentação
+        - [x]  Caso o servidor retorne uma falha (status 400), deverá ser lançado um alert para o usuário informando que o email inserido já está cadastrado
+        - [wip]  Caso o servidor retorne sucesso (status 201), o usuário deve ser redirecionado para a rota "/timeline"
+        - [m]  Em caso de sucesso, o servidor retornará na resposta também um código identificador do usuário que você deve **guardar** para usar nos próximos requests pro servidor, assim como dados sobre usuário (como nome e foto)
+        - [m]  Ao clicar em cadastrar, o botão deve ser desabilitado até o servidor responder, evitando que o usuário clique no botão várias vezes
+        - [x]  Ao clicar em "Switch back to Log In", os campos devem mudar pro formato da tela 1
     - Autenticação
-        - [ ]  A partir da próxima tela, todos os requests para o servidor devem incluir um **header** de nome `User-Token`, contendo o valor retornado pelo servidor no request de autenticação (que você guardou nos requisitos anteriores)
+        - [P]  A partir da próxima tela, todos os requests para o servidor devem incluir um **header** de nome `User-Token`, contendo o valor retornado pelo servidor no request de autenticação (que você guardou nos requisitos anteriores)
 
             Dica: pesquise por "add header axios" 
 
 - Tela de Timeline (rota "/timeline")
     - Topo
-        - [ ]  Implementar topo como especificado no layout. O topo deve ser fixo.
-        - [ ]  Ao clicar na seta/foto do usuário, deve abrir um menu conforme layout e seta deve virar para cima
-        - [ ]  Ao clicar novamente, deve-se fechar o menu e virar a seta novamente pra baixo
-        - [ ]  Ao clicar em "My posts", o usuário deve ser redirecionado para a rota "/my-posts"
-        - [ ]  Ao clicar em "Logout", o usuário deve ser redirecionado novamente para a rota de login ("/") e os dados de usuário logado devem ser resetados no front
+        - [p]  Implementar topo como especificado no layout. O topo deve ser fixo.
+        - [p]  Ao clicar na seta/foto do usuário, deve abrir um menu conforme layout e seta deve virar para cima
+        - [p]  Ao clicar novamente, deve-se fechar o menu e virar a seta novamente pra baixo
+        - []  Ao clicar em "My posts", o usuário deve ser redirecionado para a rota "/my-posts"
+        - []  Ao clicar em "Logout", o usuário deve ser redirecionado novamente para a rota de login ("/") e os dados de usuário logado devem ser resetados no front
     - Publicação
         - [ ]  Ao clicar em "Publish", deve ser validado se o usuário preencheu o link (o texto é opcional)
         - [ ]  Ao clicar em "Publish", deve ser enviado um post para o servidor com os dados inseridos
