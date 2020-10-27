@@ -63,7 +63,7 @@ strong {
     font-weight: bold;
 }
 
-button, input {
+button, input, textarea {
     outline: none;
     border: none;
     background: none;
