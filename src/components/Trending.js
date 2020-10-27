@@ -1,4 +1,4 @@
-import React, { useContext, useState } from  'react';
+import React from  'react';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
 
@@ -24,11 +24,11 @@ export default Trending;
 
 
 export const StyledTrending = styled.div`
-    width: 35%;
     padding: 1rem;
     background: ${Colors.black};
     color: ${Colors.white};
     border-radius: 20px;
+    height: 25rem;
     
     h2 {
         font-weight: bold;

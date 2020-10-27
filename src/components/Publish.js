@@ -1,4 +1,4 @@
-import React, { useContext, useState } from  'react';
+import React from 'react';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
 
@@ -9,17 +9,14 @@ const Publish = () => {
                 <img src= "./img/loadin3.gif" />
             </figure>
 
-            <section>
+            <form>
                 <h2> O que você tem para favoritar hoje? </h2>
                 <input type= "text" placeholder= "http://" />
-                <textarea placeholder= "Muito irado esse link falando de javascript"></textarea>
+                <textarea type= "text" placeholder= "Muito irado esse link falando de javascript"></textarea>
                 <div className= "containerButton">
-                    <button> Publicar </button>
+                    <button type= "submit"> Publicar </button>
                 </div>
-            </section>
-
-             
-            
+            </form>
         </StyledPublish>
     );
 }
@@ -28,7 +25,6 @@ export default Publish;
 
 
 export const StyledPublish = styled.div`
-    width: 62%;
     border-radius: 20px;
     background: ${Colors.white};
     padding: 1rem;
@@ -40,7 +36,7 @@ export const StyledPublish = styled.div`
         width: 10%;
     }
 
-    section {
+    form {
         width: 89%;
         padding-top: 0.25rem;
 

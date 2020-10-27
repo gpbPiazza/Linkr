@@ -1,11 +1,12 @@
-import React, { useContext, useEffect } from "react";
-import TimelineContext from "../context/TimelineContext";
+import React, { useContext, useEffect, useState } from "react";
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
 import Publish from "../components/Publish";
+import styled from "styled-components";
 
 import {Main, Title} from '../components-style/cmpnt-styles';
 import LoginContext from "../context/LoginContext";
+import Posts from "../components/Posts";
 
 const Timeline = () => {
     const [posts, setPosts] = useState([])
@@ -46,14 +47,17 @@ const Timeline = () => {
 
 
 
-    
     return (
         
        <Main>
             {/*<Header />*/ }
             <Title> timeline </Title>
             
-            <Publish />
+            <ContainerLinkdr>
+                <Publish />
+                <Posts />
+            </ContainerLinkdr>
+            
             {/* {loading ? 
 
                 <Loading />
@@ -65,10 +69,21 @@ const Timeline = () => {
             
         
             } */}
-
-            <Trending />
+            <ContainerTrending>
+                <Trending />
+            </ContainerTrending>
+            
        </Main>
     );
 }
 
 export default Timeline;
+
+const ContainerTrending = styled.div`
+    width: 35%;
+`;
+
+const ContainerLinkdr = styled.div`
+    width: 62%;
+    height: auto;
+`;
