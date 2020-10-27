@@ -1,7 +1,8 @@
 # Requisitos
 
 WIP = WORKING IN PROGRESS
-
+Milhomen = M
+Piazza = P
 
 - Geral
     - [x]  Manipule o HTML usando somente React (sem usar o document nem bibliotecas como jQuery)
@@ -16,11 +17,11 @@ WIP = WORKING IN PROGRESS
     - [wip]  Para ícones, utilize a biblioteca **react-icons**
 - Tela de Login (rota "/")
     - Login
-        - [ ]  Ao clicar em entrar, caso algum dos campos esteja vazio, deverá aparecer um alert solicitando o preenchimento dos campos
-        - [ ]  Ao clicar em entrar, caso os campos estejam preenchidos, deverá ser enviado um request `post` para o servidor, seguindo documentação
-        - [ ]  Caso o servidor retorne uma falha (status 401), deverá ser lançado um alert para o usuário de email/senha incorretos
-        - [ ]  Caso o servidor retorne sucesso (status 200), o usuário deve ser redirecionado para a rota "/timeline"
-        - [ ]  Em caso de sucesso, o servidor retornará na resposta também um código identificador do usuário que você deve **guardar** para usar nos próximos requests pro servidor, assim como dados sobre usuário (como nome e foto)
+        - [m]  Ao clicar em entrar, caso algum dos campos esteja vazio, deverá aparecer um alert solicitando o preenchimento dos campos
+        - [m]  Ao clicar em entrar, caso os campos estejam preenchidos, deverá ser enviado um request `post` para o servidor, seguindo documentação
+        - [m]  Caso o servidor retorne uma falha (status 401), deverá ser lançado um alert para o usuário de email/senha incorretos
+        - [m]  Caso o servidor retorne sucesso (status 200), o usuário deve ser redirecionado para a rota "/timeline"
+        - [m]  Em caso de sucesso, o servidor retornará na resposta também um código identificador do usuário que você deve **guardar** para usar nos próximos requests pro servidor, assim como dados sobre usuário (como nome e foto)
         - [ ]  Ao clicar em entrar, o botão deve ser desabilitado até o servidor responder, evitando que o usuário clique no botão várias vezes
         - [ ]  Ao clicar em "First time? Create an account!", os campos devem mudar pro formato da tela 2
     - Cadastro
