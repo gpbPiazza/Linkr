@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import Colors from '../utils/Colors';
 import {Link} from 'react-router-dom';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import UserContext from '../context/LoginContext';
+import TimelineContext from '../context/LoginContext';
 
 
 
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
-    // const {headerForm} = useContext(UserContext);
+    // const {headerForm} = useContext(TimelineContext);
     // const {serverResponse} = headerForm
     // const {user} = serverResponse;
     // const {id, email, username, avatar} = user;

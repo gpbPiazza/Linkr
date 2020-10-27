@@ -32,12 +32,12 @@
         - [x]  Ao clicar em cadastrar, caso algum dos campos esteja vazio, deverá aparecer um alert solicitando o preenchimento dos campos
         - [x]  Ao clicar em entrar, caso os campos estejam preenchidos, deverá ser enviado um request `post` para o servidor, seguindo documentação
         - [x]  Caso o servidor retorne uma falha (status 400), deverá ser lançado um alert para o usuário informando que o email inserido já está cadastrado
-        - [wip]  Caso o servidor retorne sucesso (status 201), o usuário deve ser redirecionado para a rota "/timeline"
-        - [m]  Em caso de sucesso, o servidor retornará na resposta também um código identificador do usuário que você deve **guardar** para usar nos próximos requests pro servidor, assim como dados sobre usuário (como nome e foto)
-        - [m]  Ao clicar em cadastrar, o botão deve ser desabilitado até o servidor responder, evitando que o usuário clique no botão várias vezes
+        - [x]  Caso o servidor retorne sucesso (status 201), o usuário deve ser redirecionado para a rota "/timeline"
+        - [x]  Em caso de sucesso, o servidor retornará na resposta também um código identificador do usuário que você deve **guardar** para usar nos próximos requests pro servidor, assim como dados sobre usuário (como nome e foto)
+        - [x]  Ao clicar em cadastrar, o botão deve ser desabilitado até o servidor responder, evitando que o usuário clique no botão várias vezes
         - [x]  Ao clicar em "Switch back to Log In", os campos devem mudar pro formato da tela 1
     - Autenticação
-        - [P]  A partir da próxima tela, todos os requests para o servidor devem incluir um **header** de nome `User-Token`, contendo o valor retornado pelo servidor no request de autenticação (que você guardou nos requisitos anteriores)
+        - [x]  A partir da próxima tela, todos os requests para o servidor devem incluir um **header** de nome `User-Token`, contendo o valor retornado pelo servidor no request de autenticação (que você guardou nos requisitos anteriores)
 
             Dica: pesquise por "add header axios" 
 
