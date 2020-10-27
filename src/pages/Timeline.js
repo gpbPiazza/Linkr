@@ -7,6 +7,13 @@ import Publish from "../components/Publish";
 import {Main, Title} from '../components-style/cmpnt-styles';
 
 const Timeline = () => {
+    
+
+
+
+
+
+
 
     
     return (

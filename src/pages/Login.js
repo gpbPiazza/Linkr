@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import Loading from '../components/Loading';
 import LoginContext from '../context/LoginContext';
 import Colors from '../utils/Colors';
 
@@ -10,7 +11,7 @@ const Login = () => {
     const {controlForm, form, setForm} = useContext(LoginContext);
     const {email, password, userName, pictureUrl} = form;
     const {setEmail, setPassWord, setUserName, setPictureUrl} = setForm;
-    const {alert, verifyInputs, toggleInputs, firstTime} = controlForm;
+    const {alert, verifyInputs, toggleInputs, firstTime, loading} = controlForm;
 
     return (
         <MainContainer>
@@ -22,25 +23,31 @@ const Login = () => {
             <StyledLogin >
                 {(alert) ? <Error> {alert} </Error>: ''}
 
-                <form>
-                    <input type= 'email' placeholder= 'e-mail'  onChange= {e => setEmail(e.target.value)} value= {email} />
-                    <input type= 'password' placeholder= 'password' onChange= {e => setPassWord(e.target.value)} value= {password} />
 
-                    {firstTime && (
-                        <>        
-                            <input type= 'text' placeholder= 'username' onChange= {e => setUserName(e.target.value)} value= {userName} />
-                            <input type= 'text' placeholder= 'picture url' onChange= {e => setPictureUrl(e.target.value)} value= {pictureUrl} />
-                        </>
-                    )}
+                {loading ? 
+                
+                    <Loading /> 
+                :
+                <> 
+                    <form>
+                        <input type= 'email' placeholder= 'e-mail'  onChange= {e => setEmail(e.target.value)} value= {email} />
+                        <input type= 'password' placeholder= 'password' onChange= {e => setPassWord(e.target.value)} value= {password} />
 
-                    {firstTime ?
-                        <button onClick= {(e) => verifyInputs(e, 'sign_up')}  type= 'submit'> Sing Up </button>
-                        :
-                        <button onClick= {(e) => verifyInputs(e, 'sign_in')} type= 'submit'> Log In </button>
-                    }
-                </form>
+                        {firstTime && (
+                            <>        
+                                <input type= 'text' placeholder= 'username' onChange= {e => setUserName(e.target.value)} value= {userName} />
+                                <input type= 'text' placeholder= 'picture url' onChange= {e => setPictureUrl(e.target.value)} value= {pictureUrl} />
+                            </>
+                        )}
 
-                <p onClick={() => toggleInputs()}> {firstTime ? 'Switch back to log in' : 'Firts time? Creat an account!'} </p>
+                        {firstTime ?
+                            <button onClick= {(e) => verifyInputs(e, 'sign_up')}  type= 'submit'> Sing Up </button>
+                            :
+                            <button onClick= {(e) => verifyInputs(e, 'sign_in')} type= 'submit'> Log In </button>
+                        }
+                    </form>
+                    <p onClick={() => toggleInputs()}> {firstTime ? 'Switch back to log in' : 'Firts time? Creat an account!'} </p>
+                </>}
 
             </StyledLogin>
         </MainContainer>

@@ -11,7 +11,7 @@ export function LoginProvider(props) {
     const [firstTime, setFirstTime] = useState(false);
     const [userRegister, setUserRegister] = useState({});
     const [config, setConfig] = useState({});
-    const [buttonDisabled, setButtonDisabled] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [alert, setAlert] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassWord]= useState('');
@@ -19,9 +19,9 @@ export function LoginProvider(props) {
     const [pictureUrl, setPictureUrl]= useState('');
 
     const requestApi = (infoUser, typeRequest) => {
+        setLoading(true);
         const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/${typeRequest}`, infoUser);
-        setButtonDisabled(true);
-
+       
         request.then(({data}) => {
             setUserRegister(data);
             setConfig({ headers: {"User-Token": data.token} });
@@ -39,15 +39,13 @@ export function LoginProvider(props) {
             } else {
                 setAlert('Email e senha incorretos');
             }
-
-            setButtonDisabled(false);
-        });
+            setLoading(false);
+        }); 
     } 
 
     const verifyInputs = (event, type) => {
+        
         event.preventDefault();
-        if (buttonDisabled) return ;
-    
         if (type === 'sign_in') {
             if (email && password ) {
                 const loginUser = {"email": email, "password": password};
@@ -56,7 +54,6 @@ export function LoginProvider(props) {
                 setAlert('Por favor, preencha todos os campos!')
             }
         }
-
         else {
             if (email && password && userName && pictureUrl ) {
                 const newUser = {"email": email , "password": password, "username": userName, "pictureUrl": pictureUrl};
@@ -68,8 +65,10 @@ export function LoginProvider(props) {
     }
 
     const clearUser = () => {
-        setConfig({});
-        setUserRegister({});
+        const resetUser = {};
+
+        setConfig(resetUser);
+        setUserRegister(resetUser);
         //NÃO ESTÁ FUNCIONANDO TEMOS QUE OLHAR ISSO DEPOIS
         console.log('RESETANDO O USUARIO', config, userRegister);
     }
@@ -90,7 +89,7 @@ export function LoginProvider(props) {
     
     const form = {email, password, userName, pictureUrl};
     const setForm = {setEmail, setPassWord, setUserName, setPictureUrl};
-    const controlForm = {alert, verifyInputs, toggleInputs, firstTime};
+    const controlForm = {alert, verifyInputs, toggleInputs, firstTime, loading};
     const headerForm = {userRegister, config, clearUser}
 
     return (
