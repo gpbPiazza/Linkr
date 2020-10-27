@@ -81,9 +81,10 @@ export function LoginProvider(props) {
     const form = {email, password, userName, pictureUrl};
     const setForm = {setEmail, setPassWord, setUserName, setPictureUrl};
     const controlForm = {alert, verifyInputs, toggleInputs, firstTime};
+    const headerForm = {serverResponse};
 
     return (
-        <LoginContext.Provider value= {{ controlForm, form, setForm }}>
+        <LoginContext.Provider value= {{ controlForm, form, setForm, headerForm}}>
             {props.children}
         </LoginContext.Provider>
     );
