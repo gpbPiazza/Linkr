@@ -1,5 +1,7 @@
 
 import React, { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import {useParams} from "react-router-dom";
 
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
@@ -7,13 +9,14 @@ import Publish from "../components/Publish";
 
 import {Main, Title} from '../components-style/cmpnt-styles';
 import LoginContext from "../context/LoginContext";
-import axios from "axios";
+
 
 const Timeline = () => {
     const [posts, setPosts] = useState([]);
     const {userForm, controlForm} = useContext(LoginContext);
     const {userRegister, config, clearUser} = userForm;
     const {loading, setLoading} = controlForm;
+    const { userId } = useParams();
 
     useEffect(() => {
         getPosts();        
