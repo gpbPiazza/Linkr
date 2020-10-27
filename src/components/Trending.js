@@ -1,9 +1,14 @@
-import React, { useContext, useState } from  'react';
+import axios from 'axios';
+import React, { useContext, useState, useEffect } from  'react';
 import styled from 'styled-components';
+import LoginContext from '../context/LoginContext';
 import Colors from '../utils/Colors';
 
 const Trending = () => {
     const [treadingHashTags, setTreadingHashtags] = useState([]);
+    const {userForm, controlForm} = useContext(LoginContext);
+    const {userRegister, config, clearUser} = userForm;
+    const {loading, setLoading} = controlForm;
 
     useEffect(() => {
         getTreadingHashTags();        
@@ -15,7 +20,7 @@ const Trending = () => {
 
     const requestApi = () => {
         setLoading(true);
-        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/trending`,{headers : config.headers});
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/trending`);
         
         request.then(({data}) => {
             console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY HASH TAG');
