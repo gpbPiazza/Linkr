@@ -4,23 +4,25 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import { UserProvider } from './context/UserContext';
 import Login from './pages/Login';
 import Timeline from './pages/Timeline';
 
 export default function App() {
 
   return (
-    <Router >
+    <UserProvider>
+      <Router >
+        <Switch>
+          <Route exact path="/">
+            <Login />
+          </Route>
 
-      <Switch>
-        <Route exact path="/">
-          <Login />
-        </Route>
-
-        <Route>
-          <Timeline path= '/timeline'/>
-        </Route>
-      </Switch>
-    </Router>
+          <Route>
+            <Timeline path= '/timeline'/>
+          </Route>
+        </Switch>
+      </Router>
+    </UserProvider>
   );
 }
