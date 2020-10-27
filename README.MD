@@ -43,10 +43,10 @@
 
 - Tela de Timeline (rota "/timeline")
     - Topo
-        - [p]  Implementar topo como especificado no layout. O topo deve ser fixo.
-        - [p]  Ao clicar na seta/foto do usuário, deve abrir um menu conforme layout e seta deve virar para cima
-        - [p]  Ao clicar novamente, deve-se fechar o menu e virar a seta novamente pra baixo
-        - []  Ao clicar em "My posts", o usuário deve ser redirecionado para a rota "/my-posts"
+        - [x]  Implementar topo como especificado no layout. O topo deve ser fixo.
+        - [x]  Ao clicar na seta/foto do usuário, deve abrir um menu conforme layout e seta deve virar para cima
+        - [x]  Ao clicar novamente, deve-se fechar o menu e virar a seta novamente pra baixo
+        - [wip]  Ao clicar em "My posts", o usuário deve ser redirecionado para a rota "/my-posts"
         - []  Ao clicar em "Logout", o usuário deve ser redirecionado novamente para a rota de login ("/") e os dados de usuário logado devem ser resetados no front
     - Publicação
         - [ ]  Ao clicar em "Publish", deve ser validado se o usuário preencheu o link (o texto é opcional)

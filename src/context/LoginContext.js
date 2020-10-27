@@ -67,6 +67,13 @@ export function LoginProvider(props) {
         }
     }
 
+    const clearUser = () => {
+        setConfig({});
+        setUserRegister({});
+        //NÃO ESTÁ FUNCIONANDO TEMOS QUE OLHAR ISSO DEPOIS
+        console.log('RESETANDO O USUARIO', config, userRegister);
+    }
+
     const toggleInputs  = () => {
         setFirstTime(!firstTime);
         setUserName('');
@@ -84,9 +91,10 @@ export function LoginProvider(props) {
     const form = {email, password, userName, pictureUrl};
     const setForm = {setEmail, setPassWord, setUserName, setPictureUrl};
     const controlForm = {alert, verifyInputs, toggleInputs, firstTime};
+    const headerForm = {userRegister, config, clearUser}
 
     return (
-        <LoginContext.Provider value= {{controlForm, form, setForm, userRegister, config}}>
+        <LoginContext.Provider value= {{controlForm, form, setForm, headerForm }}>
             {props.children}
         </LoginContext.Provider>
     );

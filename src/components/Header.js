@@ -10,9 +10,12 @@ import LoginContext from '../context/LoginContext';
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
-    const {userRegister, config} = useContext(LoginContext);
+    const {headerForm} = useContext(LoginContext);
+    const {userRegister, config, clearUser} = headerForm;
     const {user} = userRegister;
     const {avatar, email, id, username} = user;
+
+    
   
     return (
             <Container>
@@ -24,7 +27,7 @@ const Header = () => {
                             <ContainerMenu>
                                 <p>My posts</p>
                                 <p>My likes</p>
-                                <p>Logout</p>
+                                <p onClick={clearUser}><Link to='/'>Logout</Link></p>
                             </ContainerMenu>
                         </>    
                         :
