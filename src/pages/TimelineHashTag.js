@@ -1,13 +1,12 @@
+
 import React, { useContext, useEffect, useState } from "react";
 
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
 import Publish from "../components/Publish";
-import styled from "styled-components";
 
 import {Main, Title} from '../components-style/cmpnt-styles';
 import LoginContext from "../context/LoginContext";
-import Posts from "../components/Posts";
 import axios from "axios";
 
 const Timeline = () => {
@@ -21,32 +20,23 @@ const Timeline = () => {
     },[]);
 
     const getPosts = () => {
-        requestGetPost();
+        requestApi();
     }
     
-
-    //REQUEST GET NA TIME LINE PADRÃO
-    const requestGetPost = () => {
+    const requestApi = () => {
         setLoading(true);
-        const request = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=0&limit=2',{headers : config.headers});
-
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/:${hashtag}/posts?offset=0&limit=2`,{headers : config.headers});
+        
         request.then(({data}) => {
-            console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS');
+            console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY HASH TAG');
             setPosts(data);
         });
 
         request.catch(({response}) => {
-            console.log(response, 'RESPOSTA ERROR DA API');
+            console.log(response, 'RESPOSTA ERROR DA API GET POSTS BY HASH TAG');
             setLoading(false);
         }); 
     } 
- 
-
-    
-    console.log(posts, 'IMPRIMINDO POSTS NO TIME LINE')
-
-
-
 
 
     
@@ -56,11 +46,7 @@ const Timeline = () => {
             {/*<Header />*/ }
             <Title> timeline </Title>
             
-            <ContainerLinkdr>
-                <Publish />
-                <Posts />
-            </ContainerLinkdr>
-            
+            <Publish />
             {/* {loading ? 
 
                 <Loading />
@@ -72,21 +58,10 @@ const Timeline = () => {
             
         
             } */}
-            <ContainerTrending>
-                <Trending />
-            </ContainerTrending>
-            
+
+            <Trending />
        </Main>
     );
 }
 
 export default Timeline;
-
-const ContainerTrending = styled.div`
-    width: 35%;
-`;
-
-const ContainerLinkdr = styled.div`
-    width: 62%;
-    height: auto;
-`;
