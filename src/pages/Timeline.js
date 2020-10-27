@@ -11,16 +11,14 @@ const Timeline = () => {
     
     return (
         
-
        <Main>
             <Header />
 
             <Title> timeline </Title>
+            
+            <Publish />
 
             <Trending />
-
-            <Publish /> 
-
        </Main>
     );
 }
