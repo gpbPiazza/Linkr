@@ -5,25 +5,29 @@ import {
   Route
 } from "react-router-dom";
 import { LoginProvider } from './context/LoginContext';
+import { TimelineProvider } from './context/TimelineContext';
 import Login from './pages/Login';
 import Timeline from './pages/Timeline';
+
 
 export default function App() {
 
   return (
     <Router >
       <LoginProvider>
-        <Switch>
-          <Route exact path= "/">
-            <Login />
-          </Route>
+        <TimelineProvider>
 
-          <Route>
-            <Timeline path= '/timeline' />
-          </Route>
+          <Switch>
+            <Route exact path= "/">
+              <Login />
+            </Route>
 
-        </Switch>
-        
+            <Route>
+              <Timeline path= '/timeline' />
+            </Route>
+
+          </Switch>
+        </TimelineProvider>
       </LoginProvider>
     </Router>
   );

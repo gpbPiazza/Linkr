@@ -9,7 +9,8 @@ export default LoginContext;
 export function LoginProvider(props) {
     let history = useHistory();
     const [firstTime, setFirstTime] = useState(false);
-    const [serverResponse, setServerResponse] = useState(null);
+    const [userRegister, setUserRegister] = useState(null);
+    const [config, setConfig] = useState(null);
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [alert, setAlert] = useState('');
     const [email, setEmail] = useState('');
@@ -21,8 +22,9 @@ export function LoginProvider(props) {
         const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/${typeRequest}`, infoUser);
         setButtonDisabled(true);
 
-        request.then(anwser => {
-            setServerResponse(anwser.data);
+        request.then(({data}) => {
+            setUserRegister(data);
+            setConfig({ headers: {"User-Token": data.token} });
             history.push('/timeline');
             cleanInputs();
         });
@@ -75,7 +77,7 @@ export function LoginProvider(props) {
         setPassWord('');
         setUserName('');
         setAlert('');
-        setsetPictureUrl('');
+        setPictureUrl('');
     }
     
     const form = {email, password, userName, pictureUrl};
@@ -83,7 +85,7 @@ export function LoginProvider(props) {
     const controlForm = {alert, verifyInputs, toggleInputs, firstTime};
 
     return (
-        <LoginContext.Provider value= {{ controlForm, form, setForm }}>
+        <LoginContext.Provider value= {{controlForm, form, setForm, userRegister, config}}>
             {props.children}
         </LoginContext.Provider>
     );
