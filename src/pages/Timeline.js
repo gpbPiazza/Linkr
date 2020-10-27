@@ -12,7 +12,6 @@ const Timeline = () => {
     return (
         
        <Main>
-            <Header />
 
             <Title> timeline </Title>
             
