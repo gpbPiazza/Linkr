@@ -5,7 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import { LoginProvider } from './context/LoginContext';
-import { TimelineProvider } from './context/TimelineContext';
+
 import Login from './pages/Login';
 import Timeline from './pages/Timeline';
 
@@ -15,8 +15,6 @@ export default function App() {
   return (
     <Router >
       <LoginProvider>
-        <TimelineProvider>
-
           <Switch>
             <Route exact path= "/">
               <Login />
@@ -27,7 +25,6 @@ export default function App() {
             </Route>
 
           </Switch>
-        </TimelineProvider>
       </LoginProvider>
     </Router>
   );

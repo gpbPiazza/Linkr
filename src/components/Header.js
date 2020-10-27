@@ -10,8 +10,8 @@ import LoginContext from '../context/LoginContext';
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
-    const {headerForm} = useContext(LoginContext);
-    const {userRegister, config, clearUser} = headerForm;
+    const {userForm} = useContext(LoginContext);
+    const {userRegister, config, clearUser} = userForm;
     const {user} = userRegister;
     const {avatar, email, id, username} = user;
 
