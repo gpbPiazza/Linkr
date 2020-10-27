@@ -33,9 +33,6 @@ const Header = () => {
                         :
                         <IoIosArrowDown onClick={() => setShowMenu(!showMenu)} color={Colors.white} fontSize='2.5rem'/>
                     }
-                   
-
-                   
                     <img src={avatar}/> 
                 </div>    
             </Container>
@@ -86,7 +83,7 @@ const ContainerMenu = styled.div `
     flex-direction: column;
     background-color: ${Colors.black};
     width: 9.375rem;
-    padding: 1rem;
+    padding: 0.5rem;
     border-bottom-left-radius: 1rem;
     position: fixed;
     top: 5rem;
