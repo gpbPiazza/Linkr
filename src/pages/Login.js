@@ -1,21 +1,16 @@
-import axios from 'axios';
-import React, { useState,useContext } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import UserContext from '../context/UserContext';
+import LoginContext from '../context/LoginContext';
 import Colors from '../utils/Colors';
-
-/* Fiz o botão desabilitar (preventDefault nao funciona aparentemente),
-o useHistory ta funcionando para a rota timeline, comunicação com o servidor ta funcionando, e os alertas. */
-
-/* O link da imagem tenta pegar o da api da certo para logar */
 
 /* To Do: Refatorar essas 4 funções para duas, colocar os alertas em html (Eu amanha)
  criar o context-api para salvar a resposta do servidor (se quiser fazer)*/
 
 const Login = () => {
-    const {verifyInputSingUp, verifyInputLogIn,toggleInputs, 
-            firstTime,email, password, userName, pictureUrl, 
-            setEmail, setPassWord, setUserName, setPictureUrl} = useContext(UserContext);
+    const {controlForm, form, setForm} = useContext(LoginContext);
+    const {email, password, userName, pictureUrl} = form;
+    const {setEmail, setPassWord, setUserName, setPictureUrl} = setForm;
+    const {alert, verifyInputs, toggleInputs, firstTime} = controlForm;
 
     return (
         <MainContainer>
@@ -25,6 +20,8 @@ const Login = () => {
             </StyledTitle>
 
             <StyledLogin >
+                {(alert) ? <Error> {alert} </Error>: ''}
+
                 <form>
                     <input type= 'email' placeholder= 'e-mail'  onChange= {e => setEmail(e.target.value)} value= {email} />
                     <input type= 'password' placeholder= 'password' onChange= {e => setPassWord(e.target.value)} value= {password} />
@@ -37,9 +34,9 @@ const Login = () => {
                     )}
 
                     {firstTime ?
-                        <button onClick= {(e) => verifyInputSingUp(e)}  type= 'submit'> Sing Up </button>
+                        <button onClick= {(e) => verifyInputs(e, 'sign_up')}  type= 'submit'> Sing Up </button>
                         :
-                        <button onClick= {(e) => verifyInputLogIn(e)} type= 'submit'> Log In </button>
+                        <button onClick= {(e) => verifyInputs(e, 'sign_in')} type= 'submit'> Log In </button>
                     }
                 </form>
 
@@ -52,6 +49,12 @@ const Login = () => {
 
 export default Login;
 
+const Error = styled.span`
+    padding: 1.5rem 0;
+    color: ${Colors.lightRed};
+    font-size: 2rem;
+`;
+
 const MainContainer = styled.main`
     display: flex;
 `;
@@ -62,7 +65,7 @@ const StyledTitle = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding-left: 2.5rem;
+    padding: 0 0 2.5rem 3rem;
     background-color: ${Colors.black};
     font-weight: 700;
     height: 100vh;
@@ -70,7 +73,7 @@ const StyledTitle = styled.div`
 
     h1 {
         font-family: 'Passion One', cursive;
-        font-size: 6.625rem;
+        font-size: 7rem;
         line-height: 7.312rem;        
     }
 
@@ -96,12 +99,12 @@ const StyledLogin = styled.div`
 
     input, button {
         width: 100%;
-        padding: 2rem;
         margin: 0.5rem 0;
         border-radius: 10px;
     }
 
     input {
+        padding: 0.8rem;
         background-color: ${Colors.white};
         font-size: 1.6875rem;
         color: ${Colors.lightGrey};
@@ -112,6 +115,7 @@ const StyledLogin = styled.div`
         color: ${Colors.white};
         background-color: ${Colors.midBlue};
         margin-bottom: 0.5rem;
+        padding: 1.2rem;
         cursor: pointer;
     }
 
