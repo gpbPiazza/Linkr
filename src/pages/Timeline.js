@@ -10,8 +10,6 @@ import axios from "axios";
 
 const Timeline = () => {
     const [posts, setPosts] = useState([]);
-    const [treadingHashTags, setTreadingHashtags] = useState([]);
-    const [hashtag, setHashtag] = useState('');
     const {userForm, controlForm} = useContext(LoginContext);
     const {userRegister, config, clearUser} = userForm;
     const {loading, setLoading} = controlForm;

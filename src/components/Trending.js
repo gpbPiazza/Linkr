@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Colors from '../utils/Colors';
 
 const Trending = () => {
+    const [treadingHashTags, setTreadingHashtags] = useState([]);
 
     useEffect(() => {
         getTreadingHashTags();        
