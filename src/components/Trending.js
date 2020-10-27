@@ -19,6 +19,8 @@ export default Trending;
 export const StyledTrending = styled.div`
     width: 30%;
     padding: 2rem 1rem;
+    background: ${Colors.black};
+    color: ${Colors.white};
     
     h2 {
         font-weight: bold;

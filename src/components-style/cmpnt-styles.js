@@ -6,6 +6,7 @@ export const Main = styled.main`
     margin: 0 auto;
     padding-top: 5rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     font-family: 'Lato', sans-serif;
 `;
