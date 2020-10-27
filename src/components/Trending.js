@@ -3,6 +3,36 @@ import styled from 'styled-components';
 import Colors from '../utils/Colors';
 
 const Trending = () => {
+
+    useEffect(() => {
+        getTreadingHashTags();        
+    },[]);
+
+    const getTreadingHashTags = () => {
+        requestApi();
+    }
+
+    const requestApi = () => {
+        setLoading(true);
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/trending`,{headers : config.headers});
+        
+        request.then(({data}) => {
+            console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY HASH TAG');
+            setTreadingHashtags(data);
+        });
+
+        request.catch(({response}) => {
+            console.log(response, 'RESPOSTA ERROR DA API GET POSTS BY HASH TAG');
+            setLoading(false);
+        }); 
+    } 
+ 
+
+
+
+
+
+
     return (
         <StyledTrending>
             <h2> trending </h2> 

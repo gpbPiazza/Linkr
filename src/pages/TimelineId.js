@@ -1,3 +1,4 @@
+
 import React, { useContext, useEffect, useState } from "react";
 
 import Header from  '../components/Header';
@@ -10,8 +11,6 @@ import axios from "axios";
 
 const Timeline = () => {
     const [posts, setPosts] = useState([]);
-    const [treadingHashTags, setTreadingHashtags] = useState([]);
-    const [hashtag, setHashtag] = useState('');
     const {userForm, controlForm} = useContext(LoginContext);
     const {userRegister, config, clearUser} = userForm;
     const {loading, setLoading} = controlForm;
@@ -21,28 +20,25 @@ const Timeline = () => {
     },[]);
 
     const getPosts = () => {
-        requestGetPost();
+        requestApi();
     }
     
 
-    //REQUEST GET NA TIME LINE PADRÃO
-    const requestGetPost = () => {
+    const requestApi = () => {
         setLoading(true);
-        const request = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=0&limit=2',{headers : config.headers});
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/:${userId}/posts?offset=0&limit=2`, {headers : config.headers});
 
         request.then(({data}) => {
-            console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS');
+            console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY ID');
             setPosts(data);
         });
 
         request.catch(({response}) => {
-            console.log(response, 'RESPOSTA ERROR DA API');
+            console.log(response, 'RESPOSTA ERROR DA API GET POSTS BY ID');
             setLoading(false);
         }); 
     } 
- 
 
-    
     console.log(posts, 'IMPRIMINDO POSTS NO TIME LINE')
 
 
@@ -72,3 +68,4 @@ const Timeline = () => {
 }
 
 export default Timeline;
+
