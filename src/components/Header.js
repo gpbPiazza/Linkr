@@ -3,37 +3,37 @@ import styled from 'styled-components';
 import Colors from '../utils/Colors';
 import {Link} from 'react-router-dom';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import TimelineContext from '../context/LoginContext';
+import LoginContext from '../context/LoginContext';
 
 
 
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
-    // const {headerForm} = useContext(TimelineContext);
-    // const {serverResponse} = headerForm
-    // const {user} = serverResponse;
-    // const {id, email, username, avatar} = user;
-    // console.log(headerForm);
-
+    const {userRegister, config} = useContext(LoginContext);
+    const {user} = userRegister;
+    const {avatar, email, id, username} = user;
   
     return (
             <Container>
                 <h1>Linkr</h1>   
                 <div>
                     { showMenu ?
-                        <IoIosArrowUp  onClick={() => setShowMenu(!showMenu)} color={Colors.white} />
+                        <>
+                            <IoIosArrowUp  onClick={() => setShowMenu(!showMenu)} color={Colors.white} fontSize='2.5rem' />
+                            <ContainerMenu>
+                                <p>My posts</p>
+                                <p>My likes</p>
+                                <p>Logout</p>
+                            </ContainerMenu>
+                        </>    
                         :
-                        <IoIosArrowDown onClick={() => setShowMenu(!showMenu)} color={Colors.white} />
+                        <IoIosArrowDown onClick={() => setShowMenu(!showMenu)} color={Colors.white} fontSize='2.5rem'/>
                     }
-                    <div>
-                        <p>My posts</p>
-                        <p>My likes</p>
-                        <p>Logout</p>
-                    </div>
+                   
 
                    
-                    <img src='https://img.ibxk.com.br/2020/08/31/31145643361236.jpg?w=1120&h=420&mode=crop&scale=both'/> 
+                    <img src={avatar}/> 
                 </div>    
             </Container>
     );
@@ -72,9 +72,38 @@ const Container = styled.header`
 `;
 
 const Button = styled.button`
-    font-size: 2rem;
+    font-size: 10rem;
+
+`;
+
+const ContainerMenu = styled.div `
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: ${Colors.black};
+    width: 9.375rem;
+    padding: 1rem;
+    border-bottom-left-radius: 1rem;
+    position: fixed;
+    top: 5rem;
+    right: 0;
+
+    p {
+        font-family: 'Lato', sans-serif;
+        font-style: normal;
+        padding: 0.5rem;
+        font-weight: bold;
+        font-size: 1.1rem;
+        line-height: 1.2rem;
+        letter-spacing: 0.05rem;
+        color: ${Colors.white};
+    }
+
 
 `;
 
 
 export default Header;
+
+

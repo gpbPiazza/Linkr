@@ -8,11 +8,13 @@ export default TimelineContext;
 
 export function TimelineProvider(props) {
     const {userRegister, config} = useContext(LoginContext);
+    
+    // console.log(userRegister, config, 'console.log do time line context');
 
     const headerforms = {userRegister, config};
 
     return (
-        <TimelineContext.Provider value = {headerforms}>
+        <TimelineContext.Provider value = {userRegister, config}>
             {props.children}
         </TimelineContext.Provider>
     );
