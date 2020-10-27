@@ -9,8 +9,8 @@ export default LoginContext;
 export function LoginProvider(props) {
     let history = useHistory();
     const [firstTime, setFirstTime] = useState(false);
-    const [userRegister, setUserRegister] = useState(null);
-    const [config, setConfig] = useState(null);
+    const [userRegister, setUserRegister] = useState({});
+    const [config, setConfig] = useState({});
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [alert, setAlert] = useState('');
     const [email, setEmail] = useState('');
@@ -25,6 +25,7 @@ export function LoginProvider(props) {
         request.then(({data}) => {
             setUserRegister(data);
             setConfig({ headers: {"User-Token": data.token} });
+            console.log(data, 'verificando a resposta da API');
             history.push('/timeline');
             cleanInputs();
         });

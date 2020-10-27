@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import LoginContext from "../context/LoginContext";
+import TimelineContext from "../context/TimelineContext";
 import Header from  '../components/Header';
 
 const Timeline = () => {
+
     
     return (
        <>
