@@ -11,6 +11,7 @@ const Publish = ({getPosts}) => {
     const [text, setText] = useState('');
     const [error, setError] = useState('');
     const [sended, setSended] = useState(false);
+    const [myPost, setMyPost] = useState([]);
     const {avatar} = userForm.userRegister.user;
     const {config} = userForm;
 
@@ -33,8 +34,9 @@ const Publish = ({getPosts}) => {
             const request = axios.post(apiLink, toServer, config);
             request.then(({data}) => {
                 //chamar a função de get aqui
-               getPosts();
+               //getPosts();
                console.log(data);
+               setMyPost(data.posts);
                setSended(false);
                clearInputs();
             });
@@ -110,6 +112,7 @@ const StyledPublish = styled.div`
     width: auto;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 0.5rem;
 `;
 
 const Figure = styled.figure`
