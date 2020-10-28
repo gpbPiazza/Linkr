@@ -47,6 +47,7 @@ const StyledPost = styled.article`
     justify-content: space-between;
     border-radius: 20px;
     margin: 2rem 0;
+    width: 100%;
     
    
     figure {

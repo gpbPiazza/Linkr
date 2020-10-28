@@ -5,71 +5,77 @@ import {useParams} from "react-router-dom";
 
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
-import Publish from "../components/Publish";
-
-import {Main, Title} from '../components-style/cmpnt-styles';
+import {Main, Title, Error, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';;
 import LoginContext from "../context/LoginContext";
 
 
-const Timeline = () => {
+const TimelineId = () => {
     const [posts, setPosts] = useState([]);
     const {userForm, controlForm} = useContext(LoginContext);
-    const {userRegister, config} = userForm;
+    const {config} = userForm;
     const {loading, setLoading} = controlForm;
     const { userId } = useParams();
+    const [error, setError] = useState('');
+    const [booleanError, setBooleanError] = useState(false);
+    
+    console.log('userId', userId);
 
     useEffect(() => {
-        setPosts([])
-        getPosts();        
-    },[posts]);
+        getPosts(userId);        
+    },[userId]);
 
-    const getPosts = () => {
-        requestApi();
+    const getPosts = (userId) => {
+        requestApi(userId);
     }
-    
 
-    const requestApi = () => {
+    const requestApi = (userId) => {
         setLoading(true);
-        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${userId}/posts?offset=0&limit=2`, {headers : config.headers});
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${userId}/posts?offset=0&limit=2`, config);
 
         request.then(({data}) => {
             console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY ID');
+            if(data.posts.length === 0) {
+                setError('Nenhum post encontrado!');
+                setBooleanError(true);
+            }
             setPosts(data);
         });
 
         request.catch(({response}) => {
             console.log(response, 'RESPOSTA ERROR DA API GET POSTS BY ID');
+            setError('Houve uma falha ao obter os posts, por favor atualize a página!');
+            setBooleanError(true);
             setLoading(false);
         }); 
     } 
 
-    console.log(posts, 'IMPRIMINDO POSTS NO TIME LINE')
 
-
-    
     return (
         
-       <Main>
-            {/*<Header />*/ }
-            <Title> timeline </Title>
-            
-            <Publish />
-            {/* {loading ? 
+        <Main>
+            <Header />
+            <Title> {} </Title>
+            <ContainerLinkdr>            
+                {loading ? 
+                        <ContainerLoading>
+                            <Loading />
+                        </ContainerLoading>
+                    :
+                    booleanError ?
+                        <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
+                        :
+                        <>
+                            {posts.map((post) => <Posts post= {post} key= {post.id}/>)}
+                        </>
+                }
+            </ContainerLinkdr>
 
-                <Loading />
-                :
-                <>
-
-
-                </>
-            
-        
-            } */}
-
-            <Trending />
-       </Main>
+            <ContainerTrending>
+                <Trending />
+            </ContainerTrending>
+        </Main>
     );
 }
 
-export default Timeline;
+export default TimelineId;
 

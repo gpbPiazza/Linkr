@@ -26,11 +26,11 @@ export default function App() {
               <Timeline />
             </Route>
 
-            <Route path='/user/:id'>
+            <Route path= '/user/:id'>
               <TimelineId />
             </Route>
 
-            <Route path='/hashtag/:hashtag'>
+            <Route path= '/hashtag/:hashtag'>
               <TimelineHashTag />
             </Route>
 

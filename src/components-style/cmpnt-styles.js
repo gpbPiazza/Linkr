@@ -24,3 +24,17 @@ export const Error = styled.span`
     color: ${Colors.lightRed};
     font-size: ${props => props.fontSize};
 `;
+
+export const ContainerTrending = styled.div`
+    width: 35%;
+`;
+
+export const ContainerLinkdr = styled.div`
+    width: 62%;
+`;
+
+export const ContainerLoading = styled.div`
+    width: 20%;
+    margin:0  auto;
+    margin-top: 5rem;
+`;
