@@ -51,7 +51,7 @@ const Timeline = () => {
         
         <Main>
             <Header />
-            <Title> {`# ${id}`} </Title>
+            <Title> {`# ${hashtag}`} </Title>
             <ContainerLinkdr>            
                 {loading ? 
                         <ContainerLoading>
