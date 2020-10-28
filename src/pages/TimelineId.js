@@ -11,17 +11,20 @@ import {Main, Title} from '../components-style/cmpnt-styles';
 import LoginContext from "../context/LoginContext";
 
 
-const Timeline = () => {
+const TimelineId = () => {
     const [posts, setPosts] = useState([]);
     const {userForm, controlForm} = useContext(LoginContext);
     const {userRegister, config} = userForm;
     const {loading, setLoading} = controlForm;
-    const { userId } = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
-        setPosts([])
+        console.log(id)
         getPosts();        
-    },[posts]);
+    },[id]);
+
+    console.log(id)
+    
 
     const getPosts = () => {
         requestApi();
@@ -30,10 +33,10 @@ const Timeline = () => {
 
     const requestApi = () => {
         setLoading(true);
-        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${userId}/posts?offset=0&limit=2`, {headers : config.headers});
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${id}/posts?offset=0&limit=2`, {headers : config.headers});
 
         request.then(({data}) => {
-            console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY ID');
+            console.log(data.response.data, 'RESPOSTA SUCESSO DA API GET POSTS BY ID');
             setPosts(data);
         });
 
@@ -71,5 +74,5 @@ const Timeline = () => {
     );
 }
 
-export default Timeline;
+export default TimelineId;
 
