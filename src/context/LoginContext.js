@@ -20,6 +20,7 @@ export function LoginProvider(props) {
 
     const requestApi = (infoUser, typeRequest) => {
         setLoading(true);
+        cleanInputs();
         const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/${typeRequest}`, infoUser);
        
         request.then(({data}) => {
@@ -27,7 +28,7 @@ export function LoginProvider(props) {
             setConfig({ headers: {"User-Token": data.token} });
             console.log(data, 'verificando a resposta da API');
             history.push('/timeline');
-            cleanInputs();
+            
         });
 
         request.catch(({response}) => {
