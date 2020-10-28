@@ -11,8 +11,7 @@ const Trending = () => {
     const [treadingHashTags, setTreadingHashtags] = useState([]);
     const {userForm, controlForm} = useContext(LoginContext);
     const {loading, setLoading} = controlForm;
-    const {userRegister, config} = userForm;
- 
+    const {config} = userForm;
 
     useEffect(() => {
         getTreadingHashTags();        
@@ -23,16 +22,16 @@ const Trending = () => {
     }
 
     const requestApi = () => {
-        setLoading(true)
-        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/trending`, {headers : config.headers});
+        setLoading(true);
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/trending`, config);
         
         request.then(({data}) => {
-            setLoading(false)
+            setLoading(false);
             setTreadingHashtags(data.hashtags);
         });
 
         request.catch(({response}) => {
-            setLoading(false)
+            setLoading(false);
             console.log(response, 'ERROR TO GET TRADING HASH TAGS');
         }); 
     } 
@@ -44,12 +43,15 @@ const Trending = () => {
                 <ContainerLoading>
                     <Loading />
                 </ContainerLoading>
-            :
+                :
                 <ul>
-                    {treadingHashTags.map((element) => <li key={element.id}>
-                                                            <Link to={`/hashtag/${element.name}`}># {element.name}</Link>
-                                                        </li>)} 
-                </ul>}
+                    {treadingHashTags.map(({id, name}) => (
+                        <li key= {id}>
+                            <Link to= {`/hashtag/${name}`}># {name} </Link>
+                        </li>
+                    ))} 
+                </ul>
+            }
         </StyledTrending>
     );
 }

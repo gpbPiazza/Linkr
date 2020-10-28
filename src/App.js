@@ -21,8 +21,8 @@ export default function App() {
             <Route exact path= "/">
               <Login />
             </Route>
-
-            <Route path= '/timeline' >
+            
+            <Route path= '/timeline'>
               <Timeline />
             </Route>
 
