@@ -49,7 +49,7 @@ const Timeline = () => {
             <Header />
             <Title> timeline </Title>
             <ContainerLinkdr>
-                <Publish />            
+                <Publish getPosts={getPosts}/>            
                 {loading ? 
                         <ContainerLoading>
                             <Loading />

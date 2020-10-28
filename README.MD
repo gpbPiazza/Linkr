@@ -49,16 +49,16 @@
         - [+ -]  Ao clicar em "My posts", o usuário deve ser redirecionado para a rota "/my-posts"
         - [x]  Ao clicar em "Logout", o usuário deve ser redirecionado novamente para a rota de login ("/") e os dados de usuário logado devem ser resetados no front
     - Publicação
-        - [wip]  Ao clicar em "Publish", deve ser validado se o usuário preencheu o link (o texto é opcional)
-        - [wip-m]  Ao clicar em "Publish", deve ser enviado um post para o servidor com os dados inseridos
-        - [m]  Ao clicar em "Publish", o botão deve ser desabilitado para evitar novos cliques e os campos devem ficar desabilitados para edição. O texto do botão deve mudar para "Publishing..."
-        - [m]  Em caso de erro no envio, deve ser exibida uma mensagem de "Houve um erro ao publicar seu link" e os campos e botões devem voltar a ser habilitados
-        - [m]  Em caso de sucesso no envio, os campos e botões devem ser re-habilitados, os campos devem ser limpos e a lista de posts da timeline deve ser atualizada para conter a nova publicação
+        - [x]  Ao clicar em "Publish", deve ser validado se o usuário preencheu o link (o texto é opcional)
+        - [x]  Ao clicar em "Publish", deve ser enviado um post para o servidor com os dados inseridos
+        - [x]  Ao clicar em "Publish", o botão deve ser desabilitado para evitar novos cliques e os campos devem ficar desabilitados para edição. O texto do botão deve mudar para "Publishing..."
+        - [x]  Em caso de erro no envio, deve ser exibida uma mensagem de "Houve um erro ao publicar seu link" e os campos e botões devem voltar a ser habilitados
+        - [x]  Em caso de sucesso no envio, os campos e botões devem ser re-habilitados, os campos devem ser limpos e a lista de posts da timeline deve ser atualizada para conter a nova publicação
     - Lista de Posts
-        - [wip]  Ao entrar na tela, deve-se carregar a lista de posts do servidor e exibida conforme layout
+        - [x]  Ao entrar na tela, deve-se carregar a lista de posts do servidor e exibida conforme layout
         - [x]  Enquanto a lista é carregada, deve-se exibir uma mensagem de "Loading" na área em que aparecem os posts. Pesquise por gifs animados de loading para ilustrar.
-        - [wip]  Caso o servidor retorne algum erro, deve ser exibida uma mensagem de "Houve uma falha ao obter os posts, por favor atualize a página"
-        - [wip]  Caso o servidor retorne uma lista vazia de posts, deve ser exibida uma mensagem de "Nenhum post encontrado"
+        - [M]  Caso o servidor retorne algum erro, deve ser exibida uma mensagem de "Houve uma falha ao obter os posts, por favor atualize a página"
+        - [M]  Caso o servidor retorne uma lista vazia de posts, deve ser exibida uma mensagem de "Nenhum post encontrado"
     - Trending
         - [x]  Ao entrar na tela, deve-se carregar a lista de hashtags populares do servidor e exibida conforme layout
         - [+ -]  Ao clicar em uma hashtag, o usuário deve ser redirecionado para a rota "/hashtag/:hashtag" em que :hashtag é o nome da hashtag (sem #)

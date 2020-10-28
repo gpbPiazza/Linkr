@@ -5,7 +5,7 @@ import Colors from '../utils/Colors';
 import LoginContext from '../context/LoginContext';
 import { Error } from '../components-style/cmpnt-styles';
 
-const Publish = () => {
+const Publish = ({getPosts}) => {
     const {userForm} = useContext(LoginContext);
     const [link, setLink] = useState('');
     const [text, setText] = useState('');
@@ -32,6 +32,8 @@ const Publish = () => {
             const apiLink = 'https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts';
             const request = axios.post(apiLink, toServer, config);
             request.then(({data}) => {
+                //chamar a função de get aqui
+               getPosts();
                console.log(data);
                setSended(false);
                clearInputs();
