@@ -84,7 +84,7 @@ export const StyledTrending = styled.div`
 `;
 
 const ContainerLoading = styled.div`
-    width: 50%;
+    width: 40%;
     margin:0  auto;
     margin-top: 5rem;
 `;

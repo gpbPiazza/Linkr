@@ -9,20 +9,22 @@ const Posts = ({post}) => {
     return (
         <StyledPost>
             <figure>
-                <img src={avatar} />
+                <Link to={`/`}>
+                    <img src={avatar} />
+                </Link>
             </figure>
 
             <section>
                 <h2> {username} </h2>
                 <p> {text} </p>
-                <div className= "link"> 
+                <a className= "link" href={link} target="_blank"> 
                     <div>
                         <h3> {linkTitle} </h3>
                         <p> {linkDescription} </p>
-                        <a target="_blank">{link}</a>
+                        <a>{link}</a>
                     </div>
-                    <img src={linkImage} />
-                </div>
+                    <img className='imgLink' src={linkImage} />
+                </a>
             </section>
 
         </StyledPost>
@@ -58,6 +60,7 @@ const StyledPost = styled.article`
         display: flex;
         border-radius: 10px;
         border: 1px solid ${Colors.lightGrey};
+        cursor: pointer;
 
         div {
             width: 70%;
@@ -84,9 +87,12 @@ const StyledPost = styled.article`
             
         }
 
-        img {
+        .imgLink {
             width: 30%;
-            height: 100%;
+            border-radius: 0;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            height: 7rem;
         }
     }
     
