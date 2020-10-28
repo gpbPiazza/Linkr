@@ -111,7 +111,7 @@ const StyledPublish = styled.div`
     width: auto;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 `;
 
 const Figure = styled.figure`

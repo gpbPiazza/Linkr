@@ -9,7 +9,8 @@ const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
     const {userForm} = useContext(LoginContext);
     const {userRegister, cleanUser} = userForm;
-    const {avatar} = userRegister.user;
+    const {avatar, id} = userRegister.user;
+    console.log('header', id);
 
     return (
         <StyledHeader>
@@ -23,8 +24,8 @@ const Header = () => {
                         </button>
 
                         <StyledNav>
-                            <Link to= '/my-posts'> My posts </Link>
-                            <Link to= '/my-likes'> My likes </Link>
+                            <Link to= {`/user/${id}`}> My posts </Link>
+                            {/*<Link to= '/my-likes'> My likes </Link>*/}
                             <Link to= '/' onClick= {cleanUser}> Logout </Link>
                         </StyledNav>
                     </>    

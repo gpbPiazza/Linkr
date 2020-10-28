@@ -6,22 +6,22 @@ import ReactHashtag from "react-hashtag";
 
 const Posts = ({post}) => {
     const { link, linkDescription, linkImage, linkTitle, text, user } = post;
-    const { id:userId, username, avatar} = user;
+    const { id, username, avatar} = user;
 
     return (
         <StyledPost>
             <figure>
-                <Link to={`/user/${userId}`}>
+                <Link to={`/user/${id}`}>
                     <img src={avatar} />
                 </Link>
             </figure>
 
             <section>
-                <Link to={`/user/${userId}`}>
+                <Link to={`/user/${id}`}>
                     <h2> {username} </h2>
                 </Link>
                 <p>
-                    <ReactHashtag renderHashtag={value => <span><Link to={`/hashtag/${value.slice(1)}`}>{value}</Link></span>}>
+                    <ReactHashtag renderHashtag= {value => <span key= {value}><Link to={`/hashtag/${value.slice(1)}`}>{value}</Link></span>}>
                         {text}
                     </ReactHashtag>
                 </p>
@@ -29,7 +29,7 @@ const Posts = ({post}) => {
                     <div>
                         <h3> {linkTitle} </h3>
                         <p> {linkDescription} </p>
-                        <span>{link}</span>
+                        <h4>{link}</h4>
                     </div>
                     <img src={linkImage} />
                 </a>
@@ -51,7 +51,7 @@ const StyledPost = styled.article`
     display: flex;
     justify-content: space-between;
     border-radius: 20px;
-    margin: 2rem 0;
+    margin-bottom: 2rem;
     width: 100%;
     
    
@@ -91,7 +91,7 @@ const StyledPost = styled.article`
                 margin-bottom: 0.5rem;
             }
             
-            span {
+            h4 {
                 font-size: 0.8rem;
                 color: ${Colors.white};
             }

@@ -1,13 +1,12 @@
-
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
-
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
 import {Main, Title, Error, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';;
 import LoginContext from "../context/LoginContext";
-
+import Loading from "../components/Loading";
+import Posts from "../components/Posts";
 
 const TimelineId = () => {
     const [posts, setPosts] = useState([]);
@@ -17,29 +16,25 @@ const TimelineId = () => {
     const { id } = useParams();
     const [error, setError] = useState('');
     const [booleanError, setBooleanError] = useState(false);
-    
-    console.log('id', id);
 
     useEffect(() => {
-        console.log(id)
-        getPosts();        
-    },[id]);
-
-    const getPosts = (id) => {
-        requestApi(id);
-    }
+        console.log('Timeline', id);
+        requestApi(id);        
+    }, [id]);
 
     const requestApi = (id) => {
         setLoading(true);
         const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${id}/posts?offset=0&limit=2`, config);
 
+        console.log('EOQQQ');
         request.then(({data}) => {
+            setLoading(false);
             console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY ID');
             if(data.posts.length === 0) {
                 setError('Nenhum post encontrado!');
                 setBooleanError(true);
             }
-            setPosts(data);
+            setPosts(data.posts);
         });
 
         request.catch(({response}) => {
@@ -55,7 +50,7 @@ const TimelineId = () => {
         
         <Main>
             <Header />
-            <Title> {} </Title>
+            <Title> {posts.length ? `${posts[0].user.username}'s posts`: ''} </Title>
             <ContainerLinkdr>            
                 {loading ? 
                         <ContainerLoading>
@@ -66,7 +61,7 @@ const TimelineId = () => {
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <>
-                            {posts.map((post) => <Posts post= {post} key= {post.id}/>)}
+                            {posts.map(post => (<Posts post= {post} key= {post.id}/>))}
                         </>
                 }
             </ContainerLinkdr>
@@ -79,4 +74,3 @@ const TimelineId = () => {
 }
 
 export default TimelineId;
-
