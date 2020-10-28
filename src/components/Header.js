@@ -1,49 +1,42 @@
-import React, { useContext, useState } from  'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import LoginContext from '../context/LoginContext';
-
-
-
 
 const Header = () => {
     const [showMenu, setShowMenu] = useState(false);
     const {userForm} = useContext(LoginContext);
-    const {userRegister, config, cleanUser} = userForm;
-    const {user} = userRegister;
-    const {avatar, email, id, username} = user;
+    const {userRegister, cleanUser} = userForm;
+    const {avatar} = userRegister.user;
 
-    
-  
     return (
-            <StyledHeader>
-                <h1>Linkr</h1>
+        <StyledHeader>
+            <h1> Linkr </h1>
 
-                <div>
-                    { showMenu ?
-                        <>  
-                            <button onClick={() => setShowMenu(!showMenu)}>
-                                <IoIosArrowUp color={Colors.white} fontSize='2.5rem' />
-                            </button>
-
-                            <ContainerMenu>
-                                <p><Link to='/my-posts'>My posts</Link></p>
-                                <p>My likes</p>
-                                <p onClick={cleanUser}><Link to='/'>Logout</Link></p>
-                            </ContainerMenu>
-                        </>    
-                        :
+            <div>
+                { showMenu ?
+                    <>  
                         <button onClick={() => setShowMenu(!showMenu)}>
-                            <IoIosArrowDown  color={Colors.white} fontSize='2.5rem'/>
+                            <IoIosArrowUp color= {Colors.white} fontSize= '2.5rem' />
                         </button>
-                        
-                    }
 
-                    <img src={avatar} onClick={() => setShowMenu(!showMenu)}/>
-                </div>    
-            </StyledHeader>
+                        <StyledNav>
+                            <Link to= '/my-posts'> My posts </Link>
+                            <Link to= '/my-likes'> My likes </Link>
+                            <Link to= '/' onClick= {cleanUser}> Logout </Link>
+                        </StyledNav>
+                    </>    
+                    :
+                    <button onClick={() => setShowMenu(!showMenu)}>
+                        <IoIosArrowDown color={ Colors.white} fontSize= '2.5rem'/>
+                    </button>
+                }
+
+                <img src={avatar} alt= "avatar photo" onClick={() => setShowMenu(!showMenu)}/>
+            </div>    
+        </StyledHeader>
     );
 }
 
@@ -51,13 +44,13 @@ const StyledHeader = styled.header`
     z-index: 1;
 	width: 100%;
     background: ${Colors.black};
-    display:flex;
-    justify-content:space-between;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     position: fixed;
     top: 0;
     right: 0;
-    padding:1rem;
+    padding: 1rem;
     
     h1 {
         font-family: 'Passion One', cursive;
@@ -85,7 +78,7 @@ const StyledHeader = styled.header`
     }
 `;
 
-const ContainerMenu = styled.div `
+const StyledNav = styled.nav`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,9 +91,8 @@ const ContainerMenu = styled.div `
     top: 5rem;
     right: 0;
 
-    p {
+    a {
         font-family: 'Lato', sans-serif;
-        font-style: normal;
         padding: 0.5rem;
         font-weight: bold;
         font-size: 1.1rem;
@@ -108,11 +100,6 @@ const ContainerMenu = styled.div `
         letter-spacing: 0.05rem;
         color: ${Colors.white};
     }
-
-
 `;
 
-
 export default Header;
-
-
