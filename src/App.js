@@ -9,6 +9,7 @@ import { LoginProvider } from './context/LoginContext';
 import Login from './pages/Login';
 import Timeline from './pages/Timeline';
 import TimelineId from './pages/TimelineId';
+import TimelineHashTag from './pages/TimelineId';
 
 
 export default function App() {
@@ -21,15 +22,15 @@ export default function App() {
               <Login />
             </Route>
 
-            <Route>
-              <Timeline path= '/timeline' />
+            <Route path= '/timeline'>
+              <Timeline />
             </Route>
 
-            <Route exact path='/user/:id'>
+            <Route path='/user/:id'>
               <TimelineId />
             </Route>
 
-            <Route exact path='/hashtag/:hashtag'>
+            <Route path='/hashtag/:hashtag'>
               <TimelineHashTag />
             </Route>
 

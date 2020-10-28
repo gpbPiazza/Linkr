@@ -35,7 +35,7 @@ const Timeline = () => {
             console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS');
             setLoading(false);
             if(data.posts.length === 0) {
-                setError('Nenhum post encontrado');
+                setError('Nenhum post encontrado!');
                 setBooleanError(true);
             }
             setPosts(data.posts);
@@ -44,7 +44,7 @@ const Timeline = () => {
 
         request.catch(({response}) => {
             setLoading(false);
-            setError('Houve uma falha ao obter os posts, por favor atualize a página');
+            setError('Houve uma falha ao obter os posts, por favor atualize a página!');
             setBooleanError(true);
             console.log(response, 'RESPOSTA ERROR DA API');
         }); 
@@ -65,7 +65,7 @@ const Timeline = () => {
                         </ContainerLoading>
                     :
                     booleanError ?
-                        <Error fontSize= {'1.5rem'}> {(error) ? error : ''} </Error>
+                        <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <ContainerPosts>
                             {posts.map((post) => <Posts post={post} key={post.id}/>)}
