@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
-// import ReactHashtag from "react-hashtag";
+import ReactHashtag from "react-hashtag";
 
 const Posts = ({post}) => {
     const { link, linkDescription, linkImage, linkTitle, text, user } = post;
@@ -20,7 +20,11 @@ const Posts = ({post}) => {
                 <Link to={`/user/${userId}`}>
                     <h2> {username} </h2>
                 </Link>
-                <p>{text}</p>
+                <p>
+                    <ReactHashtag renderHashtag={value => <span><Link to={`/hashtag/${value.slice(1)}`}>{value}</Link></span>}>
+                        {text}
+                    </ReactHashtag>
+                </p>
                 <a className= "link" href={link} target="_blank"> 
                     <div>
                         <h3> {linkTitle} </h3>
@@ -34,6 +38,7 @@ const Posts = ({post}) => {
         </StyledPost>
     );
 }
+
 
 
 
@@ -112,8 +117,7 @@ const StyledPost = styled.article`
             margin-bottom: 0.5rem;
             color: ${Colors.white};
         }
-
-        p {
+         p{   
             color: ${Colors.lightGrey};
             font-size: 1rem;
             line-height: 1.25rem;
@@ -122,26 +126,3 @@ const StyledPost = styled.article`
     }
 `;
 
-
-// const StyledHashtag = styled.a`
-    
-// `;
- 
-// const Hashtags = (props) => (
-//     <ReactHashtag
-//         renderHashtag={(hashtagValue) => (
-//             <StyledHashtag href={`/search/${hashtagValue}`}>
-//                 {hashtagValue}
-//             </StyledHashtag>
-//         )}>
-//         {props.children}
-//     </ReactHashtag>
-// );
- 
-// const Card = (props) => (
-//     <p>
-//         <Hashtags>
-//             {props.children}
-//         </Hashtags>
-//     </p>
-// );

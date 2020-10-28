@@ -14,23 +14,24 @@ const TimelineId = () => {
     const {userForm, controlForm} = useContext(LoginContext);
     const {config} = userForm;
     const {loading, setLoading} = controlForm;
-    const { userId } = useParams();
+    const { id } = useParams();
     const [error, setError] = useState('');
     const [booleanError, setBooleanError] = useState(false);
     
-    console.log('userId', userId);
+    console.log('id', id);
 
     useEffect(() => {
-        getPosts(userId);        
-    },[userId]);
+        console.log(id)
+        getPosts();        
+    },[id]);
 
-    const getPosts = (userId) => {
-        requestApi(userId);
+    const getPosts = (id) => {
+        requestApi(id);
     }
 
-    const requestApi = (userId) => {
+    const requestApi = (id) => {
         setLoading(true);
-        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${userId}/posts?offset=0&limit=2`, config);
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${id}/posts?offset=0&limit=2`, config);
 
         request.then(({data}) => {
             console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY ID');
