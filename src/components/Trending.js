@@ -46,7 +46,7 @@ const Trending = () => {
                 </ContainerLoading>
             :
                 <ul>
-                    {treadingHashTags.map((element) => <li>
+                    {treadingHashTags.map((element) => <li key={element.id}>
                                                             <Link to={`/hashtag/${element.name}`}># {element.name}</Link>
                                                         </li>)} 
                 </ul>}

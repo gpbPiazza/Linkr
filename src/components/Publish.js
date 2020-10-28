@@ -33,8 +33,7 @@ const Publish = ({getPosts}) => {
             const apiLink = 'https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts';
             const request = axios.post(apiLink, toServer, config);
             request.then(({data}) => {
-                //chamar a função de get aqui
-               //getPosts();
+               getPosts();
                console.log(data);
                setMyPost(data.posts);
                setSended(false);
@@ -112,7 +111,7 @@ const StyledPublish = styled.div`
     width: auto;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
 `;
 
 const Figure = styled.figure`

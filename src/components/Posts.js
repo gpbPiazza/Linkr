@@ -1,29 +1,32 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
 
 const Posts = ({post}) => {
-    const {postId, link, linkDescription, linkImage, linkTitle, text, user } = post;
-    const {userId, username, avatar} = user;
-    console.log(post, 'component recebendo os posts que vai ter que renderizar');
+    const { link, linkDescription, linkImage, linkTitle, text, user } = post;
+    const { id:userId, username, avatar} = user;
+
     return (
         <StyledPost>
             <figure>
-                <Link to={`/`}>
+                <Link to={`/user/${userId}`}>
                     <img src={avatar} />
                 </Link>
             </figure>
 
             <section>
-                <h2> {username} </h2>
+                <Link to={`/user/${userId}`}>
+                    <h2> {username} </h2>
+                </Link>
                 <p> {text} </p>
                 <a className= "link" href={link} target="_blank"> 
                     <div>
                         <h3> {linkTitle} </h3>
                         <p> {linkDescription} </p>
-                        <a>{link}</a>
+                        <span>{link}</span>
                     </div>
-                    <img className='imgLink' src={linkImage} />
+                    <img src={linkImage} />
                 </a>
             </section>
 
@@ -44,14 +47,16 @@ const StyledPost = styled.article`
     border-radius: 20px;
     margin: 2rem 0;
     
-    img {
+   
+    figure {
+        width: 10%;
+
+        img {
         width: 3.125rem;
         height: 3.125rem;
         border-radius: 100%;
     }
 
-    figure {
-        width: 10%;
     }
 
     .link {
@@ -79,7 +84,7 @@ const StyledPost = styled.article`
                 margin-bottom: 0.5rem;
             }
             
-            a {
+            span {
                 font-size: 0.8rem;
                 color: ${Colors.white};
             }
@@ -87,12 +92,12 @@ const StyledPost = styled.article`
             
         }
 
-        .imgLink {
+        img {
             width: 30%;
             border-radius: 0;
             border-top-right-radius: 8px;
             border-bottom-right-radius: 8px;
-            height: 7rem;
+            height: 100%
         }
     }
     

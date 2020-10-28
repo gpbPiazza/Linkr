@@ -8,11 +8,12 @@ import { LoginProvider } from './context/LoginContext';
 
 import Login from './pages/Login';
 import Timeline from './pages/Timeline';
+import TimelineId from './pages/TimelineId';
 
 
 export default function App() {
 
-  return (
+  return (  
     <Router >
       <LoginProvider>
           <Switch>
@@ -22,6 +23,10 @@ export default function App() {
 
             <Route>
               <Timeline path= '/timeline' />
+            </Route>
+
+            <Route exact path='/user/:id'>
+              <TimelineId />
             </Route>
 
           </Switch>

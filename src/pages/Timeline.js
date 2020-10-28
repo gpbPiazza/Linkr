@@ -65,7 +65,7 @@ const Timeline = () => {
                         </ContainerLoading>
                     :
                     booleanError ?
-                        <Error fontSize= {'2rem'}> {(error) ? error : ''} </Error>
+                        <Error fontSize= {'1.5rem'}> {(error) ? error : ''} </Error>
                         :
                         <ContainerPosts>
                             {posts.map((post) => <Posts post={post} key={post.id}/>)}
@@ -80,6 +80,8 @@ const Timeline = () => {
     );
 }
 
+
+
 export default Timeline;
 
 const ContainerTrending = styled.div`
@@ -88,7 +90,6 @@ const ContainerTrending = styled.div`
 
 const ContainerLinkdr = styled.div`
     width: 62%;
-    text-align: center;
 `;
 
 const ContainerPosts = styled.div`
