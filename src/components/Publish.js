@@ -1,6 +1,6 @@
 import React, { useContext, useState } from  'react';
 import styled from 'styled-components';
-
+import axios from 'axios';
 import Colors from '../utils/Colors';
 import LoginContext from '../context/LoginContext';
 import { Error } from '../components-style/cmpnt-styles';
@@ -12,33 +12,48 @@ const Publish = () => {
     const [error, setError] = useState('');
     const [sended, setSended] = useState(false);
     const {avatar} = userForm.userRegister.user;
+    const {config} = userForm;
 
     const validationPublish = (event) => {
         event.preventDefault();
         if (sended) return;
-
         setSended(true);
 
         if (link === '') {
             setError("Por favor, preencha o campo de link");
             setSended(false);
-        }
-
-        else if (!link.includes('http://')) {
-            setError('Link inválido');
-            setSended(false);
-        }
-
+        } 
+        
         else {
+            setError('');
+            const toServer = {link, text};
+            console.log(toServer, "objeto");
+            console.log(config, "header");
+            const apiLink = 'https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts';
+            const request = axios.post(apiLink, toServer, config);
+            request.then(({data}) => {
+               console.log(data);
+               setSended(false);
+               clearInputs();
+            });
 
+            request.catch(({response}) => {
+                console.log(response);
+                setError('Houve um erro ao publicar seu link');
+                setSended(false);
+            });
         }
+    }
+
+    const clearInputs = () => {
+        setLink('');
+        setText('');
     }
     
     const attLink = (value) => {
         if(sended) return;
         
         setLink(value);
-
     }
 
     const attText = (value) => {
@@ -70,8 +85,7 @@ const Publish = () => {
                 ></textarea>
 
                 <ContainerButton>
-                    {/*(error) ? <Error> {error} </Error>: <div> </div>*/}
-                    <Error> {(error) ? error : ''} </Error>
+                    <Error fontSize= {'1rem'}> {(error) ? error : ''} </Error>
                     <button 
                         onClick= {e => validationPublish(e)} 
                         type= "submit"> 
@@ -137,6 +151,7 @@ const Form = styled.form`
 const ContainerButton = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     button {
         font-size: 1rem;

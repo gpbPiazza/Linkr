@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Loading from '../components/Loading';
 import LoginContext from '../context/LoginContext';
 import Colors from '../utils/Colors';
-import {Error} from '../components-style/cmpnt-styles';
+import { Error } from '../components-style/cmpnt-styles';
 
 const Login = () => {
     const {controlForm, form, setForm} = useContext(LoginContext);
@@ -19,7 +19,7 @@ const Login = () => {
             </StyledTitle>
 
             <StyledLogin >
-                {(alert) ? <Error> {alert} </Error>: ''}
+                <Error fontSize= {'2rem'}> {(alert) ? alert : ''} </Error>
 
                 {loading ? 
                 
@@ -123,5 +123,9 @@ const StyledLogin = styled.div`
         font-size: 1rem;
         color: ${Colors.white};
         cursor: pointer;
+    }
+
+    form {
+        margin-top: 0.5rem;
     }
 `;

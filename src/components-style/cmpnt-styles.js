@@ -21,7 +21,6 @@ export const Title = styled.h1`
 `;
 
 export const Error = styled.span`
-    padding: 1.5rem 0;
     color: ${Colors.lightRed};
-    font-size: 2rem;
+    font-size: ${props => props.fontSize};
 `;
