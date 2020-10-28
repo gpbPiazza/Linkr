@@ -55,7 +55,7 @@ export const StyledTrending = styled.div`
     background: ${Colors.black};
     color: ${Colors.white};
     border-radius: 20px;
-    height: 25rem;
+    height: auto;
     
     h2 {
         font-weight: bold;
