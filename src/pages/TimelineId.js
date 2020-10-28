@@ -19,8 +19,9 @@ const Timeline = () => {
     const { userId } = useParams();
 
     useEffect(() => {
+        setPosts([])
         getPosts();        
-    },[]);
+    },[posts]);
 
     const getPosts = () => {
         requestApi();
