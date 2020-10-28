@@ -18,12 +18,16 @@ const Header = () => {
     
   
     return (
-            <Container>
-                <h1>Linkr</h1>   
+            <StyledHeader>
+                <h1>Linkr</h1>
+
                 <div>
                     { showMenu ?
-                        <>
-                            <IoIosArrowUp  onClick={() => setShowMenu(!showMenu)} color={Colors.white} fontSize='2.5rem' />
+                        <>  
+                            <button onClick={() => setShowMenu(!showMenu)}>
+                                <IoIosArrowUp color={Colors.white} fontSize='2.5rem' />
+                            </button>
+
                             <ContainerMenu>
                                 <p><Link to='/my-posts'>My posts</Link></p>
                                 <p>My likes</p>
@@ -31,15 +35,19 @@ const Header = () => {
                             </ContainerMenu>
                         </>    
                         :
-                        <IoIosArrowDown onClick={() => setShowMenu(!showMenu)} color={Colors.white} fontSize='2.5rem'/>
+                        <button onClick={() => setShowMenu(!showMenu)}>
+                            <IoIosArrowDown  color={Colors.white} fontSize='2.5rem'/>
+                        </button>
+                        
                     }
-                    <img src={avatar}/> 
+
+                    <img src={avatar} onClick={() => setShowMenu(!showMenu)}/>
                 </div>    
-            </Container>
+            </StyledHeader>
     );
 }
 
-const Container = styled.header`
+const StyledHeader = styled.header`
     z-index: 1;
 	width: 100%;
     background: ${Colors.black};
@@ -56,24 +64,25 @@ const Container = styled.header`
         line-height: 54px;
         color:${Colors.white};
         font-size: 3.2rem;
-        margin-left: 1rem
+        margin-left: 1rem;
     }
+
     img {
         width: 3.3125rem;
         height: 3.3125rem;
         border-radius: 100%;
-        margin-left: 0.5rem
+        margin-left: 0.5rem;
+        cursor: pointer;
     }
     
     div {
         display: flex;
         align-items: center;
     }
-`;
 
-const Button = styled.button`
-    font-size: 10rem;
-
+    button {
+        cursor: pointer;
+    }
 `;
 
 const ContainerMenu = styled.div `
