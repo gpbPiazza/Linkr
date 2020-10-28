@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
+import styled from "styled-components";
+import axios from "axios";
 
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
 import Publish from "../components/Publish";
-import styled from "styled-components";
-
+import Loading from '../components/Loading';
 import {Main, Title} from '../components-style/cmpnt-styles';
 import LoginContext from "../context/LoginContext";
 import Posts from "../components/Posts";
-import axios from "axios";
+
 
 const Timeline = () => {
     const [posts, setPosts] = useState([]);
@@ -32,50 +33,38 @@ const Timeline = () => {
 
         request.then(({data}) => {
             console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS');
-            setPosts(data);
+            setPosts(data.posts);
         });
 
         request.catch(({response}) => {
-            console.log(response, 'RESPOSTA ERROR DA API');
             setLoading(false);
+            console.log(response, 'RESPOSTA ERROR DA API');
         }); 
     } 
  
-
-    
-    console.log(posts, 'IMPRIMINDO POSTS NO TIME LINE')
-
-
-
-
-
     
     return (
         
        <Main>
             <Header />
             <Title> timeline </Title>
-            
             <ContainerLinkdr>
-                <Publish />
-                <Posts />
+                <Publish />            
+                {loading ? 
+                        <ContainerLoading>
+                            <Loading />
+                        </ContainerLoading>
+                    :
+                    <>
+                        <ContainerPosts>
+                            {posts.map((post) => <Posts post={post} key={post.id}/>)}
+                        </ContainerPosts>
+                    </>}
             </ContainerLinkdr>
-            
-            {/* {loading ? 
-
-                <Loading />
-                :
-                <>
-
-
-                </>
-            
-        
-            } */}
             <ContainerTrending>
                 <Trending />
             </ContainerTrending>
-            
+           
        </Main>
     );
 }
@@ -88,5 +77,13 @@ const ContainerTrending = styled.div`
 
 const ContainerLinkdr = styled.div`
     width: 62%;
-    height: auto;
+`;
+const ContainerPosts = styled.div`
+    width: 100%;
+`;
+
+const ContainerLoading = styled.div`
+    width: 20%;
+    margin:0  auto;
+    margin-top: 5rem;
 `;

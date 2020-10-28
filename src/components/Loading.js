@@ -17,7 +17,7 @@ const Spinner = styled.div`
     align-items: center;
 
     img {
-       width: 70%
+       width: 100%;
     }
 `;
 

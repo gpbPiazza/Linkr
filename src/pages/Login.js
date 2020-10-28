@@ -22,8 +22,9 @@ const Login = () => {
                 <Error fontSize= {'2rem'}> {(alert) ? alert : ''} </Error>
 
                 {loading ? 
-                
-                    <Loading /> 
+                    <ContainerLoading>
+                        <Loading /> 
+                    </ContainerLoading>
                 :
                 <> 
                     <form>
@@ -129,3 +130,7 @@ const StyledLogin = styled.div`
         margin-top: 0.5rem;
     }
 `;
+const ContainerLoading = styled.div`
+    width: 40%;
+`;
+

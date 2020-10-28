@@ -2,30 +2,35 @@ import React from 'react';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
 
-const Posts = () => {
+const Posts = ({post}) => {
+    const {postId, link, linkDescription, linkImage, linkTitle, text, user } = post;
+    const {userId, username, avatar} = user;
+    console.log(post, 'component recebendo os posts que vai ter que renderizar');
     return (
         <StyledPost>
             <figure>
-                <img src= "./img/loadin3.gif" alt= "foto de perfil"/>
+                <img src={avatar} />
             </figure>
 
             <section>
-                <h2> Juvenal Juvêncio </h2>
-                <p> Muito maneiro esse tutorial de Material UI com React, deem uma olhada. </p>
+                <h2> {username} </h2>
+                <p> {text} </p>
                 <div className= "link"> 
                     <div>
-                        <h3> Como aplicar o material ui em um projeto react </h3>
-                        <p> orecitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                        <a> testsetestestestsets </a>
+                        <h3> {linkTitle} </h3>
+                        <p> {linkDescription} </p>
+                        <a target="_blank">{link}</a>
                     </div>
-
-                    <img src="./img/loadin3.gif" />
+                    <img src={linkImage} />
                 </div>
             </section>
 
         </StyledPost>
     );
 }
+
+
+
 
 export default Posts;
 
