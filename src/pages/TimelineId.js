@@ -14,7 +14,7 @@ import LoginContext from "../context/LoginContext";
 const Timeline = () => {
     const [posts, setPosts] = useState([]);
     const {userForm, controlForm} = useContext(LoginContext);
-    const {userRegister, config, clearUser} = userForm;
+    const {userRegister, config} = userForm;
     const {loading, setLoading} = controlForm;
     const { userId } = useParams();
 

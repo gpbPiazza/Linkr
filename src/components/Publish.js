@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useContext, useState } from  'react';
 import styled from 'styled-components';
+
 import Colors from '../utils/Colors';
+import LoginContext from '../context/LoginContext';
 
 const Publish = () => {
+    const {userForm} = useContext(LoginContext);
+    const {userRegister, config, clearUser} = userForm;
+    const {user} = userRegister;
+    const {avatar, email, id, username} = user;
+
+
     return (
         <StyledPublish>
             <figure>
-                <img src= "./img/loadin3.gif" />
+                <img src={avatar} />
             </figure>
 
             <form>
@@ -25,10 +33,11 @@ export default Publish;
 
 
 export const StyledPublish = styled.div`
-    border-radius: 20px;
+    border-radius: 1.25rem;
     background: ${Colors.white};
     padding: 1rem;
-    height: 13rem;
+    height: auto;
+    width: auto;
     display: flex;
     justify-content: space-between;
 
@@ -38,6 +47,7 @@ export const StyledPublish = styled.div`
 
     form {
         width: 89%;
+        padding: 0 1rem;
         padding-top: 0.25rem;
 
         h2 {
@@ -51,6 +61,8 @@ export const StyledPublish = styled.div`
             width: 100%;
             padding: 0.5rem;
             background: ${Colors.ice};
+            color: ${Colors.lightGrey};
+            resize: none;
             border-radius: 10px;
             font-size: 1rem;
             margin: 0.25rem 0;

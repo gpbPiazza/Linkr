@@ -8,9 +8,9 @@ import {Link} from "react-router-dom";
 
 const Trending = () => {
     const [treadingHashTags, setTreadingHashtags] = useState([]);
-    const {userForm, controlForm} = useContext(LoginContext);
-    const {userRegister, config, clearUser} = userForm;
-    const {loading, setLoading} = controlForm;
+    const {userForm} = useContext(LoginContext);
+    const {userRegister, config} = userForm;
+ 
 
     useEffect(() => {
         getTreadingHashTags();        
@@ -21,17 +21,14 @@ const Trending = () => {
     }
 
     const requestApi = () => {
-        setLoading(true);
         const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/trending`, {headers : config.headers});
         
         request.then(({data}) => {
-            console.log(data.hashtags, 'RESPOSTA SUCESSO DA API GET GET TOP TRADING HASH TAG');
             setTreadingHashtags(data.hashtags);
         });
 
         request.catch(({response}) => {
-            console.log(response, 'RESPOSTA ERROR DA API GET GET TOP TRADING HASH TAG');
-            setLoading(false);
+            console.log(response, 'ERROR TO GET TRADING HASH TAGS');
         }); 
     } 
  
