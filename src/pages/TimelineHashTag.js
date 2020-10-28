@@ -27,7 +27,7 @@ const Timeline = () => {
     
     const requestApi = () => {
         setLoading(true);
-        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/:${hashtag}/posts?offset=0&limit=2`,{headers : config.headers});
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/${hashtag}/posts?offset=0&limit=2`,{headers : config.headers});
         
         request.then(({data}) => {
             console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY HASH TAG');

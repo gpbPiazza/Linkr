@@ -25,7 +25,7 @@ const Header = () => {
                         <>
                             <IoIosArrowUp  onClick={() => setShowMenu(!showMenu)} color={Colors.white} fontSize='2.5rem' />
                             <ContainerMenu>
-                                <p>My posts</p>
+                                <p><Link to='/my-posts'>My posts</Link></p>
                                 <p>My likes</p>
                                 <p onClick={clearUser}><Link to='/'>Logout</Link></p>
                             </ContainerMenu>

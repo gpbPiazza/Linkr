@@ -4,6 +4,7 @@ import React, { useContext, useState, useEffect } from  'react';
 import styled from 'styled-components';
 import LoginContext from '../context/LoginContext';
 import Colors from '../utils/Colors';
+import {Link} from "react-router-dom";
 
 const Trending = () => {
     const [treadingHashTags, setTreadingHashtags] = useState([]);
@@ -21,38 +22,27 @@ const Trending = () => {
 
     const requestApi = () => {
         setLoading(true);
-        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/trending`);
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/trending`, {headers : config.headers});
         
         request.then(({data}) => {
-            console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY HASH TAG');
-            setTreadingHashtags(data);
+            console.log(data.hashtags, 'RESPOSTA SUCESSO DA API GET GET TOP TRADING HASH TAG');
+            setTreadingHashtags(data.hashtags);
         });
 
         request.catch(({response}) => {
-            console.log(response, 'RESPOSTA ERROR DA API GET POSTS BY HASH TAG');
+            console.log(response, 'RESPOSTA ERROR DA API GET GET TOP TRADING HASH TAG');
             setLoading(false);
         }); 
     } 
  
-
-
-
-
-
-
     return (
         <StyledTrending>
             <h2> trending </h2> 
-
             <ul>
-                <li> node </li>
-                <li> react </li>
-                <li> aaa </li>
-                <li> bbb </li>
-                <li> bbb </li>
-                <li> bbb </li>
+                {treadingHashTags.map((element) => <li>
+                                                        <Link to={`/hashtag/${element.name}`}># {element.name}</Link>
+                                                    </li>)} 
             </ul>
-
         </StyledTrending>
     );
 }
@@ -78,7 +68,6 @@ export const StyledTrending = styled.div`
     ul {
         border-top: 1px solid ${Colors.darkGrey};
         padding-top: 0.5rem;
-        overflow: hidden;
     }
 
     li {

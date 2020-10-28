@@ -53,7 +53,7 @@ const Timeline = () => {
     return (
         
        <Main>
-            {/*<Header />*/ }
+            <Header />
             <Title> timeline </Title>
             
             <ContainerLinkdr>

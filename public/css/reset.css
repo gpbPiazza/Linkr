@@ -32,9 +32,10 @@ body {
 	line-height: 1;
 }
 ol, ul {
-	list-style: 'none';
+	list-style: none;
 }
-a {
+a {	
+	color: inherit;
 	text-decoration: none;
 }
 blockquote, q {
@@ -52,11 +53,6 @@ table {
 
 * {
     box-sizing:border-box;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
 }
 
 strong {

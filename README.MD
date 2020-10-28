@@ -25,8 +25,8 @@
         - [x]  Ao clicar em entrar, caso os campos estejam preenchidos, deverá ser enviado um request `post` para o servidor, seguindo documentação
         - [x]  Caso o servidor retorne uma falha (status 401), deverá ser lançado um alert para o usuário de email/senha incorretos
         - [x]  Caso o servidor retorne sucesso (status 200), o usuário deve ser redirecionado para a rota "/timeline"
-        - [utilizar-context]  Em caso de sucesso, o servidor retornará na resposta também um código identificador do usuário que você deve **guardar** para usar nos próximos requests pro servidor, assim como dados sobre usuário (como nome e foto)
-        - [wip]  Ao clicar em entrar, o botão deve ser desabilitado até o servidor responder, evitando que o usuário clique no botão várias vezes
+        - [x]  Em caso de sucesso, o servidor retornará na resposta também um código identificador do usuário que você deve **guardar** para usar nos próximos requests pro servidor, assim como dados sobre usuário (como nome e foto)
+        - [x]  Ao clicar em entrar, o botão deve ser desabilitado até o servidor responder, evitando que o usuário clique no botão várias vezes
         - [X]  Ao clicar em "First time? Create an account!", os campos devem mudar pro formato da tela 2
     - Cadastro
         - [x]  Ao clicar em cadastrar, caso algum dos campos esteja vazio, deverá aparecer um alert solicitando o preenchimento dos campos
@@ -47,21 +47,21 @@
         - [x]  Ao clicar na seta/foto do usuário, deve abrir um menu conforme layout e seta deve virar para cima
         - [x]  Ao clicar novamente, deve-se fechar o menu e virar a seta novamente pra baixo
         - [wip]  Ao clicar em "My posts", o usuário deve ser redirecionado para a rota "/my-posts"
-        - []  Ao clicar em "Logout", o usuário deve ser redirecionado novamente para a rota de login ("/") e os dados de usuário logado devem ser resetados no front
+        - [wip]  Ao clicar em "Logout", o usuário deve ser redirecionado novamente para a rota de login ("/") e os dados de usuário logado devem ser resetados no front
     - Publicação
-        - [ ]  Ao clicar em "Publish", deve ser validado se o usuário preencheu o link (o texto é opcional)
-        - [ ]  Ao clicar em "Publish", deve ser enviado um post para o servidor com os dados inseridos
-        - [ ]  Ao clicar em "Publish", o botão deve ser desabilitado para evitar novos cliques e os campos devem ficar desabilitados para edição. O texto do botão deve mudar para "Publishing..."
-        - [ ]  Em caso de erro no envio, deve ser exibida uma mensagem de "Houve um erro ao publicar seu link" e os campos e botões devem voltar a ser habilitados
-        - [ ]  Em caso de sucesso no envio, os campos e botões devem ser re-habilitados, os campos devem ser limpos e a lista de posts da timeline deve ser atualizada para conter a nova publicação
+        - [wip-m]  Ao clicar em "Publish", deve ser validado se o usuário preencheu o link (o texto é opcional)
+        - [wip-m]  Ao clicar em "Publish", deve ser enviado um post para o servidor com os dados inseridos
+        - [m]  Ao clicar em "Publish", o botão deve ser desabilitado para evitar novos cliques e os campos devem ficar desabilitados para edição. O texto do botão deve mudar para "Publishing..."
+        - [m]  Em caso de erro no envio, deve ser exibida uma mensagem de "Houve um erro ao publicar seu link" e os campos e botões devem voltar a ser habilitados
+        - [m]  Em caso de sucesso no envio, os campos e botões devem ser re-habilitados, os campos devem ser limpos e a lista de posts da timeline deve ser atualizada para conter a nova publicação
     - Lista de Posts
-        - [ ]  Ao entrar na tela, deve-se carregar a lista de posts do servidor e exibida conforme layout
-        - [ ]  Enquanto a lista é carregada, deve-se exibir uma mensagem de "Loading" na área em que aparecem os posts. Pesquise por gifs animados de loading para ilustrar.
-        - [ ]  Caso o servidor retorne algum erro, deve ser exibida uma mensagem de "Houve uma falha ao obter os posts, por favor atualize a página"
-        - [ ]  Caso o servidor retorne uma lista vazia de posts, deve ser exibida uma mensagem de "Nenhum post encontrado"
+        - [wip]  Ao entrar na tela, deve-se carregar a lista de posts do servidor e exibida conforme layout
+        - [x]  Enquanto a lista é carregada, deve-se exibir uma mensagem de "Loading" na área em que aparecem os posts. Pesquise por gifs animados de loading para ilustrar.
+        - [wip]  Caso o servidor retorne algum erro, deve ser exibida uma mensagem de "Houve uma falha ao obter os posts, por favor atualize a página"
+        - [wip]  Caso o servidor retorne uma lista vazia de posts, deve ser exibida uma mensagem de "Nenhum post encontrado"
     - Trending
-        - [ ]  Ao entrar na tela, deve-se carregar a lista de hashtags populares do servidor e exibida conforme layout
-        - [ ]  Ao clicar em uma hashtag, o usuário deve ser redirecionado para a rota "/hashtag/:hashtag" em que :hashtag é o nome da hashtag (sem #)
+        - [x]  Ao entrar na tela, deve-se carregar a lista de hashtags populares do servidor e exibida conforme layout
+        - [+ -]  Ao clicar em uma hashtag, o usuário deve ser redirecionado para a rota "/hashtag/:hashtag" em que :hashtag é o nome da hashtag (sem #)
 - Post
     - [ ]  Ao clicar na foto ou nome do usuário que publicou um post, o usuário deve ser redirecionado para a página "/user/:id" em que :id é o id do usuário
     - [ ]  Ao clicar em uma hashtag ao longo do texto do post, o usuário deve ser redirecionado para a página da hashtag clicada. Observe que as hashtags ficam marcadas em negrito e cor branca no layout.
@@ -77,3 +77,10 @@
 
 - Deploy
     - [ ]  Coloque seu projeto no ar usando o GitHub Pages
+
+
+// ageitar todos os css
+// terminar o publish
+// terminar a tela de time line principal --FOCU É TERMIANR ISSO!!
+
+// começar a fazer os routes e time lines de clicks -- clicou na #, no usuário que postou aquilo e também my posts -- finaliza o projeto
