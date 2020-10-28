@@ -5,10 +5,12 @@ import styled from 'styled-components';
 import LoginContext from '../context/LoginContext';
 import Colors from '../utils/Colors';
 import {Link} from "react-router-dom";
+import Loading from './Loading';
 
 const Trending = () => {
     const [treadingHashTags, setTreadingHashtags] = useState([]);
-    const {userForm} = useContext(LoginContext);
+    const {userForm, controlForm} = useContext(LoginContext);
+    const {loading, setLoading} = controlForm;
     const {userRegister, config} = userForm;
  
 
@@ -21,13 +23,16 @@ const Trending = () => {
     }
 
     const requestApi = () => {
+        setLoading(true)
         const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/trending`, {headers : config.headers});
         
         request.then(({data}) => {
+            setLoading(false)
             setTreadingHashtags(data.hashtags);
         });
 
         request.catch(({response}) => {
+            setLoading(false)
             console.log(response, 'ERROR TO GET TRADING HASH TAGS');
         }); 
     } 
@@ -35,11 +40,16 @@ const Trending = () => {
     return (
         <StyledTrending>
             <h2> trending </h2> 
-            <ul>
-                {treadingHashTags.map((element) => <li>
-                                                        <Link to={`/hashtag/${element.name}`}># {element.name}</Link>
-                                                    </li>)} 
-            </ul>
+            {loading ?
+                <ContainerLoading>
+                    <Loading />
+                </ContainerLoading>
+            :
+                <ul>
+                    {treadingHashTags.map((element) => <li>
+                                                            <Link to={`/hashtag/${element.name}`}># {element.name}</Link>
+                                                        </li>)} 
+                </ul>}
         </StyledTrending>
     );
 }
@@ -71,4 +81,10 @@ export const StyledTrending = styled.div`
         font-size: 1.5rem;
         margin-bottom: 0.7rem;
     }
+`;
+
+const ContainerLoading = styled.div`
+    width: 50%;
+    margin:0  auto;
+    margin-top: 5rem;
 `;

@@ -25,8 +25,9 @@ const Login = () => {
 
 
                 {loading ? 
-                
-                    <Loading /> 
+                    <ContainerLoading>
+                        <Loading /> 
+                    </ContainerLoading>
                 :
                 <> 
                     <form>
@@ -134,3 +135,7 @@ const StyledLogin = styled.div`
         cursor: pointer;
     }
 `;
+const ContainerLoading = styled.div`
+    width: 40%;
+`;
+

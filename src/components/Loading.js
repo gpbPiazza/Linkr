@@ -5,7 +5,7 @@ import Colors from '../utils/Colors';
 const Loading = () => {
 
     return (
-        <Container>
+        <Container >
             <img src='/img/loadin3.gif'/>      
         </Container>
     );
@@ -13,12 +13,12 @@ const Loading = () => {
 
 const Container = styled.div`
     display: flex;
-    flex-direction:column;
+    width: 100%;
     justify-content: center;
     align-items: center;
 
     img {
-       width: 70%
+       width: 100%;
     }
 `;
 
