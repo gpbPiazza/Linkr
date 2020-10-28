@@ -20,7 +20,7 @@ export function LoginProvider(props) {
 
     const requestApi = (infoUser, typeRequest) => {
         setLoading(true);
-        cleanInputs();
+        setAlert('');
         const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/${typeRequest}`, infoUser);
        
         request.then(({data}) => {
@@ -28,13 +28,13 @@ export function LoginProvider(props) {
             setConfig({ headers: {"User-Token": data.token} });
             console.log(data, 'verificando a resposta da API');
             history.push('/timeline');
-            
+            cleanInputs();
         });
 
         request.catch(({response}) => {
             if(typeRequest === 'sign_up') {
                 (response.status === 401) ?
-                    setAlert('Email inserido já esta cadastrado') 
+                    setAlert('Email inserido já esta cadastrado')
                     :
                     setAlert('URL inválida');
             } else {
@@ -65,13 +65,10 @@ export function LoginProvider(props) {
         }
     }
 
-    const clearUser = () => {
-        const resetUser = {};
-
-        setConfig(resetUser);
-        setUserRegister(resetUser);
-        //NÃO ESTÁ FUNCIONANDO TEMOS QUE OLHAR ISSO DEPOIS
-        console.log('RESETANDO O USUARIO', config, userRegister);
+    const cleanUser = () => {
+        setLoading(false);
+        setConfig({});
+        setUserRegister({});
     }
 
     const toggleInputs  = () => {
@@ -91,7 +88,7 @@ export function LoginProvider(props) {
     const form = {email, password, userName, pictureUrl};
     const setForm = {setEmail, setPassWord, setUserName, setPictureUrl};
     const controlForm = {alert, verifyInputs, toggleInputs, firstTime, setLoading, loading};
-    const userForm = {userRegister, config, clearUser};
+    const userForm = {userRegister, config, cleanUser};
 
     return (
         <LoginContext.Provider value= {{controlForm, form, setForm, userForm }}>

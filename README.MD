@@ -47,7 +47,7 @@
         - [x]  Ao clicar na seta/foto do usuário, deve abrir um menu conforme layout e seta deve virar para cima
         - [x]  Ao clicar novamente, deve-se fechar o menu e virar a seta novamente pra baixo
         - [wip]  Ao clicar em "My posts", o usuário deve ser redirecionado para a rota "/my-posts"
-        - [wip]  Ao clicar em "Logout", o usuário deve ser redirecionado novamente para a rota de login ("/") e os dados de usuário logado devem ser resetados no front
+        - [x]  Ao clicar em "Logout", o usuário deve ser redirecionado novamente para a rota de login ("/") e os dados de usuário logado devem ser resetados no front
     - Publicação
         - [wip-m]  Ao clicar em "Publish", deve ser validado se o usuário preencheu o link (o texto é opcional)
         - [wip-m]  Ao clicar em "Publish", deve ser enviado um post para o servidor com os dados inseridos
