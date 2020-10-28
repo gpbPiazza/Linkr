@@ -34,7 +34,7 @@ const Header = () => {
                     </button>
                 }
 
-                <img src={avatar} alt= "avatar photo" onClick={() => setShowMenu(!showMenu)}/>
+                <img src={avatar} alt= "foto de perfil" onClick={() => setShowMenu(!showMenu)}/>
             </div>    
         </StyledHeader>
     );

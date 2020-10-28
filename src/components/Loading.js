@@ -1,19 +1,18 @@
 import React from  'react';
 import styled from 'styled-components';
-import Colors from '../utils/Colors';
 
 const Loading = () => {
 
     return (
-        <Container>
+        <Spinner>
             <img src='/img/loadin3.gif'/>      
-        </Container>
+        </Spinner>
     );
 }
 
-const Container = styled.div`
+const Spinner = styled.div`
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 

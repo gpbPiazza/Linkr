@@ -3,9 +3,7 @@ import styled from 'styled-components';
 import Loading from '../components/Loading';
 import LoginContext from '../context/LoginContext';
 import Colors from '../utils/Colors';
-
-/* To Do: Refatorar essas 4 funções para duas, colocar os alertas em html (Eu amanha)
- criar o context-api para salvar a resposta do servidor (se quiser fazer)*/
+import {Error} from '../components-style/cmpnt-styles';
 
 const Login = () => {
     const {controlForm, form, setForm} = useContext(LoginContext);
@@ -22,7 +20,6 @@ const Login = () => {
 
             <StyledLogin >
                 {(alert) ? <Error> {alert} </Error>: ''}
-
 
                 {loading ? 
                 
@@ -55,12 +52,6 @@ const Login = () => {
 }
 
 export default Login;
-
-const Error = styled.span`
-    padding: 1.5rem 0;
-    color: ${Colors.lightRed};
-    font-size: 2rem;
-`;
 
 const MainContainer = styled.main`
     display: flex;

@@ -6,7 +6,7 @@ const Posts = () => {
     return (
         <StyledPost>
             <figure>
-                <img src= "./img/loadin3.gif" />
+                <img src= "./img/loadin3.gif" alt= "foto de perfil"/>
             </figure>
 
             <section>
@@ -103,6 +103,4 @@ const StyledPost = styled.article`
             margin-bottom: 0.5rem; 
         }
     }
-
-
 `;
