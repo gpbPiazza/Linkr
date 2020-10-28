@@ -49,7 +49,7 @@ const StyledPost = styled.article`
 
     .link {
         width: 100%;
-        height: 10rem;
+        height: auto;
         display: flex;
         border-radius: 10px;
         border: 1px solid ${Colors.lightGrey};
