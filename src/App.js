@@ -29,6 +29,10 @@ export default function App() {
               <TimelineId />
             </Route>
 
+            <Route exact path='/hashtag/:hashtag'>
+              <TimelineHashTag />
+            </Route>
+
           </Switch>
       </LoginProvider>
     </Router>

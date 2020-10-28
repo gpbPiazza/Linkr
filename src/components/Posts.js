@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
+// import ReactHashtag from "react-hashtag";
 
 const Posts = ({post}) => {
     const { link, linkDescription, linkImage, linkTitle, text, user } = post;
@@ -19,7 +20,7 @@ const Posts = ({post}) => {
                 <Link to={`/user/${userId}`}>
                     <h2> {username} </h2>
                 </Link>
-                <p> {text} </p>
+                <p>{text}</p>
                 <a className= "link" href={link} target="_blank"> 
                     <div>
                         <h3> {linkTitle} </h3>
@@ -97,7 +98,6 @@ const StyledPost = styled.article`
             border-radius: 0;
             border-top-right-radius: 8px;
             border-bottom-right-radius: 8px;
-            height: 100%
         }
     }
     
@@ -120,3 +120,27 @@ const StyledPost = styled.article`
         }
     }
 `;
+
+
+// const StyledHashtag = styled.a`
+    
+// `;
+ 
+// const Hashtags = (props) => (
+//     <ReactHashtag
+//         renderHashtag={(hashtagValue) => (
+//             <StyledHashtag href={`/search/${hashtagValue}`}>
+//                 {hashtagValue}
+//             </StyledHashtag>
+//         )}>
+//         {props.children}
+//     </ReactHashtag>
+// );
+ 
+// const Card = (props) => (
+//     <p>
+//         <Hashtags>
+//             {props.children}
+//         </Hashtags>
+//     </p>
+// );
