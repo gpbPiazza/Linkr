@@ -18,7 +18,7 @@
     - [wip]  Aplicar layout para mobile, seguindo imagens fornecidas
     - [wip]  Fontes e cores devem ser extraídas do Figma: [https://www.figma.com/file/PzDjhf1EyeZ0opdDnhLmwJ/linkr?node-id=0%3A1](https://www.figma.com/file/PzDjhf1EyeZ0opdDnhLmwJ/linkr?node-id=0%3A1) (crie uma conta no Figma e se logue para ter acesso ao Inspect)
     - [x]  Tamanhos/posicionamento podem ser aproximados, não é necessário copiar o Figma (não recomendado!)
-    - [wip]  Para ícones, utilize a biblioteca **react-icons**
+    - [x]  Para ícones, utilize a biblioteca **react-icons**
 - Tela de Login (rota "/")
     - Login
         - [x]  Ao clicar em entrar, caso algum dos campos esteja vazio, deverá aparecer um alert solicitando o preenchimento dos campos
@@ -46,7 +46,7 @@
         - [x]  Implementar topo como especificado no layout. O topo deve ser fixo.
         - [x]  Ao clicar na seta/foto do usuário, deve abrir um menu conforme layout e seta deve virar para cima
         - [x]  Ao clicar novamente, deve-se fechar o menu e virar a seta novamente pra baixo
-        - [wip]  Ao clicar em "My posts", o usuário deve ser redirecionado para a rota "/my-posts"
+        - [+ -]  Ao clicar em "My posts", o usuário deve ser redirecionado para a rota "/my-posts"
         - [x]  Ao clicar em "Logout", o usuário deve ser redirecionado novamente para a rota de login ("/") e os dados de usuário logado devem ser resetados no front
     - Publicação
         - [wip-m]  Ao clicar em "Publish", deve ser validado se o usuário preencheu o link (o texto é opcional)

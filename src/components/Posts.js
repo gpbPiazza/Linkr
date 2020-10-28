@@ -108,6 +108,4 @@ const StyledPost = styled.article`
             margin-bottom: 0.5rem; 
         }
     }
-
-
 `;

@@ -19,3 +19,9 @@ export const Title = styled.h1`
     width: 100%;
     margin: 2rem 0; 
 `;
+
+export const Error = styled.span`
+    padding: 1.5rem 0;
+    color: ${Colors.lightRed};
+    font-size: 2rem;
+`;
