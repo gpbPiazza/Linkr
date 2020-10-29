@@ -1,86 +1,68 @@
-# Requisitos
+# Projeto - Linkdr
+<p align="center">
+  <img src="public/img/linkr-icon.png" width="175" alt="Linkdr" />
+</p>
+  
+
+## Objective
+<p>
+   This project was developed throughout the Bootcamp of "Respode Aí", is a Single-Page Application project for social media, using React. The user could register, log in, posts his favorites links to share with the community and navigate in the social media seeing the posts communities.
+</p>
+
+### Features
+- [x] Register and Log in<br>
+- [x] Publish links with your comment<br>
+- [x] Lists all posts of community<br>
+- [x] List treading hashtags<br>
+- [x] Header for navigation<br>
+- [x] Navigation with hashtags and profiles users posts<br>
+- [ ] Responsive for smartphones<br>
+
+### Tech Stack
+Languages:<br>
+<p align="center">
+    <img src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/>
+    <img src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/>
+    <img src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E"/>
+</p>
 
 
-## Legenda de marcações {
-- wip = working in progress
-- P = PIAZZA TASK
-- M = MILHOMEM TASK
-- X = DONE
+The following tools and frameworks were used in the construction of the project:<br> 
+    <img src="https://img.shields.io/badge/react%20-%23323330.svg?&style=for-the-badge&logo=react&logoColor=%23F7DF1E"/>
+    <img src="https://img.shields.io/badge/react_router%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+    <img src="https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node.js&logoColor=white"/>
+    <img src="https://img.shields.io/badge/webpack%20-%238DD6F9.svg?&style=for-the-badge&logo=webpack&logoColor=black" />
+    <img src='https://img.shields.io/badge/axios%20-%2320232a.svg?&style=for-the-badge&logo=axios&logoColor=%2361DAFB'>
+    <img src='https://img.shields.io/badge/babel%20-%2320232a.svg?&style=for-the-badge&logo=babel&logoColor=%2361DAFB'>
+    <img src='https://img.shields.io/badge/yarn%20-%2320232a.svg?&style=for-the-badge&logo=yarn&logoColor=%2361DAFB'>
+    <img src='https://img.shields.io/badge/react-icon%20-%2320232a.svg?&style=for-the-badge&logo=react-icon&logoColor=%2361DAFB'>
+    <img src='https://img.shields.io/badge/styled-components%20-%2320232a.svg?&style=for-the-badge&logo=styled-components&logoColor=%2361DAFB'>
+
+#Folow the link project, the project should only have layout for smartphones for simulate a app.
+
+- [Link]()
 
 
-- Geral
-    - [x]  Manipule o HTML usando somente React (sem usar o document nem bibliotecas como jQuery)
-    - [x]  Seu projeto deverá ser desenvolvido utilizando Git e GitHub
-    - [x]  Para isso, crie um repositório público no seu GitHub e compartilhe acesso com sua dupla
-    - [x]  **A cada requisito implementado** faça um commit com uma mensagem descritiva do que você evoluiu. Caso queira dividir um requisito em vários commits, não há problema. Mas evite colocar mais de um requisito no mesmo commit
-- Layout
-    - [wip]  Aplicar layout para desktop, seguindo imagens fornecidas
-    - [wip]  Aplicar layout para mobile, seguindo imagens fornecidas
-    - [wip]  Fontes e cores devem ser extraídas do Figma: [https://www.figma.com/file/PzDjhf1EyeZ0opdDnhLmwJ/linkr?node-id=0%3A1](https://www.figma.com/file/PzDjhf1EyeZ0opdDnhLmwJ/linkr?node-id=0%3A1) (crie uma conta no Figma e se logue para ter acesso ao Inspect)
-    - [x]  Tamanhos/posicionamento podem ser aproximados, não é necessário copiar o Figma (não recomendado!)
-    - [x]  Para ícones, utilize a biblioteca **react-icons**
-- Tela de Login (rota "/")
-    - Login
-        - [x]  Ao clicar em entrar, caso algum dos campos esteja vazio, deverá aparecer um alert solicitando o preenchimento dos campos
-        - [x]  Ao clicar em entrar, caso os campos estejam preenchidos, deverá ser enviado um request `post` para o servidor, seguindo documentação
-        - [x]  Caso o servidor retorne uma falha (status 401), deverá ser lançado um alert para o usuário de email/senha incorretos
-        - [x]  Caso o servidor retorne sucesso (status 200), o usuário deve ser redirecionado para a rota "/timeline"
-        - [x]  Em caso de sucesso, o servidor retornará na resposta também um código identificador do usuário que você deve **guardar** para usar nos próximos requests pro servidor, assim como dados sobre usuário (como nome e foto)
-        - [x]  Ao clicar em entrar, o botão deve ser desabilitado até o servidor responder, evitando que o usuário clique no botão várias vezes
-        - [X]  Ao clicar em "First time? Create an account!", os campos devem mudar pro formato da tela 2
-    - Cadastro
-        - [x]  Ao clicar em cadastrar, caso algum dos campos esteja vazio, deverá aparecer um alert solicitando o preenchimento dos campos
-        - [x]  Ao clicar em entrar, caso os campos estejam preenchidos, deverá ser enviado um request `post` para o servidor, seguindo documentação
-        - [x]  Caso o servidor retorne uma falha (status 400), deverá ser lançado um alert para o usuário informando que o email inserido já está cadastrado
-        - [x]  Caso o servidor retorne sucesso (status 201), o usuário deve ser redirecionado para a rota "/timeline"
-        - [x]  Em caso de sucesso, o servidor retornará na resposta também um código identificador do usuário que você deve **guardar** para usar nos próximos requests pro servidor, assim como dados sobre usuário (como nome e foto)
-        - [x]  Ao clicar em cadastrar, o botão deve ser desabilitado até o servidor responder, evitando que o usuário clique no botão várias vezes
-        - [x]  Ao clicar em "Switch back to Log In", os campos devem mudar pro formato da tela 1
-    - Autenticação
-        - [x]  A partir da próxima tela, todos os requests para o servidor devem incluir um **header** de nome `User-Token`, contendo o valor retornado pelo servidor no request de autenticação (que você guardou nos requisitos anteriores)
-
-            Dica: pesquise por "add header axios" 
-
-- Tela de Timeline (rota "/timeline")
-    - Topo
-        - [x]  Implementar topo como especificado no layout. O topo deve ser fixo.
-        - [x]  Ao clicar na seta/foto do usuário, deve abrir um menu conforme layout e seta deve virar para cima
-        - [x]  Ao clicar novamente, deve-se fechar o menu e virar a seta novamente pra baixo
-        - [+ -]  Ao clicar em "My posts", o usuário deve ser redirecionado para a rota "/my-posts"
-        - [x]  Ao clicar em "Logout", o usuário deve ser redirecionado novamente para a rota de login ("/") e os dados de usuário logado devem ser resetados no front
-    - Publicação
-        - [x]  Ao clicar em "Publish", deve ser validado se o usuário preencheu o link (o texto é opcional)
-        - [x]  Ao clicar em "Publish", deve ser enviado um post para o servidor com os dados inseridos
-        - [x]  Ao clicar em "Publish", o botão deve ser desabilitado para evitar novos cliques e os campos devem ficar desabilitados para edição. O texto do botão deve mudar para "Publishing..."
-        - [x]  Em caso de erro no envio, deve ser exibida uma mensagem de "Houve um erro ao publicar seu link" e os campos e botões devem voltar a ser habilitados
-        - [x]  Em caso de sucesso no envio, os campos e botões devem ser re-habilitados, os campos devem ser limpos e a lista de posts da timeline deve ser atualizada para conter a nova publicação
-    - Lista de Posts
-        - [x]  Ao entrar na tela, deve-se carregar a lista de posts do servidor e exibida conforme layout
-        - [x]  Enquanto a lista é carregada, deve-se exibir uma mensagem de "Loading" na área em que aparecem os posts. Pesquise por gifs animados de loading para ilustrar.
-        - [x]  Caso o servidor retorne algum erro, deve ser exibida uma mensagem de "Houve uma falha ao obter os posts, por favor atualize a página"
-        - [x]  Caso o servidor retorne uma lista vazia de posts, deve ser exibida uma mensagem de "Nenhum post encontrado"
-    - Trending
-        - [x]  Ao entrar na tela, deve-se carregar a lista de hashtags populares do servidor e exibida conforme layout
-        - [wip-M]  Ao clicar em uma hashtag, o usuário deve ser redirecionado para a rota "/hashtag/:hashtag" em que :hashtag é o nome da hashtag (sem #)
-- Post
-    - [ ]  Ao clicar na foto ou nome do usuário que publicou um post, o usuário deve ser redirecionado para a página "/user/:id" em que :id é o id do usuário
-    - [ ]  Ao clicar em uma hashtag ao longo do texto do post, o usuário deve ser redirecionado para a página da hashtag clicada. Observe que as hashtags ficam marcadas em negrito e cor branca no layout.
-
-        **Dica**: Pesquise por uma biblioteca chamada **react-hashtag**
-
-    - [ ]  Ao clicar no snippet do link compartilhado, o link deve abrir em uma nova aba
-- Telas de post filtrados (rotas "/my-posts", "/hashtag/:hashtag", "/user/:id")
-    - [ ]  Devem ser exatamente com a página timeline, mudando somente:
-        - [ ]  A caixa de publicação não deve aparecer
-        - [ ]  O título deve mudar de "timeline" para "**my posts**" / "**#hashtag**" / "**Juvenal's posts**" conforme layout
-        - [ ]  Os posts carregados devem ser obtidos das rotas da API correspondentes
-
-- Deploy
-    - [ ]  Coloque seu projeto no ar usando o GitHub Pages
+### Contributors
+<a href="https://www.respondeai.com.br/">
+<img style="border-radius: 50%;" src="https://avatars3.githubusercontent.com/u/69740567?s=60&v=4" width="100px;"/>
+<br>
+<sub><b>Responde Aí</b></sub>
+</a>
 
 
-// ageitar todos os css
-// terminar o publish
-// terminar a tela de time line principal --FOCU É TERMIANR ISSO!!
+### Author
+---
+Gabriel Pedro Braga Piazza.
+<p>Social Medias:</p>
+<a href="https://www.linkedin.com/in/gabriel-piazza//"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> 
+<a href="https://github.com/gpbPiazza"><img src="https://img.shields.io/badge/github-%23100000.svg?&style=for-the-badge&logo=github&logoColor=white" /></a>
 
-// começar a fazer os routes e time lines de clicks -- clicou na #, no usuário que postou aquilo e também my posts -- finaliza o projeto
+Gabriel Milhomem Cunha.
+<p>Social Medias:</p>
+<a href="https://www.linkedin.com/in/gabriel-piazza//"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> 
+<a href="https://www.linkedin.com/in/gabriel-milhomem-cunha-940966169/"><img src="https://img.shields.io/badge/github-%23100000.svg?&style=for-the-badge&logo=github&logoColor=white" /></a>
+
+
+<br>
+Made by, Get in Touch!<br><br>
