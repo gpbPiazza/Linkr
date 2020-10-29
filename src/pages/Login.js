@@ -56,6 +56,9 @@ export default Login;
 
 const MainContainer = styled.main`
     display: flex;
+    @media (max-width: 400px) {
+        flex-direction: column;
+    }
 `;
 
 const StyledTitle = styled.div`
@@ -73,7 +76,7 @@ const StyledTitle = styled.div`
     h1 {
         font-family: 'Passion One', cursive;
         font-size: 7rem;
-        line-height: 7.312rem;        
+        line-height: 7.312rem;   
     }
 
     h2 {
@@ -81,6 +84,28 @@ const StyledTitle = styled.div`
         font-size: 2.6875rem;
         line-height: 4rem; 
     }
+
+    @media (max-width: 400px) {
+        width: 100%;
+        height: auto;
+     
+        text-align: center;
+        padding: 0;
+        align-items: center;
+    
+
+        h1 {
+            font-size: 4.5rem;
+            letter-spacing: 0.05em;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            line-height: 2rem;
+            margin-bottom: 1rem;
+        }
+    }
+
  
 `;
 
@@ -128,6 +153,11 @@ const StyledLogin = styled.div`
 
     form {
         margin-top: 0.5rem;
+    }
+    @media (max-width: 400px) {
+        width: 100%;
+        height: auto;
+        margin-top: 3rem;
     }
 `;
 const ContainerLoading = styled.div`
