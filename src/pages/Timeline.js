@@ -32,7 +32,7 @@ const Timeline = () => {
     
     const requestGetPost = () => {
         setLoading(true);
-        const request = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=10&limit=10', config);
+        const request = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=0&limit=10', config);
 
         request.then(({data}) => {
             console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS');

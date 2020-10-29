@@ -7,6 +7,7 @@ import { ContainerLike, media } from '../components-style/cmpnt-styles'
 import { IoIosHeartEmpty, IoIosHeart} from "react-icons/io";
 import axios from 'axios';
 import LoginContext from '../context/LoginContext';
+import Tooltip from "react-simple-tooltip"
 
 const Posts = ({post}) => {
     const {id: postId, link, linkDescription, linkImage, linkTitle, text, user, likes: likesArray} = post;
@@ -16,13 +17,13 @@ const Posts = ({post}) => {
     const {id: myID} = userForm.userRegister.user;
     const objeto = {};
     const [toggleLike, setToggleLike]= useState(false);
-    const [postsLikeds, setPostsLikeds] = useState([]);
     const [likes, setLikes] = useState([]);
     
 
     useEffect(() => {
         setLikes(likesArray);
         isLiked();
+        console.log(likesArray, 'VERIFICANDO O QUE TEM DENTRO DE LIKES');
     },[]);
 
     const postLike = () => {
@@ -40,7 +41,6 @@ const Posts = ({post}) => {
     const postDisLike = () => {
         const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}/dislike`, objeto, config);
         request.then(({data}) => {
-            console.log(data, 'RESPOSTA SUCESSO DA API POST DISLIKE')
             setLikes(data.post.likes);
         });
         request.catch(({response}) => {
@@ -50,8 +50,6 @@ const Posts = ({post}) => {
     }
 
     const isLiked = () => {
-        //set toggle likes if my id its on array of users likeds 
-        console.log(likesArray, "LIKESARRAY");
         likesArray.forEach(l => {
             if(l.userId === myID || l.id === myID) {
                 setToggleLike(!toggleLike);
@@ -71,6 +69,7 @@ const Posts = ({post}) => {
         postDisLike();
     }
 
+//`Você,mais alguém e outras ${likes.length-2} pessoas curtiram`
     return (
         <StyledPost>
             <figure>
@@ -83,7 +82,13 @@ const Posts = ({post}) => {
                          <IoIosHeart  onClick={() => disLike()} color={Colors.darkRed} fontSize= '2rem' />
                         :
                          <IoIosHeartEmpty  onClick={() => like()}  fontSize= '2rem' />}
-                    <p>{likes.length === 0 ? '' : `${likes.length} likes`}</p>
+                    <Tooltip content={toggleLike ? 
+                                            (likes.length === 1 ? 'Você curtiu' : `Você e ${likes.length-1} curtiram`) 
+                                            : 
+                                            (likes.length === 0 ? '' : likes.length === 1 ? `${likes[0]["user.username"]}` : `${likes[1]["user.username"]} e  ${likes.length-1} curtiram`)                                        
+                                        }   placement={"bottom"}>
+                        <p>{likes.length === 0 ? '' : `${likes.length} likes`}</p>
+                    </Tooltip>
                 </ContainerLike>
             </figure>
           

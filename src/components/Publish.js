@@ -28,8 +28,6 @@ const Publish = ({getPosts}) => {
         else {
             setError('');
             const toServer = {link, text};
-            console.log(toServer, "objeto");
-            console.log(config, "header");
             const apiLink = 'https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts';
             const request = axios.post(apiLink, toServer, config);
             request.then(({data}) => {
