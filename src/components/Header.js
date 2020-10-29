@@ -10,7 +10,7 @@ const Header = () => {
     const {userForm} = useContext(LoginContext);
     const {userRegister, cleanUser} = userForm;
     const {avatar, id} = userRegister.user;
-    console.log('header', id);
+  
 
     return (
         <StyledHeader>

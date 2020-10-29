@@ -132,6 +132,7 @@ const Figure = styled.figure`
 const Form = styled.form`
     width: 89%;
     padding: 0 1rem;
+    margin: 0 1rem;
     padding-top: 0.25rem;
 
     h2 {

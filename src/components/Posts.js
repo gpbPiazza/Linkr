@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
 import ReactHashtag from "react-hashtag";
+import { ContainerLike } from '../components-style/cmpnt-styles'
+import { IoIosHeartEmpty, IoIosHeart} from "react-icons/io";
 
 const Posts = ({post}) => {
     const { link, linkDescription, linkImage, linkTitle, text, user } = post;
@@ -14,8 +16,13 @@ const Posts = ({post}) => {
                 <Link to={`/user/${id}`}>
                     <img src={avatar} />
                 </Link>
-            </figure>
 
+                <ContainerLike>
+                    <IoIosHeartEmpty  fontSize= '1.5rem' />
+                    <p>15 likes</p>
+                </ContainerLike>
+            </figure>
+          
             <section>
                 <Link to={`/user/${id}`}>
                     <h2> {username} </h2>
@@ -47,7 +54,7 @@ export default Posts;
 
 const StyledPost = styled.article`
     background: ${Colors.black};
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
     border-radius: 20px;
@@ -62,10 +69,15 @@ const StyledPost = styled.article`
    
     figure {
         width: 10%;
+        display:flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
 
         img {
         width: 3.125rem;
         height: 3.125rem;
+        margin: 0 auto;
         border-radius: 100%;
     }
 
@@ -82,7 +94,7 @@ const StyledPost = styled.article`
         div {
             width: 70%;
             padding: 1.5rem 1rem;
-
+           
             h3 {
                 font-size: 1rem;
                 line-height: 1.17rem;
@@ -94,13 +106,23 @@ const StyledPost = styled.article`
                 font-size: 0.8rem;
                 line-height: 1rem;
                 margin-bottom: 0.5rem;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 3; 
+                -webkit-box-orient: vertical;
+
             }
             
             h4 {
                 font-size: 0.8rem;
                 color: ${Colors.white};
                 word-wrap: break-word;
-                
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 1; 
+                -webkit-box-orient: vertical;
             }
 
             
@@ -118,6 +140,7 @@ const StyledPost = styled.article`
     section {
         width: 89%;
         padding-top: 0.25rem;
+        margin: 0 1rem;
 
         h2  {
             font-size: 1.25rem;
@@ -135,4 +158,6 @@ const StyledPost = styled.article`
         }
     }
 `;
+
+
 

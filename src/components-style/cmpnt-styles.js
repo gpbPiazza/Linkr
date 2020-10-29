@@ -60,3 +60,14 @@ export const ContainerLoading = styled.div`
     margin:0  auto;
     margin-top: 5rem;
 `;
+
+export const ContainerLike = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    color: ${Colors.white};
+    font-size: 0.7rem;
+
+  
+`;
