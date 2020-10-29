@@ -56,7 +56,7 @@ export default Login;
 
 const MainContainer = styled.main`
     display: flex;
-    @media (max-width: 400px) {
+    @media (max-width: 450px) {
         flex-direction: column;
     }
 `;
@@ -85,7 +85,7 @@ const StyledTitle = styled.div`
         line-height: 4rem; 
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 450px) {
         width: 100%;
         height: auto;
      
@@ -154,10 +154,10 @@ const StyledLogin = styled.div`
     form {
         margin-top: 0.5rem;
     }
-    @media (max-width: 400px) {
+    @media (max-width: 450px) {
         width: 100%;
         height: auto;
-        margin-top: 3rem;
+        margin: 2rem 0;
     }
 `;
 const ContainerLoading = styled.div`
