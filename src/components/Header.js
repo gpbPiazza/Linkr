@@ -77,6 +77,7 @@ const StyledHeader = styled.header`
     button {
         cursor: pointer;
     }
+
 `;
 
 const StyledNav = styled.nav`

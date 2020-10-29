@@ -9,6 +9,15 @@ export const Main = styled.main`
     flex-wrap: wrap;
     justify-content: space-between;
     font-family: 'Lato', sans-serif;
+
+    @media (max-width: 450px) {
+      margin: 0;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    
 `;
 
 export const Title = styled.h1`
@@ -18,6 +27,11 @@ export const Title = styled.h1`
     font-size: 3rem;
     width: 100%;
     margin: 2rem 0; 
+
+    @media (max-width: 450px) {
+      margin-left: 3rem;
+      
+    }
 `;
 
 export const Error = styled.span`
@@ -27,10 +41,18 @@ export const Error = styled.span`
 
 export const ContainerTrending = styled.div`
     width: 35%;
+     
+    @media (max-width: 450px) {
+      display: none;
+    }
 `;
 
 export const ContainerLinkdr = styled.div`
     width: 62%;
+
+    @media (max-width: 450px) {
+      width: 100%;
+    }
 `;
 
 export const ContainerLoading = styled.div`

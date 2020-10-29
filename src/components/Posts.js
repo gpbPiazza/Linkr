@@ -53,6 +53,11 @@ const StyledPost = styled.article`
     border-radius: 20px;
     margin-bottom: 2rem;
     width: 100%;
+
+    @media (max-width: 450px) {
+      width: 100%;
+      border-radius: 0; 
+    }
     
    
     figure {
@@ -94,6 +99,8 @@ const StyledPost = styled.article`
             h4 {
                 font-size: 0.8rem;
                 color: ${Colors.white};
+                word-wrap: break-word;
+                
             }
 
             
@@ -122,6 +129,9 @@ const StyledPost = styled.article`
             font-size: 1rem;
             line-height: 1.25rem;
             margin-bottom: 0.5rem; 
+        }
+        @media (max-width: 450px) {
+            width: 85%;
         }
     }
 `;

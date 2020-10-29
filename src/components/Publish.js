@@ -112,6 +112,11 @@ const StyledPublish = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 2rem;
+
+    @media (max-width: 450px) {
+      width: 100%;
+      border-radius: 0; 
+    }
 `;
 
 const Figure = styled.figure`
