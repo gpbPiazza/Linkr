@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Colors from '../utils/Colors';
 import LoginContext from '../context/LoginContext';
-import { Error } from '../components-style/cmpnt-styles';
+import { Error, media } from '../components-style/cmpnt-styles';
 
 const Publish = ({getPosts}) => {
     const {userForm} = useContext(LoginContext);
@@ -113,7 +113,7 @@ const StyledPublish = styled.div`
     justify-content: space-between;
     margin-bottom: 2rem;
 
-    @media (max-width: 450px) {
+    ${media} {
       width: 100%;
       border-radius: 0; 
     }

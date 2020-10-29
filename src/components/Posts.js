@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
 import ReactHashtag from "react-hashtag";
-import { ContainerLike } from '../components-style/cmpnt-styles'
+import { ContainerLike, media } from '../components-style/cmpnt-styles'
 import { IoIosHeartEmpty, IoIosHeart} from "react-icons/io";
 
 const Posts = ({post}) => {
@@ -18,7 +18,7 @@ const Posts = ({post}) => {
                 </Link>
 
                 <ContainerLike>
-                    <IoIosHeartEmpty  fontSize= '1.5rem' />
+                    <IoIosHeartEmpty  fontSize= '2rem' />
                     <p>15 likes</p>
                 </ContainerLike>
             </figure>
@@ -50,6 +50,7 @@ const Posts = ({post}) => {
 
 
 
+
 export default Posts;
 
 const StyledPost = styled.article`
@@ -61,7 +62,7 @@ const StyledPost = styled.article`
     margin-bottom: 2rem;
     width: 100%;
 
-    @media (max-width: 450px) {
+    ${media} {
       width: 100%;
       border-radius: 0; 
     }
@@ -75,11 +76,11 @@ const StyledPost = styled.article`
         align-items: center;
 
         img {
-        width: 3.125rem;
-        height: 3.125rem;
-        margin: 0 auto;
-        border-radius: 100%;
-    }
+            width: 3.125rem;
+            height: 3.125rem;
+            margin: 0 auto;
+            border-radius: 100%;
+        }
 
     }
 
@@ -109,8 +110,8 @@ const StyledPost = styled.article`
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
-                -webkit-line-clamp: 3; 
-                -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 3; 
+                    -webkit-box-orient: vertical;
 
             }
             
@@ -121,8 +122,8 @@ const StyledPost = styled.article`
                 overflow: hidden;
                 text-overflow: ellipsis;
                 display: -webkit-box;
-                -webkit-line-clamp: 1; 
-                -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1; 
+                    -webkit-box-orient: vertical;
             }
 
             
@@ -140,7 +141,7 @@ const StyledPost = styled.article`
     section {
         width: 89%;
         padding-top: 0.25rem;
-        margin: 0 1rem;
+        padding-left: 0.5rem;
 
         h2  {
             font-size: 1.25rem;
@@ -153,7 +154,7 @@ const StyledPost = styled.article`
             line-height: 1.25rem;
             margin-bottom: 0.5rem; 
         }
-        @media (max-width: 450px) {
+        ${media} {
             width: 85%;
         }
     }

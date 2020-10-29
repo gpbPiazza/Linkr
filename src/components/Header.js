@@ -14,7 +14,9 @@ const Header = () => {
 
     return (
         <StyledHeader>
-            <h1> Linkr </h1>
+            <Link to='/timeline'>
+                <h1> Linkr </h1>
+            </Link>
 
             <div>
                 { showMenu ?

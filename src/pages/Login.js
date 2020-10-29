@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Loading from '../components/Loading';
 import LoginContext from '../context/LoginContext';
 import Colors from '../utils/Colors';
-import { Error } from '../components-style/cmpnt-styles';
+import { Error, media } from '../components-style/cmpnt-styles';
 
 const Login = () => {
     const {controlForm, form, setForm} = useContext(LoginContext);
@@ -56,7 +56,7 @@ export default Login;
 
 const MainContainer = styled.main`
     display: flex;
-    @media (max-width: 450px) {
+    ${media} {
         flex-direction: column;
     }
 `;
@@ -85,7 +85,7 @@ const StyledTitle = styled.div`
         line-height: 4rem; 
     }
 
-    @media (max-width: 450px) {
+    ${media} {
         width: 100%;
         height: auto;
      
@@ -154,7 +154,7 @@ const StyledLogin = styled.div`
     form {
         margin-top: 0.5rem;
     }
-    @media (max-width: 450px) {
+    ${media} {
         width: 100%;
         height: auto;
         margin: 2rem 0;
