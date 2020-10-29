@@ -21,27 +21,14 @@ const Timeline = () => {
     const [page, setPage] = useState(0);
 
     useEffect(() => {
-        getPosts();
-        // getLikedPosts();        
-    },[page]);
+        getPosts();       
+    },[]);
 
     const getPosts = () => {
         requestGetPost();
     }
 
-    // const getLikedPosts = () => {
-    //     const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}/dislike`, objeto, config);
     
-    //     request.then(({data}) => {
-    //         setLikes(data.post.likes);
-    //     });
-
-    //     request.catch(({response}) => {
-    //         console.log(response.data, 'RESPOSTA ERROR DA API POST LIKE');
-    //         //VER SE DA PARA MANDAR UMA MENSAGEM DE VERIFIQUE SUA INTERNET!.
-    //     });
-
-    // }
     
     const requestGetPost = () => {
         setLoading(true);
@@ -92,7 +79,7 @@ const Timeline = () => {
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <>
-                            {posts.map((post) => <Posts post= {post} key= {post.id}/>)}
+                            {posts.map((post) => <Posts post={post} key={post.id}/>)}
                         </>
 
                 }

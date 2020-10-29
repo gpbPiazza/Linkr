@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
@@ -8,19 +8,24 @@ import { IoIosHeartEmpty, IoIosHeart} from "react-icons/io";
 import axios from 'axios';
 import LoginContext from '../context/LoginContext';
 
-const Posts = ({post}) => {
-    const {id: postId, link, linkDescription, linkImage, linkTitle, text, user } = post;
-    const { id, username, avatar} = user;
+const Posts = ({post }) => {
+    const {id: postId, link, linkDescription, linkImage, linkTitle, text, user, likes: usersLikedPost } = post;
+    const {id: userId, username, avatar} = user;
     const {userForm} = useContext(LoginContext);
     const {config} = userForm;
     const objeto = {};
     const [toggleLike, setToggleLike]= useState(false);
+    const [postsLikeds, setPostsLikeds] = useState([]);
     const [likes, setLikes] = useState([]);
 
-   
+    useEffect(() => {
+        isLiked();
+    },[]);
+
     const postLike = () => {
         const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}/like`, objeto, config);
         request.then(({data}) => {
+            console.log(data, 'RESPOSTA SUCESSO DA API POST LIKE');
             setLikes(data.post.likes);
         });
         request.catch(({response}) => {
@@ -39,7 +44,17 @@ const Posts = ({post}) => {
             console.log(response.data, 'RESPOSTA ERROR DA API POST DISLIKE');
             //VER SE DA PARA MANDAR UMA MENSAGEM DE VERIFIQUE SUA INTERNET!.
         });
+    }
 
+    const isLiked = () => {
+        //set toggle likes if my id its on array of users likeds 
+        console.log(usersLikedPost)
+        usersLikedPost.forEach((p) => {
+            if(p.id === userId) {
+                setToggleLike(!toggleLike);
+            }
+        })
+        
     }
 
     const like = () => {
@@ -55,7 +70,7 @@ const Posts = ({post}) => {
     return (
         <StyledPost>
             <figure>
-                <Link to={`/user/${id}`}>
+                <Link to={`/user/${userId}`}>
                     <img src={avatar} />
                 </Link>
 
@@ -69,7 +84,7 @@ const Posts = ({post}) => {
             </figure>
           
             <section>
-                <Link to={`/user/${id}`}>
+                <Link to={`/user/${userId}`}>
                     <h2> {username} </h2>
                 </Link>
                 <p>

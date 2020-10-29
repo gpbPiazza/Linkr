@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Timeline from './pages/Timeline';
 import TimelineId from './pages/TimelineId';
 import TimelineHashTag from './pages/TimelineHashTag';
+import TimelineMyLikes from './pages/TimelineMyLikes';
 
 
 export default function App() {
@@ -32,6 +33,10 @@ export default function App() {
 
             <Route path= '/hashtag/:hashtag'>
               <TimelineHashTag />
+            </Route>
+
+            <Route path= '/my-likes'>
+              <TimelineMyLikes />
             </Route>
 
           </Switch>
