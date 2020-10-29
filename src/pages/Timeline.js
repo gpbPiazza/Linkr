@@ -19,6 +19,7 @@ const Timeline = () => {
     const {config} = userForm;
     const {loading, setLoading} = controlForm;
     const [page, setPage] = useState(0);
+    const [offset, setOffset] = useState(0);
 
     useEffect(() => {
         getPosts();       
@@ -28,21 +29,23 @@ const Timeline = () => {
         requestGetPost();
     }
 
+    console.log(posts, 'LISTA DE POSTS');
     
     
     const requestGetPost = () => {
         setLoading(true);
-        const request = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=0&limit=10', config);
+        console.log(offset, 'OFFSET');
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=${offset}&limit=10`, config);
 
         request.then(({data}) => {
-            console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS');
             setLoading(false);
             if(data.posts.length === 0) {
                 setError('Nenhum post encontrado!');
                 setBooleanError(true);
             }
-            setPosts(data.posts);
-            
+
+            setOffset(offset + 10);
+            setPosts(posts => [...posts, ...data.posts]);
         });
 
         request.catch(({response}) => {
@@ -71,16 +74,26 @@ const Timeline = () => {
             <ContainerLinkdr >
                 <Publish getPosts= {getPosts}/>            
                 {loading ? 
-                        <ContainerLoading>
-                            <Loading />
-                        </ContainerLoading>
+                    <ContainerLoading>
+                        <Loading />
+                    </ContainerLoading>
                     :
-                    booleanError ?
-                        <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
-                        :
-                        <>
-                            {posts.map((post) => <Posts post={post} key={post.id}/>)}
-                        </>
+                    <InfiniteScroll
+                        loadMore= {requestGetPost}
+                        hasMore= {!booleanError}
+                        loader= {
+                            <ContainerLoading>
+                                <Loading />
+                            </ContainerLoading>
+                        }
+
+                    >
+                        {booleanError ?
+                            <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
+                            :
+                            posts.map((post) => <Posts post={post} key={post.id}/>)
+                        }
+                    </InfiniteScroll>
 
                 }
             </ContainerLinkdr>
@@ -104,7 +117,6 @@ export default Timeline;
 
 /*                        <div ref={(ref) => this.scrollParentRef = ref}>
                             <InfiniteScroll 
-                                pageStart = {0}
                                 loadMore= {requestGetPost}
                                 hasMore= {!booleanError}
                                 loader= {

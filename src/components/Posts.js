@@ -115,11 +115,6 @@ const Posts = ({post}) => {
     );
 }
 
-
-
-
-
-
 export default Posts;
 
 const StyledPost = styled.article`
