@@ -31,7 +31,7 @@ const Timeline = () => {
 
     console.log(posts, 'LISTA DE POSTS');
     
-    
+
     const requestGetPost = () => {
         setLoading(true);
         console.log(offset, 'OFFSET');
