@@ -7,6 +7,9 @@ import Loading from '../components/Loading';
 import {Main, Title, Error, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';
 import LoginContext from "../context/LoginContext";
 import Posts from "../components/Posts";
+import InfiniteScroll from 'react-infinite-scroller';
+import styled from "styled-components";
+
 
 const Timeline = () => {
     const [posts, setPosts] = useState([]);
@@ -15,11 +18,12 @@ const Timeline = () => {
     const {userForm, controlForm} = useContext(LoginContext);
     const {config} = userForm;
     const {loading, setLoading} = controlForm;
+    const [page, setPage] = useState(0);
 
     useEffect(() => {
         getPosts();
         // getLikedPosts();        
-    },[]);
+    },[page]);
 
     const getPosts = () => {
         requestGetPost();
@@ -41,7 +45,7 @@ const Timeline = () => {
     
     const requestGetPost = () => {
         setLoading(true);
-        const request = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=0&limit=2', config);
+        const request = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=10&limit=10', config);
 
         request.then(({data}) => {
             console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS');
@@ -60,7 +64,16 @@ const Timeline = () => {
             setBooleanError(true);
             console.log(response, 'RESPOSTA ERROR DA API');
         }); 
-    } 
+    }
+
+    /*const handleScroll = event => {
+        const {scrollTop, clientHeight, scrollHeight} = event.currentTarget;
+        console.log('SCROLLTOP', scrollTop)
+        if(scrollHeight - scrollTop === clientHeight) {
+            console.log('EOQCARAI');
+            setPage(page + 1);
+        }
+    };*/
  
     
     return (
@@ -68,9 +81,8 @@ const Timeline = () => {
        <Main>
             <Header />
             <Title> timeline </Title>
-            <ContainerLinkdr>
-                
-                <Publish getPosts={getPosts}/>            
+            <ContainerLinkdr >
+                <Publish getPosts= {getPosts}/>            
                 {loading ? 
                         <ContainerLoading>
                             <Loading />
@@ -82,6 +94,7 @@ const Timeline = () => {
                         <>
                             {posts.map((post) => <Posts post= {post} key= {post.id}/>)}
                         </>
+
                 }
             </ContainerLinkdr>
             <ContainerTrending>
@@ -92,7 +105,30 @@ const Timeline = () => {
     );
 }
 
+/*const Section = styled.section`
+    overflow: auto;
+    width: 100%;
+    height: 50rem;
+`;*/
+
 
 
 export default Timeline;
 
+/*                        <div ref={(ref) => this.scrollParentRef = ref}>
+                            <InfiniteScroll 
+                                pageStart = {0}
+                                loadMore= {requestGetPost}
+                                hasMore= {!booleanError}
+                                loader= {
+                                    <ContainerLoading key= {0}>
+                                        <Loading />
+                                    </ContainerLoading>
+                                }
+                                useWindow= {false}
+                                getScrollParent= {() => this.scrollParentRef}
+
+                            >
+                                {posts.map((post) => <Posts post= {post} key= {post.id}/>)}
+                            </InfiniteScroll>
+                        </div>*/
