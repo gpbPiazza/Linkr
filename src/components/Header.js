@@ -27,7 +27,7 @@ const Header = () => {
 
                         <StyledNav>
                             <Link to= {`/user/${id}`}> My posts </Link>
-                            {/*<Link to= '/my-likes'> My likes </Link>*/}
+                            <Link to= '/my-likes'> My likes </Link>
                             <Link to= '/' onClick= {cleanUser}> Logout </Link>
                         </StyledNav>
                     </>    

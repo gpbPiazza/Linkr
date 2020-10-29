@@ -1,63 +1,54 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import {useParams} from "react-router-dom";
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
-import Publish from "../components/Publish";
-import Loading from '../components/Loading';
-import {Main, Title, Error, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';
+import {Main, Title, Error, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';;
 import LoginContext from "../context/LoginContext";
+import Loading from "../components/Loading";
 import Posts from "../components/Posts";
 
-const Timeline = () => {
+const TimelineMyLikes = () => {
     const [posts, setPosts] = useState([]);
-    const [error, setError] = useState('');
-    const [booleanError, setBooleanError] = useState(false);
     const {userForm, controlForm} = useContext(LoginContext);
     const {config} = userForm;
     const {loading, setLoading} = controlForm;
+    const [error, setError] = useState('');
+    const [booleanError, setBooleanError] = useState(false);
 
     useEffect(() => {
-        getPosts();       
-    },[]);
+        requestApi();        
+    }, []);
 
-    const getPosts = () => {
-        requestGetPost();
-    }
-
-    
-    
-    const requestGetPost = () => {
+    const requestApi = () => {
         setLoading(true);
-        const request = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=0&limit=2', config);
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/liked`, config);
 
         request.then(({data}) => {
-            console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS');
             setLoading(false);
+            console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY my likes');
             if(data.posts.length === 0) {
-                setError('Nenhum post encontrado!');
+                setError('Você não curtiu nenhum post ainda!');
                 setBooleanError(true);
             }
             setPosts(data.posts);
-            
         });
 
         request.catch(({response}) => {
-            setLoading(false);
+            console.log(response, 'RESPOSTA ERROR DA API GET POSTS BY my likes');
             setError('Houve uma falha ao obter os posts, por favor atualize a página!');
             setBooleanError(true);
-            console.log(response, 'RESPOSTA ERROR DA API');
+            setLoading(false);
         }); 
     } 
- 
-    
+
+
     return (
         
-       <Main>
+        <Main>
             <Header />
-            <Title> timeline </Title>
-            <ContainerLinkdr>
-                
-                <Publish getPosts={getPosts}/>            
+            <Title> {posts.length ? `My like's posts`: ''} </Title>
+            <ContainerLinkdr>            
                 {loading ? 
                         <ContainerLoading>
                             <Loading />
@@ -67,19 +58,16 @@ const Timeline = () => {
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <>
-                            {posts.map((post) => <Posts post={post} key={post.id}/>)}
+                            {posts.map(post => (<Posts post= {post} key= {post.id}/>))}
                         </>
                 }
             </ContainerLinkdr>
+
             <ContainerTrending>
                 <Trending />
             </ContainerTrending>
-           
-       </Main>
+        </Main>
     );
 }
 
-
-
-export default Timeline;
-
+export default TimelineMyLikes;
