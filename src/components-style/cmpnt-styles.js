@@ -72,7 +72,6 @@ export const ContainerLike = styled.div`
     margin-top: 1rem;
     color: ${Colors.white};
     font-size: 0.7rem;
-    overflow: auto;
 
     p {
       margin-top: 0.3rem;

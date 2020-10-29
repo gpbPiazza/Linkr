@@ -8,17 +8,20 @@ import { IoIosHeartEmpty, IoIosHeart} from "react-icons/io";
 import axios from 'axios';
 import LoginContext from '../context/LoginContext';
 
-const Posts = ({post }) => {
-    const {id: postId, link, linkDescription, linkImage, linkTitle, text, user, likes: usersLikedPost } = post;
-    const {id: userId, username, avatar} = user;
+const Posts = ({post}) => {
+    const {id: postId, link, linkDescription, linkImage, linkTitle, text, user, likes: likesArray} = post;
+    const {id: userId, username: myUsername, avatar} = user;
     const {userForm} = useContext(LoginContext);
     const {config} = userForm;
+    const {id: myID} = userForm.userRegister.user;
     const objeto = {};
     const [toggleLike, setToggleLike]= useState(false);
     const [postsLikeds, setPostsLikeds] = useState([]);
     const [likes, setLikes] = useState([]);
+    
 
     useEffect(() => {
+        setLikes(likesArray);
         isLiked();
     },[]);
 
@@ -48,13 +51,14 @@ const Posts = ({post }) => {
 
     const isLiked = () => {
         //set toggle likes if my id its on array of users likeds 
-        console.log(usersLikedPost)
-        usersLikedPost.forEach((p) => {
-            if(p.id === userId) {
+        console.log(likesArray, "LIKESARRAY");
+        likesArray.forEach(l => {
+            if(l.userId === myID || l.id === myID) {
                 setToggleLike(!toggleLike);
             }
-        })
-        
+        });
+
+        return;
     }
 
     const like = () => {
@@ -79,13 +83,13 @@ const Posts = ({post }) => {
                          <IoIosHeart  onClick={() => disLike()} color={Colors.darkRed} fontSize= '2rem' />
                         :
                          <IoIosHeartEmpty  onClick={() => like()}  fontSize= '2rem' />}
-                    <p>{likes.length == 0 ? '' : `${likes.length} likes`}</p>
+                    <p>{likes.length === 0 ? '' : `${likes.length} likes`}</p>
                 </ContainerLike>
             </figure>
           
             <section>
                 <Link to={`/user/${userId}`}>
-                    <h2> {username} </h2>
+                    <h2> {myUsername} </h2>
                 </Link>
                 <p>
                     <ReactHashtag renderHashtag= {value => <span key= {value}><Link to={`/hashtag/${value.slice(1)}`}>{value}</Link></span>}>

@@ -58,7 +58,7 @@ const TimelineMyLikes = () => {
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <>
-                            {posts.map(post => (<Posts post= {post} key= {post.id}/>))}
+                            {posts.map(post => (<Posts post= {post} userkey= {post.id}/>))}
                         </>
                 }
             </ContainerLinkdr>
