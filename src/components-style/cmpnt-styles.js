@@ -66,6 +66,7 @@ export const ContainerLoading = styled.div`
 
 export const ContainerLike = styled.div`
     display: flex;
+    width: 3rem;
     flex-direction: column;
     align-items: center;
     margin-top: 1rem;

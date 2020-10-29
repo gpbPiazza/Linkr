@@ -1,14 +1,56 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Colors from '../utils/Colors';
 import ReactHashtag from "react-hashtag";
 import { ContainerLike, media } from '../components-style/cmpnt-styles'
 import { IoIosHeartEmpty, IoIosHeart} from "react-icons/io";
+import axios from 'axios';
+import LoginContext from '../context/LoginContext';
 
 const Posts = ({post}) => {
-    const { link, linkDescription, linkImage, linkTitle, text, user } = post;
+    const {id: postId, link, linkDescription, linkImage, linkTitle, text, user } = post;
     const { id, username, avatar} = user;
+    const {userForm} = useContext(LoginContext);
+    const {config} = userForm;
+    const objeto = {};
+    const [toggleLike, setToggleLike]= useState(false);
+    const [likes, setLikes] = useState([]);
+
+   
+    const postLike = () => {
+        const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}/like`, objeto, config);
+        request.then(({data}) => {
+            setLikes(data.post.likes);
+        });
+        request.catch(({response}) => {
+            console.log(response.data, 'RESPOSTA ERROR DA API POST LIKE');
+            //VER SE DA PARA MANDAR UMA MENSAGEM DE VERIFIQUE SUA INTERNET!.
+        }); 
+    } 
+
+    const postDisLike = () => {
+        const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}/dislike`, objeto, config);
+        request.then(({data}) => {
+            console.log(data, 'RESPOSTA SUCESSO DA API POST DISLIKE')
+            setLikes(data.post.likes);
+        });
+        request.catch(({response}) => {
+            console.log(response.data, 'RESPOSTA ERROR DA API POST DISLIKE');
+            //VER SE DA PARA MANDAR UMA MENSAGEM DE VERIFIQUE SUA INTERNET!.
+        });
+
+    }
+
+    const like = () => {
+        setToggleLike(!toggleLike);
+        postLike();
+    }
+
+    const disLike = () => {
+        setToggleLike(!toggleLike);
+        postDisLike();
+    }
 
     return (
         <StyledPost>
@@ -18,8 +60,11 @@ const Posts = ({post}) => {
                 </Link>
 
                 <ContainerLike>
-                    <IoIosHeartEmpty  fontSize= '2rem' />
-                    <p>15 likes</p>
+                    { toggleLike ? 
+                         <IoIosHeart  onClick={() => disLike()} color={Colors.darkRed} fontSize= '2rem' />
+                        :
+                         <IoIosHeartEmpty  onClick={() => like()}  fontSize= '2rem' />}
+                    <p>{likes.length == 0 ? '' : `${likes.length} likes`}</p>
                 </ContainerLike>
             </figure>
           
