@@ -56,14 +56,14 @@ The following tools and frameworks were used in the construction of the project:
 ### Author
 ---
 Gabriel Pedro Braga Piazza.
-<p>Social Medias:</p>
+<p>Piazza Medias:</p>
 <a href="https://www.linkedin.com/in/gabriel-piazza//"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> 
 <a href="https://github.com/gpbPiazza"><img src="https://img.shields.io/badge/github-%23100000.svg?&style=for-the-badge&logo=github&logoColor=white" /></a>
 
 Gabriel Milhomem Cunha.
-<p>Social Medias:</p>
-<a href="https://www.linkedin.com/in/gabriel-piazza//"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> 
-<a href="https://www.linkedin.com/in/gabriel-milhomem-cunha-940966169/"><img src="https://img.shields.io/badge/github-%23100000.svg?&style=for-the-badge&logo=github&logoColor=white" /></a>
+<p>Milhomem Medias:</p>
+<a href="https://www.linkedin.com/in/gabriel-milhomem-cunha-940966169/"><img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white"/></a> 
+<a href="https://github.com/gabriel-milhomem"><img src="https://img.shields.io/badge/github-%23100000.svg?&style=for-the-badge&logo=github&logoColor=white" /></a>
 
 
 <br>
