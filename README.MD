@@ -40,7 +40,7 @@ The following tools and frameworks were used in the construction of the project:
     <img src='https://img.shields.io/badge/react-icon%20-%2320232a.svg?&style=for-the-badge&logo=react-icon&logoColor=%2361DAFB'>
     <img src='https://img.shields.io/badge/styled-components%20-%2320232a.svg?&style=for-the-badge&logo=styled-components&logoColor=%2361DAFB'>
 
-#Folow the link project, the project should only have layout for smartphones for simulate a app.
+#Folow the link project.
 
 - [Link]()
 
