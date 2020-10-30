@@ -25,7 +25,6 @@ export function LoginProvider(props) {
         request.then(({data}) => {
             setUserRegister(data);
             setConfig({ headers: {"User-Token": data.token} });
-            console.log(data, 'verificando a resposta da API');
             history.push('/timeline');
             cleanInputs();
         });
