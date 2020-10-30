@@ -22,7 +22,6 @@ export function LoginProvider(props) {
         setLoading(true);
         setAlert('');
         const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/${typeRequest}`, infoUser);
-       
         request.then(({data}) => {
             setUserRegister(data);
             setConfig({ headers: {"User-Token": data.token} });
@@ -30,7 +29,6 @@ export function LoginProvider(props) {
             history.push('/timeline');
             cleanInputs();
         });
-
         request.catch(({response}) => {
             if(typeRequest === 'sign_up') {
                 (response.status === 401) ?
@@ -45,14 +43,13 @@ export function LoginProvider(props) {
     } 
 
     const verifyInputs = (event, type) => {
-        
         event.preventDefault();
         if (type === 'sign_in') {
             if (email && password ) {
                 const loginUser = {"email": email, "password": password};
                 requestApi(loginUser, type);
             } else {
-                setAlert('Por favor, preencha todos os campos!')
+                setAlert('Por favor, preencha todos os campos!');
             }
         }
         else {
@@ -60,7 +57,7 @@ export function LoginProvider(props) {
                 const newUser = {"email": email , "password": password, "username": userName, "pictureUrl": pictureUrl};
                 requestApi(newUser, type);
             } else {
-                setAlert('Por favor, preencha todos os campos!')
+                setAlert('Por favor, preencha todos os campos!');
             }
         }
     }

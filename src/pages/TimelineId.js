@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import {useParams} from "react-router-dom";
+
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
 import {Main, Title, Error, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';;
@@ -24,7 +25,6 @@ const TimelineId = () => {
     const requestApi = (id) => {
         setLoading(true);
         const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${id}/posts?offset=0&limit=10`, config);
-
         request.then(({data}) => {
             setLoading(false);
             if(data.posts.length === 0) {
@@ -33,8 +33,7 @@ const TimelineId = () => {
             }
             setPosts(data.posts);
         });
-
-        request.catch(({response}) => {
+        request.catch(() => {
             setError('Houve uma falha ao obter os posts, por favor atualize a página!');
             setBooleanError(true);
             setLoading(false);
@@ -61,7 +60,6 @@ const TimelineId = () => {
                         </>
                 }
             </ContainerLinkdr>
-
             <ContainerTrending>
                 <Trending />
             </ContainerTrending>
