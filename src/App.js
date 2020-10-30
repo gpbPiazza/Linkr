@@ -16,7 +16,7 @@ import TimelineMyLikes from './pages/TimelineMyLikes';
 export default function App() {
 
   return (  
-    <Router  basename={process.env.PUBLIC_URL}>
+    <Router  >
       <LoginProvider>
           <Switch>
             <Route exact path= "/">
