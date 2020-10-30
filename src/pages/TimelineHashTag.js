@@ -9,6 +9,7 @@ import Loading from "../components/Loading";
 import Posts from "../components/Posts";
 
 
+
 const Timeline = () => {
     const [posts, setPosts] = useState([]);
     const {userForm, controlForm} = useContext(LoginContext);
@@ -24,7 +25,7 @@ const Timeline = () => {
     
     const requestApi = () => {
         setLoading(true);
-        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/${hashtag}/posts?offset=0&limit=2`, config);
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/${hashtag}/posts?offset=0&limit=10`, config);
         
         request.then(({data}) => {
             setLoading(false);
@@ -61,7 +62,6 @@ const Timeline = () => {
                         </>
                 }
             </ContainerLinkdr>
-
             <ContainerTrending>
                 <Trending />
             </ContainerTrending>

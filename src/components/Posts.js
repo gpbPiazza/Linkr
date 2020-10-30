@@ -73,10 +73,15 @@ const Posts = ({post}) => {
                         :
                          <IoIosHeartEmpty  onClick={() => like()}  fontSize= '2rem' />}
                     <Tooltip content={toggleLike ? 
-                                            (likes.length === 1 ? 'Você curtiu' : `Você e ${likes.length-1} curtiram`) 
+                                        (likes.length === 1 ? 'Você curtiu' : `Você e ${likes.length-1} curtiram`) 
+                                        : 
+                                        ((likes.length === 0) ? 
+                                                '' 
                                             : 
-                                            (likes.length === 0 ? '' : likes.length === 1 ? `${likes[0]["user.username"]}` : `${likes[1]["user.username"]} e  ${likes.length-1} curtiram`)                                        
-                                        }   placement={"bottom"}>
+                                                (likes.length === 1) ? 
+                                                    `${likes[0]["user.username"]}` 
+                                                : 
+                                                    `${likes[1]["user.username"]} e  ${likes.length-1} curtiram`)}  placement={"bottom"}>
                         <p>{likes.length === 0 ? '' : `${likes.length} likes`}</p>
                     </Tooltip>
                 </ContainerLike>

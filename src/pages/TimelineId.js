@@ -23,7 +23,7 @@ const TimelineId = () => {
 
     const requestApi = (id) => {
         setLoading(true);
-        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${id}/posts?offset=0&limit=2`, config);
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${id}/posts?offset=0&limit=10`, config);
 
         request.then(({data}) => {
             setLoading(false);

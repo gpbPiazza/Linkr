@@ -40,6 +40,8 @@ export const Title = styled.h1`
 export const Error = styled.span`
     color: ${Colors.lightRed};
     font-size: ${props => props.fontSize};
+    margin-top: ${(props) => props.marginTop || '0px'};
+    margin-bottom: ${(props) => props.marginBottom || '0px'};
 `;
 
 export const ContainerTrending = styled.div`
@@ -52,6 +54,7 @@ export const ContainerTrending = styled.div`
 
 export const ContainerLinkdr = styled.div`
     width: 62%;
+   
 
     ${media} {
       width: 100%;

@@ -4,11 +4,9 @@ import Header from  '../components/Header';
 import Trending from "../components/Trending";
 import Publish from "../components/Publish";
 import Loading from '../components/Loading';
-import {Main, Title, Error, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';
+import {Main, Title, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';
 import LoginContext from "../context/LoginContext";
 import Posts from "../components/Posts";
-// import InfiniteScroll from 'react-infinite-scroller';
-import styled from "styled-components";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 
@@ -21,6 +19,7 @@ const Timeline = () => {
     const {loading, setLoading} = controlForm;
     const [page, setPage] = useState(0);
     const [offset, setOffset] = useState(0);
+    const [hasMore, setHasMore] = useState(true)
 
     useEffect(() => {
         getPosts();       
@@ -38,7 +37,7 @@ const Timeline = () => {
             setLoading(false);
             if(data.posts.length === 0) {
                 setError('Nenhum post encontrado!');
-                setBooleanError(true);
+                setHasMore(false);
             }
 
             setOffset(offset + 10);
@@ -59,19 +58,25 @@ const Timeline = () => {
             <Header />
             <Title> timeline </Title>
             <ContainerLinkdr >
-                <Publish getPosts= {getPosts}/>  
-                <InfiniteScroll
-                    dataLength={posts.length}
-                    next={requestGetPost}
-                    hasMore={true}
-                    loader={
-                        <ContainerLoading>
-                            <Loading />
-                        </ContainerLoading>
-                                }
-                    >
-                    {posts.map((post) => <Posts post={post} key={post.id}/>)}
-                </InfiniteScroll>     
+                <Publish getPosts= {getPosts}/>
+
+                { booleanError ?
+                    <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
+                 :
+                    <InfiniteScroll
+                        dataLength={posts.length}
+                        next={requestGetPost}
+                        hasMore={hasMore}
+                        loader={
+                            <ContainerLoading>
+                                <Loading />
+                            </ContainerLoading>
+                                    }
+                        endMessage={<Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>}
+                        >
+                        {posts.map((post) => <Posts post={post} key={post.id}/>)}
+                    </InfiniteScroll>} 
+
             </ContainerLinkdr>
             <ContainerTrending>
                 <Trending />

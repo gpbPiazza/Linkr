@@ -75,6 +75,7 @@ export function LoginProvider(props) {
         setFirstTime(!firstTime);
         setUserName('');
         setPictureUrl('');
+        setAlert('');
     }
 
     const cleanInputs = () => {
