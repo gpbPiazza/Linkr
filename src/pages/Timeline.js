@@ -7,8 +7,9 @@ import Loading from '../components/Loading';
 import {Main, Title, Error, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';
 import LoginContext from "../context/LoginContext";
 import Posts from "../components/Posts";
-import InfiniteScroll from 'react-infinite-scroller';
+// import InfiniteScroll from 'react-infinite-scroller';
 import styled from "styled-components";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 
 const Timeline = () => {
@@ -72,30 +73,19 @@ const Timeline = () => {
             <Header />
             <Title> timeline </Title>
             <ContainerLinkdr >
-                <Publish getPosts= {getPosts}/>            
-                {loading ? 
-                    <ContainerLoading>
-                        <Loading />
-                    </ContainerLoading>
-                    :
-                    <InfiniteScroll
-                        loadMore= {requestGetPost}
-                        hasMore= {!booleanError}
-                        loader= {
-                            <ContainerLoading>
-                                <Loading />
-                            </ContainerLoading>
-                        }
-
+                <Publish getPosts= {getPosts}/>  
+                <InfiniteScroll
+                    dataLength={posts.length}
+                    next={requestGetPost}
+                    hasMore={true}
+                    loader={
+                        <ContainerLoading>
+                            <Loading />
+                        </ContainerLoading>
+                                }
                     >
-                        {booleanError ?
-                            <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
-                            :
-                            posts.map((post) => <Posts post={post} key={post.id}/>)
-                        }
-                    </InfiniteScroll>
-
-                }
+                    {posts.map((post) => <Posts post={post} key={post.id}/>)}
+                </InfiniteScroll>     
             </ContainerLinkdr>
             <ContainerTrending>
                 <Trending />
@@ -105,29 +95,4 @@ const Timeline = () => {
     );
 }
 
-/*const Section = styled.section`
-    overflow: auto;
-    width: 100%;
-    height: 50rem;
-`;*/
-
-
-
 export default Timeline;
-
-/*                        <div ref={(ref) => this.scrollParentRef = ref}>
-                            <InfiniteScroll 
-                                loadMore= {requestGetPost}
-                                hasMore= {!booleanError}
-                                loader= {
-                                    <ContainerLoading key= {0}>
-                                        <Loading />
-                                    </ContainerLoading>
-                                }
-                                useWindow= {false}
-                                getScrollParent= {() => this.scrollParentRef}
-
-                            >
-                                {posts.map((post) => <Posts post= {post} key= {post.id}/>)}
-                            </InfiniteScroll>
-                        </div>*/
