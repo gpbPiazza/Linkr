@@ -19,7 +19,6 @@ const Timeline = () => {
     const [booleanError, setBooleanError] = useState(false);
 
     useEffect(() => {
-        console.log('Timeline', hashtag);
         requestApi(hashtag);        
     }, [hashtag]);
     
@@ -29,7 +28,6 @@ const Timeline = () => {
         
         request.then(({data}) => {
             setLoading(false);
-            console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY ID');
             if(data.posts.length === 0) {
                 setError('Nenhum post encontrado!');
                 setBooleanError(true);
@@ -38,15 +36,12 @@ const Timeline = () => {
         });
 
         request.catch(({response}) => {
-            console.log(response, 'RESPOSTA ERROR DA API GET POSTS BY ID');
             setError('Houve uma falha ao obter os posts, por favor atualize a página!');
             setBooleanError(true);
             setLoading(false);
         }); 
     } 
 
-
-    
     return (
         
         <Main>

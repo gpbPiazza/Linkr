@@ -32,14 +32,12 @@ const Publish = ({getPosts}) => {
             const request = axios.post(apiLink, toServer, config);
             request.then(({data}) => {
                getPosts();
-               console.log(data);
                setMyPost(data.posts);
                setSended(false);
                clearInputs();
             });
 
             request.catch(({response}) => {
-                console.log(response);
                 setError('Houve um erro ao publicar seu link');
                 setSended(false);
             });

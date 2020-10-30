@@ -26,13 +26,11 @@ const Trending = () => {
         
         request.then(({data}) => {
             setLoading(false);
-            console.log(data.hashtags, 'hashtags');
             setTreadingHashtags(data.hashtags);
         });
 
         request.catch(({response}) => {
             setLoading(false);
-            console.log(response, 'ERROR TO GET TRADING HASH TAGS');
         }); 
     }
 

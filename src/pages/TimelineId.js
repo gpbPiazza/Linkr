@@ -18,7 +18,6 @@ const TimelineId = () => {
     const [booleanError, setBooleanError] = useState(false);
 
     useEffect(() => {
-        console.log('Timeline', id);
         requestApi(id);        
     }, [id]);
 
@@ -26,10 +25,8 @@ const TimelineId = () => {
         setLoading(true);
         const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${id}/posts?offset=0&limit=2`, config);
 
-        console.log('EOQQQ');
         request.then(({data}) => {
             setLoading(false);
-            console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY ID');
             if(data.posts.length === 0) {
                 setError('Nenhum post encontrado!');
                 setBooleanError(true);
@@ -38,7 +35,6 @@ const TimelineId = () => {
         });
 
         request.catch(({response}) => {
-            console.log(response, 'RESPOSTA ERROR DA API GET POSTS BY ID');
             setError('Houve uma falha ao obter os posts, por favor atualize a página!');
             setBooleanError(true);
             setLoading(false);

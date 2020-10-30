@@ -29,13 +29,9 @@ const Timeline = () => {
     const getPosts = () => {
         requestGetPost();
     }
-
-    console.log(posts, 'LISTA DE POSTS');
-    
     
     const requestGetPost = () => {
         setLoading(true);
-        console.log(offset, 'OFFSET');
         const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=${offset}&limit=10`, config);
 
         request.then(({data}) => {
@@ -53,18 +49,8 @@ const Timeline = () => {
             setLoading(false);
             setError('Houve uma falha ao obter os posts, por favor atualize a página!');
             setBooleanError(true);
-            console.log(response, 'RESPOSTA ERROR DA API');
         }); 
     }
-
-    /*const handleScroll = event => {
-        const {scrollTop, clientHeight, scrollHeight} = event.currentTarget;
-        console.log('SCROLLTOP', scrollTop)
-        if(scrollHeight - scrollTop === clientHeight) {
-            console.log('EOQCARAI');
-            setPage(page + 1);
-        }
-    };*/
  
     
     return (
