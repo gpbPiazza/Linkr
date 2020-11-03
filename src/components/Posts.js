@@ -19,6 +19,8 @@ const Posts = ({post}) => {
     const objeto = {};
     const [toggleLike, setToggleLike]= useState(false);
     const [likes, setLikes] = useState([]);
+    const [edit, setEdit] = useState(false);
+    const [textEdited, setTextEdited] = useState(linkDescription);
     
     useEffect(() => {
         setLikes(likesArray);
@@ -104,7 +106,11 @@ const Posts = ({post}) => {
                 <a className= "link" href={link} target="_blank"> 
                     <div>
                         <h3> {linkTitle} </h3>
-                        <p> {linkDescription} </p>
+                        {edit ? (
+                            <input value={linkDescription} />) 
+                            : 
+                            (<p> {linkDescription} </p>)
+                            }
                         <h4>{link}</h4>
                     </div>
                     <img src={linkImage} />
@@ -113,6 +119,7 @@ const Posts = ({post}) => {
         </StyledPost>
     );
 }
+
 
 export default Posts;
 
