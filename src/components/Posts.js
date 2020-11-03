@@ -38,9 +38,9 @@ const Posts = ({post, getPosts}) => {
     const [toggleLike, setToggleLike]= useState(false);
     const [likes, setLikes] = useState([]);
     const [edit, setEdit] = useState(false);
-    const [textEdited, setTextEdited] = useState(linkDescription);
     const [modalIsOpen, setIsOpen] = useState(false);
     const [disabled, setDisabled] = useState(false);
+    const [textEdited, setTextEdited] = useState(`${text}`);
     
     useEffect(() => {
         setLikes(likesArray);
@@ -104,6 +104,13 @@ const Posts = ({post, getPosts}) => {
         if(disabled) return;
         setIsOpen(false);
     }
+    const refactorText = () => {
+        setEdit(!edit);
+
+    }
+
+
+   
 
     return (
         <StyledPost>
@@ -137,8 +144,8 @@ const Posts = ({post, getPosts}) => {
                 </Link>
                 {(userId === myID) ?
                     <ContainerIcon>
-                        <IoMdCreate cursor= 'pointer' fontSize= '1.5rem'/>
                         <IoIosTrash onClick= {() => setIsOpen(true)} cursor= 'pointer' fontSize= '1.5rem'/>
+                        <IoMdCreate cursor= 'pointer' onClick={() => refactorText()} fontSize= '1.5rem'/>
                     </ContainerIcon>
                     :
                     null
@@ -163,14 +170,18 @@ const Posts = ({post, getPosts}) => {
                         {text}
                     </ReactHashtag>
                 </p>
+                {edit ?
+                    <textarea value={textEdited} type='text' onChange={e => setTextEdited(e.target.value)}  />
+                    :
+                    <p>
+                        <ReactHashtag renderHashtag= {value => <span key= {value}><Link to={`/hashtag/${value.slice(1)}`}>{value}</Link></span>}>
+                            {text}
+                        </ReactHashtag>
+                    </p>}
                 <a className= "link" href={link} target="_blank"> 
                     <div>
-                        <h3> {linkTitle} </h3>
-                        {edit ? (
-                            <input value={linkDescription} />) 
-                            : 
-                            (<p> {linkDescription} </p>)
-                            }
+                        <h3> {linkTitle} </h3>                         
+                        <p> {linkDescription} </p>
                         <h4>{link}</h4>
                     </div>
                     <img src={linkImage} />
@@ -284,6 +295,22 @@ const StyledPost = styled.article`
             line-height: 1.25rem;
             margin-bottom: 0.5rem; 
         }
+
+        textarea {
+            background-color: ${Colors.white};
+            width: 100%;
+            padding: 0.2rem;
+            border-radius: 0.2rem;
+            margin: 0.5rem 0rem;
+            word-wrap: break-word;
+            resize: none;
+            overflow: scroll;
+            ::-webkit-scrollbar {
+                width: 0px;
+                background: transparent; 
+            }
+        }
+
         ${media} {
             width: 85%;
         }
