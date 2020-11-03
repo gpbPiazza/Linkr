@@ -12,7 +12,7 @@ import Colors from '../utils/Colors';
 
 const Posts = ({post}) => {
     const {id: postId, link, linkDescription, linkImage, linkTitle, text, user, likes: likesArray} = post;
-    const {id: userId, username: myUsername, avatar} = user;
+    const {id: userId, username, avatar} = user;
     const {userForm} = useContext(LoginContext);
     const {config} = userForm;
     const {id: myID} = userForm.userRegister.user;
@@ -88,7 +88,7 @@ const Posts = ({post}) => {
             </figure>
             <section>
                 <Link to={`/user/${userId}`}>
-                    <h2> {myUsername} </h2>
+                    <h2> {username} </h2>
                 </Link>
                 {(userId === myID) ?
                     <ContainerIcon>
@@ -238,6 +238,3 @@ const ContainerIcon = styled.div`
     justify-content: space-between;
     width: 5rem;
 `;
-
-
-
