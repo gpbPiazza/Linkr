@@ -18,11 +18,6 @@ const Timeline = () => {
     const {userForm, controlForm} = useContext(LoginContext);
     const {config} = userForm;
     const {loading, setLoading} = controlForm;
-<<<<<<< HEAD
-    const [hasMore, setHasMore] = useState(true);
-    const [offset, setOffset] = useState(0);
-=======
->>>>>>> 07a0c69ceff3e8389242bdc52e81b1ec5d102d6c
 
     useEffect(() => {
         requestGetPost();
@@ -56,28 +51,6 @@ const Timeline = () => {
             <Title> timeline </Title>
             <ContainerLinkdr >
                 <Publish getPosts= {getPosts}/>
-<<<<<<< HEAD
-                {booleanError ?
-                        <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
-                        :
-                        <InfiniteScroll
-                            dataLength={posts.length}
-                            next={requestGetPost}
-                            hasMore={hasMore}
-                            loader={
-                                <ContainerLoading>
-                                    <Loading />
-                                </ContainerLoading>
-                            }
-
-                            endMessage= {
-                                <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
-                            }
-                        >
-                                {posts.map(post => (<Posts post= {post} key= {post.id}/>))}
-                        </InfiniteScroll>
-                }
-=======
                 {loading ? 
                         <ContainerLoading>
                             <Loading />
@@ -90,7 +63,6 @@ const Timeline = () => {
                             {posts.map((post) => <Posts post= {post} key= {post.id}/>)}
                         </>
                 } 
->>>>>>> 07a0c69ceff3e8389242bdc52e81b1ec5d102d6c
             </ContainerLinkdr>
             <ContainerTrending>
                 <Trending />
