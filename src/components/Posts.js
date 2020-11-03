@@ -92,8 +92,8 @@ const Posts = ({post}) => {
                 </Link>
                 {(userId === myID) ?
                     <ContainerIcon>
-                        <IoMdCreate cursor= 'pointer' fontSize= '2rem'/>
-                        <IoIosTrash cursor= 'pointer' fontSize= '2rem'/>
+                        <IoMdCreate cursor= 'pointer' fontSize= '1.5rem'/>
+                        <IoIosTrash cursor= 'pointer' fontSize= '1.5rem'/>
                     </ContainerIcon>
                     :
                     ""
