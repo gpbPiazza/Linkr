@@ -26,7 +26,6 @@ const TimelineMyLikes = () => {
 
         request.then(({data}) => {
             setLoading(false);
-            console.log(data, 'RESPOSTA SUCESSO DA API GET POSTS BY my likes');
             if(data.posts.length === 0) {
                 setError('Você não curtiu nenhum post ainda!');
                 setBooleanError(true);
@@ -35,7 +34,6 @@ const TimelineMyLikes = () => {
         });
 
         request.catch(({response}) => {
-            console.log(response, 'RESPOSTA ERROR DA API GET POSTS BY my likes');
             setError('Houve uma falha ao obter os posts, por favor atualize a página!');
             setBooleanError(true);
             setLoading(false);

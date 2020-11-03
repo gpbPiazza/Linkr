@@ -23,29 +23,19 @@ const Posts = ({post}) => {
     useEffect(() => {
         setLikes(likesArray);
         isLiked();
-        console.log(likesArray, 'VERIFICANDO O QUE TEM DENTRO DE LIKES');
     },[]);
 
     const postLike = () => {
         const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}/like`, objeto, config);
         request.then(({data}) => {
-            console.log(data, 'RESPOSTA SUCESSO DA API POST LIKE');
             setLikes(data.post.likes);
         });
-        request.catch(({response}) => {
-            console.log(response.data, 'RESPOSTA ERROR DA API POST LIKE');
-            //VER SE DA PARA MANDAR UMA MENSAGEM DE VERIFIQUE SUA INTERNET!.
-        }); 
     } 
 
     const postDisLike = () => {
         const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}/dislike`, objeto, config);
         request.then(({data}) => {
             setLikes(data.post.likes);
-        });
-        request.catch(({response}) => {
-            console.log(response.data, 'RESPOSTA ERROR DA API POST DISLIKE');
-            //VER SE DA PARA MANDAR UMA MENSAGEM DE VERIFIQUE SUA INTERNET!.
         });
     }
 
