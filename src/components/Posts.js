@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ReactHashtag from "react-hashtag";
@@ -21,11 +21,16 @@ const Posts = ({post}) => {
     const [likes, setLikes] = useState([]);
     const [edit, setEdit] = useState(false);
     const [textEdited, setTextEdited] = useState(`${text}`);
+    const [textAreaDisable, setTextAreaDisable] = useState(false);
+    const textInput = useRef();
     
     useEffect(() => {
         setLikes(likesArray);
         isLiked();
-    },[]);
+        if(edit){
+            textInput.current.focus();
+        }
+    },[edit]);
 
     const postLike = () => {
         const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}/like`, objeto, config);
@@ -40,6 +45,21 @@ const Posts = ({post}) => {
             setLikes(data.post.likes);
         });
     }
+
+    const editPost = () => {
+        setTextAreaDisable(!textAreaDisable);
+        const request = axios.put(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}`, {"text": textEdited}, config);
+        request.then(({data}) => {
+            setTextAreaDisable(!textAreaDisable);
+            setEdit(!edit);
+            console.log(data, 'SUCESSO DO SERVER!')
+        });
+        request.catch(({response}) => {
+            setTextAreaDisable(!textAreaDisable);
+            alert('Não foi possível fazer as alterações no texto')
+            console.log(response.data);
+        });
+    } 
 
     const isLiked = () => {
         likesArray.forEach(l => {
@@ -62,11 +82,18 @@ const Posts = ({post}) => {
 
     const refactorText = () => {
         setEdit(!edit);
+        setTextEdited(text);
 
     }
 
-
-   
+    const handleTextArea = (event) => {
+        if(event.key === "Escape"){
+            setEdit(!edit);
+            setTextEdited(text);
+        }if (event.key === "Enter") {
+            textEdited === text ? alert('Por favor altere o texto') : editPost();   
+        }
+    }
 
     return (
         <StyledPost>
@@ -107,11 +134,15 @@ const Posts = ({post}) => {
                     null
                 }
                 {edit ?
-                    <textarea value={textEdited} type='text' onChange={e => setTextEdited(e.target.value)}  />
+                    <textarea value={textEdited} 
+                              disabled={textAreaDisable} 
+                              onKeyDown={(event) => handleTextArea(event)} 
+                              type='text' onChange={e => setTextEdited(e.target.value)}  
+                              ref={textInput}/>
                     :
                     <p>
                         <ReactHashtag renderHashtag= {value => <span key= {value}><Link to={`/hashtag/${value.slice(1)}`}>{value}</Link></span>}>
-                            {text}
+                            {textEdited}
                         </ReactHashtag>
                     </p>}
                 <a className= "link" href={link} target="_blank"> 
