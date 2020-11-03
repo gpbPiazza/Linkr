@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import ReactHashtag from "react-hashtag";
 import axios from 'axios';
 import Tooltip from "react-simple-tooltip";
-import { IoIosHeartEmpty, IoIosHeart} from "react-icons/io";
+import { IoIosHeartEmpty, IoIosHeart, IoIosTrash, IoMdCreate } from "react-icons/io";
 
 import { ContainerLike, media } from '../components-style/cmpnt-styles';
 import LoginContext from '../context/LoginContext';
@@ -12,7 +12,7 @@ import Colors from '../utils/Colors';
 
 const Posts = ({post}) => {
     const {id: postId, link, linkDescription, linkImage, linkTitle, text, user, likes: likesArray} = post;
-    const {id: userId, username: myUsername, avatar} = user;
+    const {id: userId, username, avatar} = user;
     const {userForm} = useContext(LoginContext);
     const {config} = userForm;
     const {id: myID} = userForm.userRegister.user;
@@ -86,8 +86,16 @@ const Posts = ({post}) => {
             </figure>
             <section>
                 <Link to={`/user/${userId}`}>
-                    <h2> {myUsername} </h2>
+                    <h2> {username} </h2>
                 </Link>
+                {(userId === myID) ?
+                    <ContainerIcon>
+                        <IoMdCreate cursor= 'pointer' fontSize= '2rem'/>
+                        <IoIosTrash cursor= 'pointer' fontSize= '2rem'/>
+                    </ContainerIcon>
+                    :
+                    ""
+                }
                 <p>
                     <ReactHashtag renderHashtag= {value => <span key= {value}><Link to={`/hashtag/${value.slice(1)}`}>{value}</Link></span>}>
                         {text}
@@ -195,6 +203,7 @@ const StyledPost = styled.article`
         width: 89%;
         padding-top: 0.25rem;
         padding-left: 0.5rem;
+        position: relative;
 
         h2  {
             font-size: 1.25rem;
@@ -213,5 +222,12 @@ const StyledPost = styled.article`
     }
 `;
 
-
-
+const ContainerIcon = styled.div`
+    position: absolute;
+    top: 0.25rem;
+    right: 0rem;
+    color: ${Colors.white};
+    display: flex;
+    justify-content: space-between;
+    width: 5rem;
+`;
