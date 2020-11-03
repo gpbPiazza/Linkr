@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
-import Colors from '../utils/Colors';
 import { Link } from 'react-router-dom';
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+
+import Colors from '../utils/Colors';
 import LoginContext from '../context/LoginContext';
 
 const Header = () => {
@@ -10,8 +11,7 @@ const Header = () => {
     const {userForm} = useContext(LoginContext);
     const {userRegister, cleanUser} = userForm;
     const {avatar, id} = userRegister.user;
-  
-
+    
     return (
         <StyledHeader>
             <Link to='/timeline'>
@@ -58,7 +58,7 @@ const StyledHeader = styled.header`
     h1 {
         font-family: 'Passion One', cursive;
         line-height: 54px;
-        color:${Colors.white};
+        color: ${Colors.white};
         font-size: 3.2rem;
         margin-left: 1rem;
     }

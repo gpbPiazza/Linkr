@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+
 import Loading from '../components/Loading';
 import LoginContext from '../context/LoginContext';
 import Colors from '../utils/Colors';
@@ -20,7 +21,6 @@ const Login = () => {
 
             <StyledLogin >
                 <Error fontSize= {'2rem'}> {(alert) ? alert : ''} </Error>
-
                 {loading ? 
                     <ContainerLoading>
                         <Loading /> 
@@ -30,14 +30,12 @@ const Login = () => {
                     <form>
                         <input type= 'email' placeholder= 'e-mail'  onChange= {e => setEmail(e.target.value)} value= {email} />
                         <input type= 'password' placeholder= 'password' onChange= {e => setPassWord(e.target.value)} value= {password} />
-
                         {firstTime && (
                             <>        
                                 <input type= 'text' placeholder= 'username' onChange= {e => setUserName(e.target.value)} value= {userName} />
                                 <input type= 'text' placeholder= 'picture url' onChange= {e => setPictureUrl(e.target.value)} value= {pictureUrl} />
                             </>
                         )}
-
                         {firstTime ?
                             <button onClick= {(e) => verifyInputs(e, 'sign_up')}  type= 'submit'> Sing Up </button>
                             :
@@ -56,6 +54,7 @@ export default Login;
 
 const MainContainer = styled.main`
     display: flex;
+
     ${media} {
         flex-direction: column;
     }
@@ -88,12 +87,10 @@ const StyledTitle = styled.div`
     ${media} {
         width: 100%;
         height: auto;
-     
         text-align: center;
         padding: 0;
         align-items: center;
     
-
         h1 {
             font-size: 4.5rem;
             letter-spacing: 0.05em;
@@ -105,8 +102,6 @@ const StyledTitle = styled.div`
             margin-bottom: 1rem;
         }
     }
-
- 
 `;
 
 const StyledLogin = styled.div`
@@ -154,12 +149,14 @@ const StyledLogin = styled.div`
     form {
         margin-top: 0.5rem;
     }
+
     ${media} {
         width: 100%;
         height: auto;
         margin: 2rem 0;
     }
 `;
+
 const ContainerLoading = styled.div`
     width: 40%;
 `;

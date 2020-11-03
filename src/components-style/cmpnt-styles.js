@@ -1,7 +1,6 @@
 import Colors from '../utils/Colors';
 import styled from 'styled-components';
 
-
 export const media = '@media (max-width: 600px)';
 
 export const Main = styled.main`
@@ -19,8 +18,6 @@ export const Main = styled.main`
       align-items: center;
       justify-content: center;
     }
-
-    
 `;
 
 export const Title = styled.h1`
@@ -52,7 +49,7 @@ export const ContainerTrending = styled.div`
 
 export const ContainerLinkdr = styled.div`
     width: 62%;
-
+   
     ${media} {
       width: 100%;
     }
@@ -60,7 +57,7 @@ export const ContainerLinkdr = styled.div`
 
 export const ContainerLoading = styled.div`
     width: 20%;
-    margin:0  auto;
+    margin: 0  auto;
     margin-top: 5rem;
 `;
 
@@ -76,5 +73,4 @@ export const ContainerLike = styled.div`
     p {
       margin-top: 0.3rem;
     }
-  
 `;

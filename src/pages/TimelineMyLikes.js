@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import {useParams} from "react-router-dom";
+
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
 import {Main, Title, Error, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';;
@@ -23,7 +23,6 @@ const TimelineMyLikes = () => {
     const requestApi = () => {
         setLoading(true);
         const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/liked`, config);
-
         request.then(({data}) => {
             setLoading(false);
             if(data.posts.length === 0) {
@@ -32,35 +31,31 @@ const TimelineMyLikes = () => {
             }
             setPosts(data.posts);
         });
-
-        request.catch(({response}) => {
+        request.catch(() => {
             setError('Houve uma falha ao obter os posts, por favor atualize a página!');
             setBooleanError(true);
             setLoading(false);
         }); 
     } 
 
-
     return (
-        
         <Main>
             <Header />
             <Title> {posts.length ? `My like's posts`: ''} </Title>
             <ContainerLinkdr>            
                 {loading ? 
-                        <ContainerLoading>
-                            <Loading />
-                        </ContainerLoading>
+                    <ContainerLoading>
+                        <Loading />
+                    </ContainerLoading>
                     :
                     booleanError ?
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <>
-                            {posts.map(post => (<Posts post= {post} userkey= {post.id}/>))}
+                            {posts.map(post => (<Posts post= {post} key={post.id} userkey= {post.id}/>))}
                         </>
                 }
             </ContainerLinkdr>
-
             <ContainerTrending>
                 <Trending />
             </ContainerTrending>

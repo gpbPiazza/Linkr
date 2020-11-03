@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Colors from '../utils/Colors';
 import ReactHashtag from "react-hashtag";
-import { ContainerLike, media } from '../components-style/cmpnt-styles'
-import { IoIosHeartEmpty, IoIosHeart} from "react-icons/io";
 import axios from 'axios';
+import Tooltip from "react-simple-tooltip";
+import { IoIosHeartEmpty, IoIosHeart} from "react-icons/io";
+
+import { ContainerLike, media } from '../components-style/cmpnt-styles';
 import LoginContext from '../context/LoginContext';
-import Tooltip from "react-simple-tooltip"
+import Colors from '../utils/Colors';
 
 const Posts = ({post}) => {
     const {id: postId, link, linkDescription, linkImage, linkTitle, text, user, likes: likesArray} = post;
@@ -19,7 +20,6 @@ const Posts = ({post}) => {
     const [toggleLike, setToggleLike]= useState(false);
     const [likes, setLikes] = useState([]);
     
-
     useEffect(() => {
         setLikes(likesArray);
         isLiked();
@@ -45,7 +45,6 @@ const Posts = ({post}) => {
                 setToggleLike(!toggleLike);
             }
         });
-
         return;
     }
 
@@ -59,7 +58,6 @@ const Posts = ({post}) => {
         postDisLike();
     }
 
-//`Você,mais alguém e outras ${likes.length-2} pessoas curtiram`
     return (
         <StyledPost>
             <figure>
@@ -73,15 +71,19 @@ const Posts = ({post}) => {
                         :
                          <IoIosHeartEmpty  onClick={() => like()}  fontSize= '2rem' />}
                     <Tooltip content={toggleLike ? 
-                                            (likes.length === 1 ? 'Você curtiu' : `Você e ${likes.length-1} curtiram`) 
-                                            : 
-                                            (likes.length === 0 ? '' : likes.length === 1 ? `${likes[0]["user.username"]}` : `${likes[1]["user.username"]} e  ${likes.length-1} curtiram`)                                        
-                                        }   placement={"bottom"}>
+                        (likes.length === 1 ? 'Você curtiu' : `Você e ${likes.length-1} curtiram`) 
+                            : 
+                            ((likes.length === 0) ? 
+                            '' 
+                            : 
+                            (likes.length === 1) ? 
+                                `${likes[0]["user.username"]}` 
+                                : 
+                                `${likes[1]["user.username"]} e  ${likes.length-1} curtiram`)}  placement={"bottom"}>
                         <p>{likes.length === 0 ? '' : `${likes.length} likes`}</p>
                     </Tooltip>
                 </ContainerLike>
             </figure>
-          
             <section>
                 <Link to={`/user/${userId}`}>
                     <h2> {myUsername} </h2>
@@ -100,7 +102,6 @@ const Posts = ({post}) => {
                     <img src={linkImage} />
                 </a>
             </section>
-
         </StyledPost>
     );
 }
@@ -121,10 +122,9 @@ const StyledPost = styled.article`
       border-radius: 0; 
     }
     
-   
     figure {
         width: 10%;
-        display:flex;
+        display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
@@ -135,9 +135,8 @@ const StyledPost = styled.article`
             margin: 0 auto;
             border-radius: 100%;
         }
-
     }
-
+    
     .link {
         width: 100%;
         height: auto;

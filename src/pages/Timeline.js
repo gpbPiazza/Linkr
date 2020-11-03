@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
+import InfiniteScroll from "react-infinite-scroll-component";
+
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
 import Publish from "../components/Publish";
 import Loading from '../components/Loading';
-import {Main, Title, Error, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';
+import {Main, Title, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';
 import LoginContext from "../context/LoginContext";
 import Posts from "../components/Posts";
-// import InfiniteScroll from 'react-infinite-scroller';
-import styled from "styled-components";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 
 const Timeline = () => {
@@ -19,11 +18,14 @@ const Timeline = () => {
     const {userForm, controlForm} = useContext(LoginContext);
     const {config} = userForm;
     const {loading, setLoading} = controlForm;
+<<<<<<< HEAD
     const [hasMore, setHasMore] = useState(true);
     const [offset, setOffset] = useState(0);
+=======
+>>>>>>> 07a0c69ceff3e8389242bdc52e81b1ec5d102d6c
 
     useEffect(() => {
-        getPosts();       
+        requestGetPost();
     },[]);
 
     const getPosts = () => {
@@ -32,19 +34,15 @@ const Timeline = () => {
     
     const requestGetPost = () => {
         setLoading(true);
-        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=${offset}&limit=10`, config);
-
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=0&limit=10`, config);
         request.then(({data}) => {
             setLoading(false);
             if(data.posts.length === 0) {
                 setError('Nenhum post encontrado!');
                 setHasMore(false);
             }
-
-            setOffset(offset + 10);
-            setPosts(posts => [...posts, ...data.posts]);
+            setPosts(data.posts);
         });
-
         request.catch(({response}) => {
             setLoading(false);
             setError('Houve uma falha ao obter os posts, por favor atualize a página!');
@@ -52,14 +50,13 @@ const Timeline = () => {
         }); 
     }
  
-    
     return (
-        
        <Main>
             <Header />
             <Title> timeline </Title>
             <ContainerLinkdr >
                 <Publish getPosts= {getPosts}/>
+<<<<<<< HEAD
                 {booleanError ?
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
                         :
@@ -80,11 +77,24 @@ const Timeline = () => {
                                 {posts.map(post => (<Posts post= {post} key= {post.id}/>))}
                         </InfiniteScroll>
                 }
+=======
+                {loading ? 
+                        <ContainerLoading>
+                            <Loading />
+                        </ContainerLoading>
+                    :
+                    booleanError ?
+                        <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
+                        :
+                        <>
+                            {posts.map((post) => <Posts post= {post} key= {post.id}/>)}
+                        </>
+                } 
+>>>>>>> 07a0c69ceff3e8389242bdc52e81b1ec5d102d6c
             </ContainerLinkdr>
             <ContainerTrending>
                 <Trending />
             </ContainerTrending>
-           
        </Main>
     );
 }

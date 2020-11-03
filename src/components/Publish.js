@@ -1,6 +1,7 @@
 import React, { useContext, useState } from  'react';
 import styled from 'styled-components';
 import axios from 'axios';
+
 import Colors from '../utils/Colors';
 import LoginContext from '../context/LoginContext';
 import { Error, media } from '../components-style/cmpnt-styles';
@@ -11,7 +12,6 @@ const Publish = ({getPosts}) => {
     const [text, setText] = useState('');
     const [error, setError] = useState('');
     const [sended, setSended] = useState(false);
-    const [myPost, setMyPost] = useState([]);
     const {avatar} = userForm.userRegister.user;
     const {config} = userForm;
 
@@ -32,7 +32,6 @@ const Publish = ({getPosts}) => {
             const request = axios.post(apiLink, toServer, config);
             request.then(({data}) => {
                getPosts();
-               setMyPost(data.posts);
                setSended(false);
                clearInputs();
             });
@@ -51,13 +50,11 @@ const Publish = ({getPosts}) => {
     
     const attLink = (value) => {
         if(sended) return;
-        
         setLink(value);
     }
 
     const attText = (value) => {
         if(sended) return;
-
         setText(value);
     }
 
@@ -81,7 +78,7 @@ const Publish = ({getPosts}) => {
                     placeholder= "Muito irado esse link falando de javascript"
                     onChange = {(e => attText(e.target.value))}
                     value = {text}
-                ></textarea>
+                />
 
                 <ContainerButton>
                     <Error fontSize= {'1rem'}> {(error) ? error : ''} </Error>
@@ -97,7 +94,6 @@ const Publish = ({getPosts}) => {
 }
 
 export default Publish;
-
 
 const StyledPublish = styled.div`
     border-radius: 1.25rem;

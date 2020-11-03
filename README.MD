@@ -16,7 +16,7 @@
 - [x] List treading hashtags<br>
 - [x] Header for navigation<br>
 - [x] Navigation with hashtags and profiles users posts<br>
-- [ ] Responsive for smartphones<br>
+- [x] Responsive for smartphones<br>
 
 ### Tech Stack
 Languages:<br>
@@ -42,7 +42,7 @@ The following tools and frameworks were used in the construction of the project:
 
 #Folow the link project.
 
-- [Link]()
+- [Link](https://milhomem-piazza-linkdr.netlify.app/)
 
 
 ### Contributors

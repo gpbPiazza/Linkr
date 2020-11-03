@@ -16,31 +16,27 @@ import TimelineMyLikes from './pages/TimelineMyLikes';
 export default function App() {
 
   return (  
-    <Router >
+    <Router  >
       <LoginProvider>
           <Switch>
             <Route exact path= "/">
               <Login />
             </Route>
-            
             <Route path= '/timeline'>
               <Timeline />
             </Route>
-
             <Route path= '/user/:id'>
               <TimelineId />
             </Route>
-
             <Route path= '/hashtag/:hashtag'>
               <TimelineHashTag />
             </Route>
-
             <Route path= '/my-likes'>
               <TimelineMyLikes />
             </Route>
-
           </Switch>
       </LoginProvider>
     </Router>
   );
 }
+
