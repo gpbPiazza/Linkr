@@ -30,19 +30,20 @@ const customStyles = {
 
 const Posts = ({post, getPosts}) => {
     const {userForm} = useContext(LoginContext);
-    const [toggleLike, setToggleLike]= useState(false);
-    const [likes, setLikes] = useState([]);
-    const [edit, setEdit] = useState(false);
-    const [modalIsOpen, setIsOpen] = useState(false);
-    const [disabled, setDisabled] = useState(false);
-    const [textEdited, setTextEdited] = useState('');
-    const [textAreaDisable, setTextAreaDisable] = useState(false);
-    const textInput = useRef();
     const {id: postId, link, linkDescription, linkImage, linkTitle, text, user, likes: likesArray} = post;
     const {id: userId, username, avatar} = user;
     const {id: myID} = userForm.userRegister.user;
     const {config} = userForm;
     const objeto = {};
+    const [toggleLike, setToggleLike]= useState(false);
+    const [likes, setLikes] = useState([]);
+    const [edit, setEdit] = useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [disabled, setDisabled] = useState(false);
+    const [textAreaDisable, setTextAreaDisable] = useState(false);
+    const textInput = useRef();
+    const [textEdited, setTextEdited] = useState(text);
+    const [textApi, setTextApi] = useState('');
     
     useEffect(() => {
         setLikes(likesArray);
@@ -71,6 +72,7 @@ const Posts = ({post, getPosts}) => {
         const request = axios.put(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}`, {"text": textEdited}, config);
         request.then(({data}) => {
             setTextEdited(data.post.text);
+            setTextApi(data.post.text);
             console.log(data, 'SUCESSO DO SERVER!');
             setEdit(!edit);
             setTextAreaDisable(false);
@@ -128,8 +130,11 @@ const Posts = ({post, getPosts}) => {
     }
     const refactorText = () => {
         setEdit(!edit);
-        setTextEdited(text);
-
+        if (textEdited === textApi){
+            setTextEdited(textApi);
+        }else {
+            setTextEdited(text);
+        }
     }
 
     const handleTextArea = (event) => {
@@ -137,6 +142,7 @@ const Posts = ({post, getPosts}) => {
             setEdit(!edit);
             setTextEdited(text);
         }if (event.key === "Enter") {
+            setTextEdited(event.target.value);
             textEdited === text ? alert('Por favor altere o texto') : editPost();   
         }
     }
