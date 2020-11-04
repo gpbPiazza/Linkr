@@ -5,12 +5,30 @@ import ReactHashtag from "react-hashtag";
 import axios from 'axios';
 import Tooltip from "react-simple-tooltip";
 import { IoIosHeartEmpty, IoIosHeart, IoIosTrash, IoMdCreate } from "react-icons/io";
+import Modal from 'react-modal';
 
 import { ContainerLike, media } from '../components-style/cmpnt-styles';
 import LoginContext from '../context/LoginContext';
 import Colors from '../utils/Colors';
 
-const Posts = ({post}) => {
+Modal.setAppElement("#root");
+const customStyles = {
+    content: {
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      borderRadius: '20px',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      background: '#333333',
+    },
+    overlay: {
+        zIndex: '2',
+    }
+}
+
+const Posts = ({post, getPosts}) => {
     const {id: postId, link, linkDescription, linkImage, linkTitle, text, user, likes: likesArray} = post;
     const {id: userId, username, avatar} = user;
     const {userForm} = useContext(LoginContext);
@@ -20,6 +38,8 @@ const Posts = ({post}) => {
     const [toggleLike, setToggleLike]= useState(false);
     const [likes, setLikes] = useState([]);
     const [edit, setEdit] = useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false);
+    const [disabled, setDisabled] = useState(false);
     const [textEdited, setTextEdited] = useState(`${text}`);
     const [textAreaDisable, setTextAreaDisable] = useState(false);
     const textInput = useRef();
@@ -80,6 +100,30 @@ const Posts = ({post}) => {
         postDisLike();
     }
 
+    const deletePost = () => {
+        if(disabled) return;
+        const link = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}`;
+        const request = axios.delete(link, config);
+        setDisabled(true);
+
+        request.then(() => {
+            getPosts();
+            setIsOpen(false);
+            setDisabled(false);
+
+        });
+        request.catch(({response}) => {
+            console.log('erro', response);
+            setIsOpen(false);
+            setDisabled(false);
+            alert("Não foi possível excluir o post");
+        });
+    }
+
+    const closeModal = () => {
+        if(disabled) return;
+        setIsOpen(false);
+    }
     const refactorText = () => {
         setEdit(!edit);
         setTextEdited(text);
@@ -127,12 +171,32 @@ const Posts = ({post}) => {
                 </Link>
                 {(userId === myID) ?
                     <ContainerIcon>
+                        <IoIosTrash onClick= {() => setIsOpen(true)} cursor= 'pointer' fontSize= '1.5rem'/>
                         <IoMdCreate cursor= 'pointer' onClick={() => refactorText()} fontSize= '1.5rem'/>
-                        <IoIosTrash cursor= 'pointer' fontSize= '1.5rem'/>
                     </ContainerIcon>
                     :
                     null
                 }
+                <Modal
+                    isOpen= {modalIsOpen}
+                    style= {customStyles}
+                >   
+                    <StyledModal>
+                        <h1> Tem certeza que deseja<br /> excluir essa publição </h1>
+
+                        <ModalButtons>
+                            <button className= 'backButton' onClick = {closeModal}> Não, voltar </button>
+                            <button onClick = {deletePost}> Sim, excluir </button>
+                        </ModalButtons>
+                        {disabled ? <p> Loading ... </p>: null}
+                        
+                    </StyledModal>
+                </Modal>
+                <p>
+                    <ReactHashtag renderHashtag= {value => <span key= {value}><Link to={`/hashtag/${value.slice(1)}`}>{value}</Link></span>}>
+                        {text}
+                    </ReactHashtag>
+                </p>
                 {edit ?
                     <textarea value={textEdited} 
                               disabled={textAreaDisable} 
@@ -250,12 +314,13 @@ const StyledPost = styled.article`
         padding-left: 0.5rem;
         position: relative;
 
-        h2  {
+        h2 {
             font-size: 1.25rem;
             margin-bottom: 0.5rem;
             color: ${Colors.white};
         }
-         p{   
+
+        p {   
             color: ${Colors.lightGrey};
             font-size: 1rem;
             line-height: 1.25rem;
@@ -290,5 +355,61 @@ const ContainerIcon = styled.div`
     color: ${Colors.white};
     display: flex;
     justify-content: space-between;
-    width: 5rem;
+    width: 4rem;
+`;
+
+const StyledModal = styled.section`
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    padding: 1rem 4.5rem 2rem;
+    
+    h1 {
+        font-weight: bold;
+        font-size: 2.125rem;
+        line-height: 2.56rem;
+        color: #FFFFFF;
+        margin-bottom: 1.5rem;
+    }
+
+    p {
+        text-align: center;
+        color: ${Colors.lightRed};
+        font-size: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    ${media} {
+        h1 {
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+        }
+        
+        padding: 0.5rem;
+    }
+`;
+
+const ModalButtons = styled.div`
+    display: flex;
+    justify-content: center;
+
+    button {
+        font-size: 1.125rem;
+        font-weight: bold;
+        color: ${Colors.white};
+        background-color: ${Colors.midBlue};
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 5px;
+        line-height: 1.375rem;
+
+        ${media} {
+            font-size: 1rem;
+        }
+    }
+
+    .backButton {
+        background-color: ${Colors.white};
+        color: ${Colors.midBlue};
+        margin-right: 1.5rem;
+    }
 `;

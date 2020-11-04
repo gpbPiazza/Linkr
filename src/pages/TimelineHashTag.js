@@ -33,7 +33,7 @@ const Timeline = () => {
             }
             setPosts(data.posts);
         });
-        request.catch(({response}) => {
+        request.catch(() => {
             setError('Houve uma falha ao obter os posts, por favor atualize a página!');
             setBooleanError(true);
             setLoading(false);

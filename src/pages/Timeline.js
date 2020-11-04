@@ -37,7 +37,7 @@ const Timeline = () => {
             }
             setPosts(data.posts);
         });
-        request.catch(({response}) => {
+        request.catch(() => {
             setLoading(false);
             setError('Houve uma falha ao obter os posts, por favor atualize a página!');
             setBooleanError(true);
@@ -59,7 +59,7 @@ const Timeline = () => {
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <>
-                            {posts.map((post) => <Posts post= {post} key= {post.id}/>)}
+                            {posts.map((post) => <Posts getPosts= {getPosts} post= {post} key= {post.id}/>)}
                         </>
                 } 
             </ContainerLinkdr>
