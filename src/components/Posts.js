@@ -171,8 +171,8 @@ const Posts = ({post, getPosts}) => {
                 </Link>
                 {(userId === myID) ?
                     <ContainerIcon>
+                        <IoMdCreate  onClick={() => refactorText()}  cursor= 'pointer' fontSize= '1.5rem'/>
                         <IoIosTrash onClick= {() => setIsOpen(true)} cursor= 'pointer' fontSize= '1.5rem'/>
-                        <IoMdCreate cursor= 'pointer' onClick={() => refactorText()} fontSize= '1.5rem'/>
                     </ContainerIcon>
                     :
                     null
@@ -192,11 +192,6 @@ const Posts = ({post, getPosts}) => {
                         
                     </StyledModal>
                 </Modal>
-                <p>
-                    <ReactHashtag renderHashtag= {value => <span key= {value}><Link to={`/hashtag/${value.slice(1)}`}>{value}</Link></span>}>
-                        {text}
-                    </ReactHashtag>
-                </p>
                 {edit ?
                     <textarea value={textEdited} 
                               disabled={textAreaDisable} 
