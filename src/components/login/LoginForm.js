@@ -1,12 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 
 import LoginContext from '../../context/LoginContext';
-import {
-    Form,
-    Input,
-    Button,
-    Text
-} from '../../styles/LoginForm.styles';
+import { Form, Input, Button, Text } from '../../styles/LoginForm.styles';
 
 const LoginForm = ({firstTime, setFirstTime}) => {
     const { controlForm, requestApi, form, setForm } = useContext(LoginContext);
@@ -34,9 +29,7 @@ const LoginForm = ({firstTime, setFirstTime}) => {
         }
     }
 
-    const toggleInputs  = () => {
-        console.log('toggle inputs login form console')
-        console.log(firstTime, 'verificando oq tem first time')
+    const toggleInputs = () => {
         setFirstTime(!firstTime);
         setUserName('');
         setPictureUrl('');

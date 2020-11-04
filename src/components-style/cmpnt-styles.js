@@ -39,14 +39,6 @@ export const Error = styled.span`
     font-size: ${props => props.fontSize};
 `;
 
-export const ContainerTrending = styled.div`
-    width: 35%;
-     
-    ${media} {
-      display: none;
-    }
-`;
-
 export const ContainerLinkdr = styled.div`
     width: 62%;
    

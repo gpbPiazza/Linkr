@@ -8,24 +8,26 @@ export default LoginContext;
 
 export function LoginProvider(props) {
     let history = useHistory();
-    const [userRegister, setUserRegister] = useState({});
-    const [config, setConfig] = useState({});
+    const [ userRegister, setUserRegister ] = useState({});
+    const [ config, setConfig ] = useState({});
     const [ email, setEmail ] = useState('');
-    const [ password, setPassWord ]= useState('');
-    const [ userName, setUserName ]= useState('');
-    const [ pictureUrl, setPictureUrl ]= useState('');
-    const [loading, setLoading] = useState(false);
-    const [alert, setAlert] = useState('');
+    const [ password, setPassWord ] = useState('');
+    const [ userName, setUserName ] = useState('');
+    const [ pictureUrl, setPictureUrl ] = useState('');
+    const [ loading, setLoading ] = useState(false);
+    const [ alert, setAlert ] = useState('');
    
     const requestApi = (infoUser, typeRequest) => {
         setLoading(true);
         setAlert('');
-        const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/${typeRequest}`, infoUser);
+        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/${typeRequest}`;
+        const request = axios.post(apiLink, infoUser);
         request.then(({data}) => {
             setUserRegister(data);
             setConfig({ headers: {"User-Token": data.token} });
             history.push('/timeline');
             cleanInputs();
+            
         });
         request.catch(({response}) => {
             if(typeRequest === 'sign_up') {
@@ -60,7 +62,7 @@ export function LoginProvider(props) {
     const userForm = {userRegister, config, cleanUser};
 
     return (
-        <LoginContext.Provider value= {{controlForm, userForm, form, setForm , requestApi}}>
+        <LoginContext.Provider value= {{controlForm, userForm, form, setForm, requestApi}}>
             {props.children}
         </LoginContext.Provider>
     );

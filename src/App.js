@@ -18,19 +18,19 @@ export default function App() {
     <Router>
       <LoginProvider>
           <Switch>
-            <Route exact path= "/">
+            <Route exact path="/">
               <Login />
             </Route>
-            <Route path= '/timeline'>
+            <Route path='/timeline'>
               <Timeline />
             </Route>
-            <Route path= '/user/:id'>
+            <Route path='/user/:id'>
               <TimelineId />
             </Route>
-            <Route path= '/hashtag/:hashtag'>
+            <Route path='/hashtag/:hashtag'>
               <TimelineHashTag />
             </Route>
-            <Route path= '/my-likes'>
+            <Route path='/my-likes'>
               <TimelineMyLikes />
             </Route>
           </Switch>
