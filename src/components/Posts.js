@@ -29,12 +29,7 @@ const customStyles = {
 }
 
 const Posts = ({post, getPosts}) => {
-    const {id: postId, link, linkDescription, linkImage, linkTitle, text, user, likes: likesArray} = post;
-    const {id: userId, username, avatar} = user;
     const {userForm} = useContext(LoginContext);
-    const {config} = userForm;
-    const {id: myID} = userForm.userRegister.user;
-    const objeto = {};
     const [toggleLike, setToggleLike]= useState(false);
     const [likes, setLikes] = useState([]);
     const [edit, setEdit] = useState(false);
@@ -43,6 +38,11 @@ const Posts = ({post, getPosts}) => {
     const [textEdited, setTextEdited] = useState(`${text}`);
     const [textAreaDisable, setTextAreaDisable] = useState(false);
     const textInput = useRef();
+    const {id: postId, link, linkDescription, linkImage, linkTitle, text, user, likes: likesArray} = post;
+    const {id: userId, username, avatar} = user;
+    const {id: myID} = userForm.userRegister.user;
+    const {config} = userForm;
+    const objeto = {};
     
     useEffect(() => {
         setLikes(likesArray);
@@ -357,7 +357,7 @@ const ContainerIcon = styled.div`
 const StyledModal = styled.section`
     text-align: center;
     font-family: 'Lato', sans-serif;
-    padding: 1rem 4.5rem 2rem;
+    padding: 1rem 4.5rem 1.5rem;
     
     h1 {
         font-weight: bold;

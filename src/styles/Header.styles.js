@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Colors from '../utils/Colors';
 
-export const ContainerHeader = styled.header`
+export const HeaderContainer = styled.header`
     z-index: 1;
 	width: 100%;
     background: ${Colors.black};
@@ -16,12 +16,12 @@ export const ContainerHeader = styled.header`
     padding: 1rem;
 `;
 
-export const ContainerMenu = styled.div`
+export const MenuContainer = styled.div`
     display: flex;
     align-items: center;
 `;
 
-export const PhotoProfile = styled.img`
+export const ProfilePhoto = styled.img`
     width: 3.3125rem;
     height: 3.3125rem;
     border-radius: 100%;
@@ -37,7 +37,7 @@ export const Logo = styled.h1`
     margin-left: 1rem;
 `;
 
-export const ContainerNav = styled.nav`
+export const NavContainer = styled.nav`
     display: flex;
     align-items: center;
     justify-content: center;

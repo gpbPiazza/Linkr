@@ -7,13 +7,13 @@ import LoginContext from '../context/LoginContext';
 import { Error, media } from '../components-style/cmpnt-styles';
 
 const Publish = ({getPosts}) => {
-    const {userForm} = useContext(LoginContext);
-    const [link, setLink] = useState('');
-    const [text, setText] = useState('');
-    const [error, setError] = useState('');
-    const [sended, setSended] = useState(false);
-    const {avatar} = userForm.userRegister.user;
-    const {config} = userForm;
+    const { userForm } = useContext(LoginContext);
+    const [ link, setLink ] = useState('');
+    const [ text, setText ] = useState('');
+    const [ error, setError ] = useState('');
+    const [ sended, setSended ] = useState(false);
+    const { avatar } = userForm.userRegister.user;
+    const { config } = userForm;
 
     const validationPublish = (event) => {
         event.preventDefault();
@@ -36,7 +36,7 @@ const Publish = ({getPosts}) => {
                clearInputs();
             });
 
-            request.catch(({response}) => {
+            request.catch(() => {
                 setError('Houve um erro ao publicar seu link');
                 setSended(false);
             });
@@ -59,10 +59,10 @@ const Publish = ({getPosts}) => {
     }
 
     return (
-        <StyledPublish>
-            <Figure>
-                <img src= {avatar} alt= "foto de perfil" />
-            </Figure>
+        <PublishSection>
+            <ImageContainer>
+                <ProfileImage src= {avatar} alt= "foto de perfil" />
+            </ImageContainer>
 
             <Form>
                 <h2> O que você tem para favoritar hoje? </h2>
@@ -89,13 +89,13 @@ const Publish = ({getPosts}) => {
                     </button>
                 </ContainerButton>
             </Form>
-        </StyledPublish>
+        </PublishSection>
     );
 }
 
 export default Publish;
 
-const StyledPublish = styled.div`
+const PublishSection = styled.section`
     border-radius: 1.25rem;
     background: ${Colors.white};
     padding: 1rem;
@@ -111,14 +111,14 @@ const StyledPublish = styled.div`
     }
 `;
 
-const Figure = styled.figure`
+const ImageContainer = styled.div`
     width: 10%;
+`;
 
-    img {
-        width: 3.125rem;
-        height: 3.125rem;
-        border-radius: 100%;
-    }
+const ProfileImage = styled.img`
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: 100%;
 `;
 
 const Form = styled.form`

@@ -26,7 +26,7 @@ export function LoginProvider(props) {
             setConfig({ headers: {"User-Token": data.token} });
             history.push('/timeline');
             cleanInputs();
-            setLoading(false);
+            
         });
         request.catch(({response}) => {
             if(typeRequest === 'sign_up') {
@@ -42,6 +42,7 @@ export function LoginProvider(props) {
     } 
 
     const cleanUser = () => {
+        setLoading(false);
         setConfig({});
         setUserRegister({});
     }

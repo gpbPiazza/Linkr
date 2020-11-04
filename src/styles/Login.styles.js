@@ -12,7 +12,7 @@ export const MainContainer = styled.main`
     }
 `;
 
-export const ContainerForms = styled.section`
+export const FormsContainer = styled.section`
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
 	width: 37%;
@@ -32,7 +32,7 @@ export const ContainerForms = styled.section`
 `;
 
 
-export const ContainerTitle = styled.section`
+export const LogoContainer = styled.section`
 	width: 63%;
     display: flex;
     flex-direction: column;
@@ -53,7 +53,7 @@ export const ContainerTitle = styled.section`
     }
 `;
 
-export const Title = styled.h1`
+export const Logo = styled.h1`
     font-family: 'Passion One', cursive;
     font-size: 7rem;
     line-height: 7.312rem;   
@@ -64,7 +64,7 @@ export const Title = styled.h1`
     }
 `;
 
-export const SubTitle = styled.h2`
+export const Subtitle = styled.h2`
     font-family: 'Oswald', sans-serif;
     font-size: 2.6875rem;
     line-height: 4rem; 

@@ -6,31 +6,31 @@ import LoginForm from '../components/login/LoginForm';
 import { Error } from '../components-style/cmpnt-styles';
 import {
     MainContainer,
-    ContainerTitle,
-    Title,
-    SubTitle,
-    ContainerForms
+    LogoContainer,
+    Logo,
+    Subtitle,
+    FormsContainer
 } from  '../styles/Login.styles';
 
 const Login = () => {
-    const [ firstTime, setFirstTime ] = useState(false);
     const { controlForm } = useContext(LoginContext);
+    const [ firstTime, setFirstTime ] = useState(false);
     const { loading, alert } = controlForm;
 
     return (
         <MainContainer>
-            <ContainerTitle>
-                <Title> Linkdr </Title>
-                <SubTitle> save, share and discover<br/>the best links on the web </SubTitle>
-            </ContainerTitle>
-            <ContainerForms >
+            <LogoContainer>
+                <Logo> Linkdr </Logo>
+                <Subtitle> save, share and discover<br/>the best links on the web </Subtitle>
+            </LogoContainer>
+            <FormsContainer>
                 <Error fontSize= {'2rem'}> {(alert) ? alert : null} </Error>
                 {loading ? 
                     <Loading /> 
                 :
                     <LoginForm firstTime={firstTime} setFirstTime={setFirstTime}/>
                 }
-            </ContainerForms>
+            </FormsContainer>
         </MainContainer>
     );
 }

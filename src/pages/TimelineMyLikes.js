@@ -3,18 +3,18 @@ import axios from "axios";
 
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
-import {Main, Title, Error, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';;
+import {Main, Title, Error, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';;
 import LoginContext from "../context/LoginContext";
 import Loading from "../components/Loading";
 import Posts from "../components/Posts";
 
 const TimelineMyLikes = () => {
-    const [posts, setPosts] = useState([]);
     const {userForm, controlForm} = useContext(LoginContext);
-    const {config} = userForm;
-    const {loading, setLoading} = controlForm;
+    const [posts, setPosts] = useState([]);
     const [error, setError] = useState('');
     const [booleanError, setBooleanError] = useState(false);
+    const {config} = userForm;
+    const {loading, setLoading} = controlForm;
 
     useEffect(() => {
         requestApi();        
@@ -56,9 +56,7 @@ const TimelineMyLikes = () => {
                         </>
                 }
             </ContainerLinkdr>
-            <ContainerTrending>
-                <Trending />
-            </ContainerTrending>
+            <Trending />
         </Main>
     );
 }

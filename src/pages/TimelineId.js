@@ -4,19 +4,19 @@ import {useParams} from "react-router-dom";
 
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
-import {Main, Title, Error, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';;
+import {Main, Title, Error, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';;
 import LoginContext from "../context/LoginContext";
 import Loading from "../components/Loading";
 import Posts from "../components/Posts";
 
 const TimelineId = () => {
-    const [posts, setPosts] = useState([]);
     const {userForm, controlForm} = useContext(LoginContext);
+    const [posts, setPosts] = useState([]);
+    const [booleanError, setBooleanError] = useState(false);
+    const [error, setError] = useState('');
+    const { id } = useParams();
     const {config} = userForm;
     const {loading, setLoading} = controlForm;
-    const { id } = useParams();
-    const [error, setError] = useState('');
-    const [booleanError, setBooleanError] = useState(false);
 
     useEffect(() => {
         requestApi(id);        
@@ -60,9 +60,7 @@ const TimelineId = () => {
                         </>
                 }
             </ContainerLinkdr>
-            <ContainerTrending>
-                <Trending />
-            </ContainerTrending>
+            <Trending />
         </Main>
     );
 }

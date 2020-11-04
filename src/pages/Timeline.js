@@ -5,18 +5,18 @@ import Header from  '../components/Header';
 import Trending from "../components/Trending";
 import Publish from "../components/Publish";
 import Loading from '../components/Loading';
-import {Main, Title, ContainerTrending, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';
+import {Main, Title, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';
 import LoginContext from "../context/LoginContext";
 import Posts from "../components/Posts";
 
 
 const Timeline = () => {
-    const [posts, setPosts] = useState([]);
-    const [error, setError] = useState('');
-    const [booleanError, setBooleanError] = useState(false);
-    const {userForm, controlForm} = useContext(LoginContext);
-    const {config} = userForm;
-    const {loading, setLoading} = controlForm;
+    const { userForm, controlForm } = useContext(LoginContext);
+    const [ posts, setPosts ] = useState([]);
+    const [ error, setError ] = useState('');
+    const [ booleanError, setBooleanError ] = useState(false);
+    const { config } = userForm;
+    const { loading, setLoading } = controlForm;
 
     useEffect(() => {
         requestGetPost();
@@ -63,9 +63,8 @@ const Timeline = () => {
                         </>
                 } 
             </ContainerLinkdr>
-            <ContainerTrending>
-                <Trending />
-            </ContainerTrending>
+
+            <Trending />
        </Main>
     );
 }
