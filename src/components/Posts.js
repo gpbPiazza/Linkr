@@ -40,7 +40,7 @@ const Posts = ({post, getPosts}) => {
     const [edit, setEdit] = useState(false);
     const [modalIsOpen, setIsOpen] = useState(false);
     const [disabled, setDisabled] = useState(false);
-    const [textEdited, setTextEdited] = useState(`${text}`);
+    const [textEdited, setTextEdited] = useState('');
     const [textAreaDisable, setTextAreaDisable] = useState(false);
     const textInput = useRef();
     
@@ -70,13 +70,15 @@ const Posts = ({post, getPosts}) => {
         setTextAreaDisable(!textAreaDisable);
         const request = axios.put(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}`, {"text": textEdited}, config);
         request.then(({data}) => {
-            setTextAreaDisable(!textAreaDisable);
+            setTextEdited(data.post.text);
+            console.log(data, 'SUCESSO DO SERVER!');
             setEdit(!edit);
-            console.log(data, 'SUCESSO DO SERVER!')
+            setTextAreaDisable(false);
+            
         });
         request.catch(({response}) => {
+            alert('Não foi possível fazer as alterações no texto');
             setTextAreaDisable(!textAreaDisable);
-            alert('Não foi possível fazer as alterações no texto')
             console.log(response.data);
         });
     } 
