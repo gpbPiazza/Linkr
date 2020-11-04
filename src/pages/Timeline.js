@@ -18,7 +18,7 @@ const Timeline = () => {
     const { loading, setLoading } = controlForm;
 
     useEffect(() => {
-        requestGetPost();
+        getPosts();
     },[]);
 
     const getPosts = () => {

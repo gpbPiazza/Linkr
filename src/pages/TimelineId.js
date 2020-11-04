@@ -4,26 +4,26 @@ import {useParams} from "react-router-dom";
 
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
-import {Main, Title, Error, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';;
+import {Main, Error, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';;
 import LoginContext from "../context/LoginContext";
 import Loading from "../components/Loading";
 import Posts from "../components/Posts";
+import Follow from "../components/Follow";
 
 const TimelineId = () => {
-    const {userForm, controlForm} = useContext(LoginContext);
+    const {userForm} = useContext(LoginContext);
     const [posts, setPosts] = useState([]);
     const [booleanError, setBooleanError] = useState(false);
     const [error, setError] = useState('');
     const { id } = useParams();
     const {config} = userForm;
-    const {loading, setLoading} = controlForm;
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         requestApi(id);        
     }, [id]);
 
     const requestApi = (id) => {
-        setLoading(true);
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${id}/posts?offset=0&limit=10`;
         const request = axios.get(apiLink, config);
         request.then(({data}) => {
@@ -46,8 +46,8 @@ const TimelineId = () => {
         
         <Main>
             <Header />
-            <Title> {posts.length ? `${posts[0].user.username}'s posts`: ''} </Title>
-            <ContainerLinkdr>            
+            <Follow posts= {posts[0]} />
+            <ContainerLinkdr>
                 {loading ? 
                         <ContainerLoading>
                             <Loading />
