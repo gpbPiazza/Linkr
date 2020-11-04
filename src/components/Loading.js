@@ -1,22 +1,15 @@
 import React from  'react';
-import styled from 'styled-components';
+import Loader from 'react-loader-spinner';
 
-const Loading = ({width}) => {
-
+const Loading = () => {
     return (
-        <ContainerLoading width= {width}>
-            <Spinner src='/img/loadin3.gif'/>      
-        </ContainerLoading>
+        <Loader 
+            type="Oval" 
+            color="#00BFFF" 
+            height={80} 
+            width={80} 
+        />
     );
 }
-
-const Spinner = styled.img`
-    width: 100%;
-`;
-
-const ContainerLoading = styled.div`
-    width: ${(props) => props.width || '40%'};
-    margin: 0 auto;
-`;
 
 export default Loading;
