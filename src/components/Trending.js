@@ -12,7 +12,6 @@ import {
 } from "../styles/Trending.styles"
 
 const Trending = () => {
-    
     let history = useHistory();
     const { userForm } = useContext(LoginContext);
     const [ treadingHashTags, setTreadingHashtags ] = useState([]);
@@ -26,8 +25,8 @@ const Trending = () => {
 
     const requestApi = () => {
         setLoading(true);
-        const linkApi = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/trending`;
-        const request = axios.get(linkApi, config);
+        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/trending`;
+        const request = axios.get(apiLink, config);
         request.then(({data}) => {
             setLoading(false);
             setTreadingHashtags(data.hashtags);

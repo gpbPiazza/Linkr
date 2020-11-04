@@ -5,11 +5,8 @@ import LoginContext from '../context/LoginContext';
 import LoginForm from '../components/login/LoginForm';
 import { Error } from '../components-style/cmpnt-styles';
 import {
-    MainContainer,
-    LogoContainer,
-    Logo,
-    Subtitle,
-    FormsContainer
+    MainContainer, LogoContainer,
+    Logo, Subtitle, FormsContainer
 } from  '../styles/Login.styles';
 
 const Login = () => {

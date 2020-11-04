@@ -1,10 +1,13 @@
 import React, { useContext, useState } from  'react';
-import styled from 'styled-components';
 import axios from 'axios';
 
-import Colors from '../utils/Colors';
 import LoginContext from '../context/LoginContext';
-import { Error, media } from '../components-style/cmpnt-styles';
+import { Error } from '../components-style/cmpnt-styles';
+import { 
+    Button, ButtonContainer, ImageContainer, 
+    Form, Input, ProfileImage, 
+    PublishSection, Subtitle, Textarea
+} from "../styles/Publish.styles";
 
 const Publish = ({getPosts}) => {
     const { userForm } = useContext(LoginContext);
@@ -30,7 +33,7 @@ const Publish = ({getPosts}) => {
             const toServer = {link, text};
             const apiLink = 'https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts';
             const request = axios.post(apiLink, toServer, config);
-            request.then(({data}) => {
+            request.then(() => {
                getPosts();
                setSended(false);
                clearInputs();
@@ -65,102 +68,32 @@ const Publish = ({getPosts}) => {
             </ImageContainer>
 
             <Form>
-                <h2> O que você tem para favoritar hoje? </h2>
-                <input 
+                <Subtitle> O que você tem para favoritar hoje? </Subtitle>
+                <Input 
                     onChange = {(e => attLink(e.target.value))} 
                     type= "text" 
                     placeholder= "http://"
                     value = {link}
                 />
 
-                <textarea
+                <Textarea
                     type= "text"
                     placeholder= "Muito irado esse link falando de javascript"
                     onChange = {(e => attText(e.target.value))}
                     value = {text}
                 />
 
-                <ContainerButton>
-                    <Error fontSize= {'1rem'}> {(error) ? error : ''} </Error>
-                    <button 
+                <ButtonContainer>
+                    <Error fontSize= {'1rem'}> {(error) ? error : null} </Error>
+                    <Button 
                         onClick= {e => validationPublish(e)} 
                         type= "submit"> 
                         {(sended) ? 'Publishing...': 'Publish'} 
-                    </button>
-                </ContainerButton>
+                    </Button>
+                </ButtonContainer>
             </Form>
         </PublishSection>
     );
 }
 
 export default Publish;
-
-const PublishSection = styled.section`
-    border-radius: 1.25rem;
-    background: ${Colors.white};
-    padding: 1rem;
-    height: auto;
-    width: auto;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-
-    ${media} {
-      width: 100%;
-      border-radius: 0; 
-    }
-`;
-
-const ImageContainer = styled.div`
-    width: 10%;
-`;
-
-const ProfileImage = styled.img`
-    width: 3.125rem;
-    height: 3.125rem;
-    border-radius: 100%;
-`;
-
-const Form = styled.form`
-    width: 89%;
-    padding: 0 1rem;
-    margin: 0 1rem;
-    padding-top: 0.25rem;
-
-    h2 {
-        font-weight: 300;
-        font-size: 1.25rem;
-        margin-bottom: 0.5rem;
-        color: ${Colors.lightGrey};
-    }
-
-    input, textarea {
-        width: 100%;
-        padding: 0.5rem;
-        background: ${Colors.ice};
-        color: ${Colors.lightGrey};
-        resize: none;
-        border-radius: 10px;
-        font-size: 1rem;
-        margin: 0.25rem 0;
-    }
-
-    textarea {
-        height: 4.125rem;
-    }
-`;
-
-const ContainerButton = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    button {
-        font-size: 1rem;
-        color: ${Colors.white};
-        background-color: ${Colors.midBlue};
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-`;

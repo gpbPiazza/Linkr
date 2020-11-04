@@ -22,7 +22,8 @@ const TimelineMyLikes = () => {
 
     const requestApi = () => {
         setLoading(true);
-        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/liked`, config);
+        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/liked`;
+        const request = axios.get(apiLink, config);
         request.then(({data}) => {
             setLoading(false);
             if(data.posts.length === 0) {

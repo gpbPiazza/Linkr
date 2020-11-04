@@ -9,7 +9,6 @@ import {Main, Title, ContainerLinkdr, ContainerLoading} from '../components-styl
 import LoginContext from "../context/LoginContext";
 import Posts from "../components/Posts";
 
-
 const Timeline = () => {
     const { userForm, controlForm } = useContext(LoginContext);
     const [ posts, setPosts ] = useState([]);
@@ -28,7 +27,8 @@ const Timeline = () => {
     
     const requestGetPost = () => {
         setLoading(true);
-        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=0&limit=10`, config);
+        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=0&limit=10`;
+        const request = axios.get(apiLink, config);
         request.then(({data}) => {
             setLoading(false);
             if(data.posts.length === 0) {

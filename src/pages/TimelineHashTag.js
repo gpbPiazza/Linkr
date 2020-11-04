@@ -24,7 +24,8 @@ const Timeline = () => {
     
     const requestApi = () => {
         setLoading(true);
-        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/${hashtag}/posts?offset=0&limit=10`, config); 
+        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/${hashtag}/posts?offset=0&limit=10`;
+        const request = axios.get(apiLink, config); 
         request.then(({data}) => {
             setLoading(false);
             if(data.posts.length === 0) {
