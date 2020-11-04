@@ -204,6 +204,7 @@ const Posts = ({post, getPosts}) => {
                             {textEdited}
                         </ReactHashtag>
                     </p>}
+                    {textAreaDisable ? <p> Loading ... </p>: null}
                 <a className= "link" href={link} target="_blank"> 
                     <div>
                         <h3> {linkTitle} </h3>                         

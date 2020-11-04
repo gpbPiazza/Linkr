@@ -8,16 +8,15 @@ export default LoginContext;
 
 export function LoginProvider(props) {
     let history = useHistory();
-    const [firstTime, setFirstTime] = useState(false);
     const [userRegister, setUserRegister] = useState({});
     const [config, setConfig] = useState({});
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassWord ]= useState('');
+    const [ userName, setUserName ]= useState('');
+    const [ pictureUrl, setPictureUrl ]= useState('');
     const [loading, setLoading] = useState(false);
     const [alert, setAlert] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassWord]= useState('');
-    const [userName, setUserName]= useState('');
-    const [pictureUrl, setPictureUrl]= useState('');
-
+   
     const requestApi = (infoUser, typeRequest) => {
         setLoading(true);
         setAlert('');
@@ -41,37 +40,10 @@ export function LoginProvider(props) {
         }); 
     } 
 
-    const verifyInputs = (event, type) => {
-        event.preventDefault();
-        if (type === 'sign_in') {
-            if (email && password ) {
-                const loginUser = {"email": email, "password": password};
-                requestApi(loginUser, type);
-            } else {
-                setAlert('Por favor, preencha todos os campos!');
-            }
-        }
-        else {
-            if (email && password && userName && pictureUrl ) {
-                const newUser = {"email": email , "password": password, "username": userName, "pictureUrl": pictureUrl};
-                requestApi(newUser, type);
-            } else {
-                setAlert('Por favor, preencha todos os campos!');
-            }
-        }
-    }
-
     const cleanUser = () => {
         setLoading(false);
         setConfig({});
         setUserRegister({});
-    }
-
-    const toggleInputs  = () => {
-        setFirstTime(!firstTime);
-        setUserName('');
-        setPictureUrl('');
-        setAlert('');
     }
 
     const cleanInputs = () => {
@@ -81,14 +53,14 @@ export function LoginProvider(props) {
         setAlert('');
         setPictureUrl('');
     }
-    
+
     const form = {email, password, userName, pictureUrl};
     const setForm = {setEmail, setPassWord, setUserName, setPictureUrl};
-    const controlForm = {alert, verifyInputs, toggleInputs, firstTime, setLoading, loading};
+    const controlForm = {alert, setAlert, setLoading, loading};
     const userForm = {userRegister, config, cleanUser};
 
     return (
-        <LoginContext.Provider value= {{controlForm, form, setForm, userForm }}>
+        <LoginContext.Provider value= {{controlForm, userForm, form, setForm , requestApi}}>
             {props.children}
         </LoginContext.Provider>
     );

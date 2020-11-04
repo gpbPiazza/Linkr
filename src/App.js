@@ -12,11 +12,10 @@ import TimelineId from './pages/TimelineId';
 import TimelineHashTag from './pages/TimelineHashTag';
 import TimelineMyLikes from './pages/TimelineMyLikes';
 
-
 export default function App() {
 
   return (  
-    <Router  >
+    <Router>
       <LoginProvider>
           <Switch>
             <Route exact path= "/">

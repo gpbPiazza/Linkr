@@ -1,12 +1,14 @@
 import React from  'react';
 import styled from 'styled-components';
 
-const Loading = () => {
+const Loading = ({width}) => {
 
     return (
-        <Spinner>
-            <img src='/img/loadin3.gif'/>      
-        </Spinner>
+        <ContainerLoading width={width}>
+            <Spinner>
+                <img src='/img/loadin3.gif'/>      
+            </Spinner>
+        </ContainerLoading>
     );
 }
 
@@ -19,6 +21,10 @@ const Spinner = styled.div`
     img {
        width: 100%;
     }
+`;
+
+const ContainerLoading = styled.div`
+    width: ${(props) => props.width || '40%'};
 `;
 
 export default Loading;
