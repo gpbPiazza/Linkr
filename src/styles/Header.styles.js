@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { DebounceInput } from 'react-debounce-input';
 
 import Colors from '../utils/Colors';
 
@@ -74,12 +75,10 @@ export const SearchContainer = styled.div`
     position: relative;
 `;
 
-export const SearchBar = styled.input`
+export const SearchBar = styled(DebounceInput)`
     width: 100%;
     height: 100%;
-
     padding-left: 0.5rem;
-    
     ::placeholder {
         color: ${Colors.lighterGrey};
     }
@@ -108,12 +107,11 @@ export const SomeOne = styled.li`
     margin: 0.5rem 0;
 `;
 
-export const Text = styled.p`
-    font-family: 'Lato', sans-serif;
-    padding: 0.5rem;
-    font-weight: bold;
-    font-size: 1.1rem;
-    line-height: 1.2rem;
-    letter-spacing: 0.05rem;
+export const Text = styled(NavLink)`
     color: ${Colors.mediumGrey};
+`;
+
+export const Following = styled(Text).attrs({as: "p"})`
+    font-size: 0.8rem;
+    opacity: 0.5;
 `;

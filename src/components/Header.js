@@ -1,68 +1,88 @@
+import axios from 'axios';
 import React, { useContext, useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp, IoIosSearch } from "react-icons/io";
 import { Link } from 'react-router-dom';
 
 import LoginContext from '../context/LoginContext';
 import {
-    HeaderContainer, 
-    NavContainer, 
-    ProfilePhoto,
-    MenuContainer, 
-    Logo, 
-    NavLink,
-    SearchContainer,
-    PeopleSearched,
-    SomeOne,
-    SearchBar,
-    Text
+    HeaderContainer, NavContainer, ProfilePhoto,
+    MenuContainer, Logo, NavLink, SearchContainer,
+    PeopleSearched, SomeOne, SearchBar, Text, Following
 } from '../styles/Header.styles';
 import Colors from '../utils/Colors';
 
 const Header = () => {
     const { userForm } = useContext(LoginContext);
     const [ showMenu, setShowMenu ] = useState(false);
-    const [startSearch, setStartSearch] = useState(false);
-    const { userRegister, cleanUser } = userForm;
+    const [ startSearch, setStartSearch ] = useState(false);
+    const [ nameSearched, setNameSearched ] = useState('');
+    const [ peopleSearched , setPeopleSearched ] = useState([]);
+    const { userRegister, cleanUser, config } = userForm;
     const { avatar, id } = userRegister.user;
-    const placeholderText = 'Searc for people and friends';
-
-    const searching = (e) => {
-        setStartSearch(!startSearch);
+    const placeholderText = 'Search for people and friends';
+  
+    const peopleFiltredByFollow = (peopleFound) => {
+        const peopleFollow =  peopleFound.filter(e => e.isFollowingLoggedUser)
+        const peopleUnfollow = peopleFound.filter(e => !(e.isFollowingLoggedUser))
+        setPeopleSearched(peopleFollow.concat(peopleUnfollow));
     }
-    
+
+    const searching = (text) => {
+        const nameToFind = text;
+        setNameSearched(text);
+        requestSearch(nameToFind);
+    }
+  
+    const requestSearch = (nameToFind) => {
+        const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/search?username=${nameToFind}`, config);
+        request.then(({data}) => {
+            setStartSearch(true);
+            console.log(data, 'REQUEST SUCESSO!')
+            peopleFiltredByFollow(data.users);            
+        });
+        request.catch(({response}) =>{
+            console.log(response.data,  'erreor')
+        })
+    }
+
+    const showSearch = (e) => {
+        e.target.placeholder = ""; 
+        setStartSearch(true);
+    }
+
+    const closeSearch = (e) => {
+        e.target.placeholder = placeholderText;
+        setStartSearch(false);
+        setPeopleSearched([]);
+        setNameSearched('');
+    }
+
     return (
         <HeaderContainer>
             <Link to='/timeline'>
                 <Logo> Linkdr </Logo>
             </Link>
             <SearchContainer>
-                <SearchBar 
+                <SearchBar
+                    minLength={3}
+                    type='text'
+                    debounceTimeout={300}
+                    onChange={e => searching(e.target.value)}
+                    value={nameSearched}
                     placeholder= {placeholderText}
-                    onFocus={(e) => e.target.placeholder = ""}
-                    onBlur={(e) => e.target.placeholder = placeholderText} 
+                    onFocus={(e) => showSearch(e)}
+                    onBlur={(e) => closeSearch(e)}
                 />
                 {startSearch ?
                         <PeopleSearched>
-                            <SomeOne>
-                                <ProfilePhoto  src={avatar} />
-                                <Text>João frango</Text>
-                                <Text>bolinha following</Text>
-                            </SomeOne>
-                            <SomeOne>
-                                <ProfilePhoto  src={avatar} />
-                                <Text>João frango</Text>
-                                <Text>bolinha following</Text>
-                            </SomeOne>
-                            <SomeOne>
-                                <ProfilePhoto  src={avatar} />
-                                <Text>João frango</Text>
-                                <Text>bolinha following</Text>
-                            </SomeOne>
-                            <SomeOne>
-                                <ProfilePhoto  src={avatar} />
-                                <Text>João frango</Text>
-                                <Text>bolinha following</Text>
-                            </SomeOne>
+                            {peopleSearched.map(({avatar, username, isFollowingLoggedUser, id}, i) => 
+                                <SomeOne key={i}>
+                                    <Link to={`/user/${id}`}>
+                                        <ProfilePhoto  src={avatar} />
+                                    </Link>
+                                    <Text to={`/user/${id}`} >{username}</Text>
+                                    <Following>{isFollowingLoggedUser ? `• following` : null}</Following>
+                                </SomeOne>)}
                         </PeopleSearched>
                     : 
                         null
@@ -71,7 +91,7 @@ const Header = () => {
                             color= {Colors.lighterGrey} 
                             fontSize='1.5rem'
                             cursor='pointer' 
-                            onClick={(e) => searching(e)}
+                            onClick={() => setStartSearch(!startSearch)}
                         />
             </SearchContainer>
             <MenuContainer>
