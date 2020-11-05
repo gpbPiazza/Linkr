@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ReactHashtag from "react-hashtag";
 import axios from 'axios';
 import Tooltip from "react-simple-tooltip";
 import { IoIosHeartEmpty, IoIosHeart, IoIosTrash, IoMdCreate } from "react-icons/io";
@@ -9,8 +8,8 @@ import LoginContext from '../context/LoginContext';
 import Colors from '../utils/Colors';
 import DeletePost from "./DeletePost";
 import { 
-    ContainerIcon, ContainerLike, Description, EditBox, 
-    ImageLink, PostLink, PostSection, ProfileImage, StyledPost, Text, 
+    ContainerIcon, ContainerLike, Description, 
+    ImageLink, PostLink, PostSection, ProfileImage, StyledPost, 
     TitleLink, URL, Username, ImageContainer, TextContainer,
 } from '../styles/Posts.styles';
 import EditPost from './EditPost';
@@ -22,23 +21,16 @@ const Posts = ({post, refreshPage}) => {
     const {id: myID} = userForm.userRegister.user;
     const {config} = userForm;
     const objeto = {};
+
     const [toggleLike, setToggleLike]= useState(false);
     const [likes, setLikes] = useState([]);
     const [modalIsOpen, setIsOpen] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
-    //const [edit, setEdit] = useState(false);
-    //const [textAreaDisable, setTextAreaDisable] = useState(false);
-    //const textInput = useRef();
-    //const [textEdited, setTextEdited] = useState(text);
-    //const [textApi, setTextApi] = useState('');
     
     useEffect(() => {
         setLikes(likesArray);
         isLiked();
-        /*if(edit){
-            textInput.current.focus();
-        }*/
-    },[/*edit*/]);
+    },[]);
 
     const postLike = () => {
         const request = axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}/like`, objeto, config);
@@ -53,26 +45,6 @@ const Posts = ({post, refreshPage}) => {
             setLikes(data.post.likes);
         });
     }
-
-    /*const editPost = () => {
-        setTextAreaDisable(true);
-        const request = axios.put(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}`, {"text": textEdited}, config);
-        request.then(({data}) => {
-            setTextEdited(data.post.text);
-            setTextApi(data.post.text);
-            console.log(data, 'SUCESSO DO SERVER!');
-            setEdit(!edit);
-            setTextAreaDisable(false);
-            
-        });
-        request.catch(({response}) => {
-            alert('Não foi possível fazer as alterações no texto');
-            setTextAreaDisable(false);
-            setEdit(!edit);
-            setTextEdited(text);
-            console.log(response.data);
-        });
-    }*/
 
     const isLiked = () => {
         likesArray.forEach(l => {
@@ -92,25 +64,6 @@ const Posts = ({post, refreshPage}) => {
         setToggleLike(!toggleLike);
         postDisLike();
     }
-
-    /*const refactorText = () => {
-        setEdit(!edit);
-        if (textEdited === textApi){
-            setTextEdited(textApi);
-        }else {
-            setTextEdited(text);
-        }
-    }
-
-    const handleTextArea = (event) => {
-        if(event.key === "Escape"){
-            setEdit(!edit);
-            setTextEdited(text);
-        }if (event.key === "Enter") {
-            setTextEdited(event.target.value);
-            textEdited === text ? alert('Por favor altere o texto') : editPost();   
-        }
-    }*/
 
     return (
         <StyledPost>
@@ -159,19 +112,7 @@ const Posts = ({post, refreshPage}) => {
                 />
                 
                 <EditPost text={text} isEditing={isEditing} postId={postId}/>
-                {/*edit ?
-                    <EditBox  value={textEdited} 
-                              disabled={textAreaDisable} 
-                              onKeyDown={(event) => handleTextArea(event)} 
-                              type='text' onChange={e => setTextEdited(e.target.value)}  
-                              ref={textInput}/>
-                    :
-                    <Text>
-                        <ReactHashtag renderHashtag= {value => <span key= {value}><Link to={`/hashtag/${value.slice(1)}`}>{value}</Link></span>}>
-                            {textEdited}
-                        </ReactHashtag>
-                </Text>*/}
-                    {/*textAreaDisable ? <p> Loading ... </p>: null*/}
+
                 <PostLink className= "link" href={link} target="_blank"> 
                     <TextContainer>
                         <TitleLink> {linkTitle} </TitleLink>                         
