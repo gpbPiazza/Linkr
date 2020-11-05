@@ -13,14 +13,6 @@ export const StyledModal = styled.section`
     }
 `;
 
-export const Paragraph = styled.p`
-    text-align: center;
-    color: ${Colors.lightRed};
-    font-size: 1.5rem;
-    margin-top: 1rem;
-`;
-
-
 export const Title = styled.h1`
     font-weight: bold;
     font-size: 2.125rem;
@@ -54,4 +46,10 @@ export const DeleteButton = styled.button`
         color: ${Colors.midBlue};
         margin-right: 1.5rem;
     }
+`;
+
+export const BackButton = styled(DeleteButton)`
+    background-color: ${Colors.white};	
+    color: ${Colors.midBlue};	
+    margin-right: 1.5rem;
 `;
