@@ -104,7 +104,7 @@ export const PostSection = styled.section`
 `;
 export const Username = styled.h2`
     font-size: 1.25rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.6rem;
     color: ${Colors.white};
 `
 

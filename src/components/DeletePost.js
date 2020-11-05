@@ -7,6 +7,7 @@ import {
     StyledModal, Paragraph, ButtonsContainer,
     DeleteButton, BackButton, Title
 } from '../styles/Modal.styles';
+import Loading from "./Loading";
 
 Modal.setAppElement("#root");
 

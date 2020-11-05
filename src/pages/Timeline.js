@@ -23,7 +23,6 @@ const Timeline = () => {
         setBooleanError(false);
         requestFollowing();
         requestGetPost();
-<<<<<<< HEAD
         const interval = setInterval(() => {
             setBooleanError(false);
             requestFollowing();
@@ -39,9 +38,6 @@ const Timeline = () => {
             handleFeedFollow(data.users);
         });
     }
-=======
-    },[]);
->>>>>>> a5ea8cc42c6886cf7a27208c59f9cb5cdc1cd67f
     
     const requestGetPost = () => {
         setLoading(true);
