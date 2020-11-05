@@ -22,7 +22,7 @@ const Timeline = () => {
         requestApi(hashtag);        
     }, [hashtag]);
     
-    const requestApi = () => {
+    const requestApi = (hashtag) => {
         setLoading(true);
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/${hashtag}/posts?offset=0&limit=10`;
         const request = axios.get(apiLink, config); 

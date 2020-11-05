@@ -29,8 +29,7 @@ export const Title = styled.h1`
     margin: 2rem 0; 
 
     ${media} {
-      margin-left: 3rem;
-      
+      margin-left: 1rem;
     }
 `;
 
