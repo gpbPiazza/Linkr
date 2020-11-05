@@ -5,4 +5,3 @@ export const Error = styled.span`
     color: ${Colors.lightRed};
     font-size: ${props => props.fontSize};
 `;
-

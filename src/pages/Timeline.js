@@ -20,11 +20,8 @@ const Timeline = () => {
 
     useEffect(() => {
         setBooleanError(false);
-        getPosts();
-    },[]);
-
-    const getPosts = () => {
         requestGetPost();
+<<<<<<< HEAD
     }
 
     const requestFollowing = () => {
@@ -36,6 +33,10 @@ const Timeline = () => {
         });
     }
 
+=======
+    },[]);
+    
+>>>>>>> 55666cb3e4cb784f41422f50e35a44245a499d54
     const requestGetPost = () => {
         setLoading(true);
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/following/posts?offset=0&limit=10`;
@@ -61,7 +62,7 @@ const Timeline = () => {
             <Header />
             <Title> Timeline </Title>
             <ScrollContainer>
-                <Publish getPosts= {getPosts}/>
+                <Publish getPosts= {requestGetPost}/>
                 {loading ? 
                     <LoadingContainer>
                         <Loading />
@@ -71,7 +72,7 @@ const Timeline = () => {
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <>
-                            {posts.map((post) => <Posts getPosts= {getPosts} post= {post} key= {post.id}/>)}
+                            {posts.map((post) => <Posts refreshPage={requestGetPost} post={post} key= {post.id}/>)}
                         </>
                 } 
             </ScrollContainer>

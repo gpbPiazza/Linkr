@@ -24,11 +24,11 @@ const TimelineId = () => {
 
     useEffect(() => {
         setBooleanError(false);
-        requestApi(id);
-        requestUserData(id);        
+        requestApi();
+        requestUserData();       
     }, [id]);
 
-    const requestApi = (id) => {
+    const requestApi = () => {
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${id}/posts?offset=0&limit=10`;
         const request = axios.get(apiLink, config);
         request.then(({data}) => {
@@ -46,7 +46,7 @@ const TimelineId = () => {
         }); 
     }
 
-    const requestUserData = (id) => {
+    const requestUserData = () => {
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${id}`;
         const request = axios.get(apiLink, config);
         request.then(({data}) => {
@@ -56,7 +56,6 @@ const TimelineId = () => {
 
 
     return (
-        
         <MainPage>
             <Header />
             {parseInt(id) === myID ?
@@ -74,7 +73,7 @@ const TimelineId = () => {
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <>
-                            {posts.map(post => (<Posts post= {post} key= {post.id}/>))}
+                            {posts.map(post => (<Posts refreshPage = {requestApi} post = {post} key = {post.id}/>))}
                         </>
                 }
             </ScrollContainer>

@@ -55,7 +55,7 @@ const TimelineMyLikes = () => {
                         <Error fontSize= {'1.25rem'}> {(error) ? error : null} </Error>
                         :
                         <>
-                            {posts.map(post => (<Posts post= {post} key={post.id} userkey= {post.id}/>))}
+                            {posts.map(post => (<Posts refreshPage = {requestApi} post = {post} key = {post.id} />))}
                         </>
                 }
             </ScrollContainer>
