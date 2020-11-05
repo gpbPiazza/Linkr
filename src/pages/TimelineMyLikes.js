@@ -3,7 +3,7 @@ import axios from "axios";
 
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
-import { Error } from '../components-style/cmpnt-styles';;
+import { Error } from '../styles/Error.styles';
 import LoginContext from "../context/LoginContext";
 import Loading from "../components/Loading";
 import Posts from "../components/Posts";

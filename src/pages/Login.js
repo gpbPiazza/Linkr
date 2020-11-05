@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import Loading from '../components/Loading';
 import LoginContext from '../context/LoginContext';
 import LoginForm from '../components/login/LoginForm';
-import { Error } from '../components-style/cmpnt-styles';
+import { Error } from '../styles/Error.styles';
 import {
     MainContainer, LogoContainer,
     Logo, Subtitle, FormsContainer
