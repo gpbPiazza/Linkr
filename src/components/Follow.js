@@ -48,7 +48,6 @@ export default function Follow({userData}) {
 
     const isFollowingButton = () => {
         if(disabled) return;
-
         if(isFollowing) {
             bothFollowRequest('unfollow')
         } else {

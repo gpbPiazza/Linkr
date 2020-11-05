@@ -1,8 +1,8 @@
 import Modal from 'react-modal';
 import React, {useContext, useState} from 'react';
 import axios from 'axios';
-import LoginContext from '../context/LoginContext';
 
+import LoginContext from '../context/LoginContext';
 import {
     StyledModal, Paragraph, ButtonsContainer,
     DeleteButton, BackButton, Title
@@ -37,7 +37,6 @@ export default function ModalDialog(props) {
         const link = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}`;
         const request = axios.delete(link, config);
         setDisabled(true);
-    
         request.then(() => {
             refreshPage();
             setIsOpen(false);

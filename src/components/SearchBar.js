@@ -51,13 +51,13 @@ const SearchBar = () => {
     }
 
     const closeSearch = (e) => {
-        // if(e.relatedTarget?.localName === 'a'){
-        //     return;
-        // }
-        // e.target.placeholder = placeholderText;
-        // setStartSearch(false);
-        // setPeopleSearched([]);
-        // setNameSearched('');
+        if(e.relatedTarget?.localName === 'a'){
+            return;
+        }
+        e.target.placeholder = placeholderText;
+        setStartSearch(false);
+        setPeopleSearched([]);
+        setNameSearched('');
     }
     return (
         <SearchContainer>

@@ -22,13 +22,10 @@ const Publish = ({getPosts}) => {
         event.preventDefault();
         if (sended) return;
         setSended(true);
-
         if (link === '') {
             setError("Por favor, preencha o campo de link");
             setSended(false);
-        } 
-        
-        else {
+        } else {
             setError('');
             const toServer = {link, text};
             const apiLink = 'https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts';
@@ -38,7 +35,6 @@ const Publish = ({getPosts}) => {
                setSended(false);
                clearInputs();
             });
-
             request.catch(() => {
                 setError('Houve um erro ao publicar seu link');
                 setSended(false);
@@ -66,7 +62,6 @@ const Publish = ({getPosts}) => {
             <ImageContainer>
                 <ProfileImage src= {avatar} alt= "foto de perfil" />
             </ImageContainer>
-
             <Form>
                 <Subtitle> O que você tem para favoritar hoje? </Subtitle>
                 <Input 
@@ -75,14 +70,12 @@ const Publish = ({getPosts}) => {
                     placeholder= "http://"
                     value = {link}
                 />
-
                 <Textarea
                     type= "text"
                     placeholder= "Muito irado esse link falando de javascript"
                     onChange = {(e => attText(e.target.value))}
                     value = {text}
                 />
-
                 <ButtonContainer>
                     <Error fontSize= {'1rem'}> {(error) ? error : null} </Error>
                     <Button 

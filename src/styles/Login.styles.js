@@ -14,18 +14,22 @@ export const MainContainer = styled.main`
 export const FormsContainer = styled.section`
     font-family: 'Oswald', sans-serif;
     font-weight: 700;
-	width: 37%;
-    display: flex;
+	
+    width: 37%;
     height: 100vh;
+    
+    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
     padding: 0 2rem;
+    
     background-color: ${Colors.darkGrey};
-
     ${media} {
         width: 100%;
         height: auto;
+        
         margin: 2rem 0;
     }
 `;
@@ -33,22 +37,28 @@ export const FormsContainer = styled.section`
 
 export const LogoContainer = styled.section`
 	width: 63%;
+    height: 100vh;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: 0 0 2.5rem 3rem;
+    
     background-color: ${Colors.black};
+   
     font-weight: 700;
-    height: 100vh;
     color: ${Colors.white};
+
+    padding: 0 0 2.5rem 3rem;
 
     ${media} {
         width: 100%;
         height: auto;
+        
         text-align: center;
-        padding: 0;
         align-items: center;
+
+        padding: 0;
     }
 `;
 

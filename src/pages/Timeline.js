@@ -12,49 +12,61 @@ import { MainPage, ScrollContainer, LoadingContainer, Title } from '../styles/Pa
 
 const Timeline = () => {
     const { userForm, controlForm } = useContext(LoginContext);
-    const [ posts, setPosts ] = useState([]);
-    const [ error, setError ] = useState('');
-    const [ booleanError, setBooleanError ] = useState(false);
     const { config } = userForm;
     const { loading, setLoading } = controlForm;
 
+    const [ posts, setPosts ] = useState([]);
+    const [ error, setError ] = useState('');
+    const [ booleanError, setBooleanError ] = useState(false);
+   
     useEffect(() => {
         setBooleanError(false);
+        requestFollowing();
         requestGetPost();
-<<<<<<< HEAD
-    }
+        const interval = setInterval(() => {
+            setBooleanError(false);
+            requestFollowing();
+            requestGetPost();
+        }, 15000);
+        return () => clearInterval(interval);
+      }, []);
 
     const requestFollowing = () => {
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/follows`;
         const request = axios.get(apiLink, config);
         request.then(({data}) => {
-            const listFollow = data.users;
-            setIsFollowing(listFollow.some(user => user.id === followID));
+            handleFeedFollow(data.users);
         });
     }
-
-=======
-    },[]);
     
->>>>>>> 55666cb3e4cb784f41422f50e35a44245a499d54
     const requestGetPost = () => {
         setLoading(true);
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/following/posts?offset=0&limit=10`;
         const request = axios.get(apiLink, config);
         request.then(({data}) => {
-            console.log(data);
             setLoading(false);
-            if(data.posts.length === 0) {
-                setError('Nenhum post encontrado!');
-                setBooleanError(true);
-            }
             setPosts(data.posts);
+            handleFeedPosts(data.posts);
         });
         request.catch(() => {
             setLoading(false);
             setError('Houve uma falha ao obter os posts, por favor atualize a página!');
             setBooleanError(true);
         }); 
+    }
+
+    const handleFeedPosts = (posts) => {
+        if(posts.length === 0) {
+            setError('Nenhuma publicação encontrada');
+            setBooleanError(true);
+        }
+    }
+    
+    const handleFeedFollow = (followers) => {
+        if(followers.length === 0) {
+            setError('Você não segue ninguém ainda, procure por perfis na busca');
+            setBooleanError(true);
+        }
     }
  
     return (
@@ -72,7 +84,7 @@ const Timeline = () => {
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <>
-                            {posts.map((post) => <Posts refreshPage={requestGetPost} post={post} key= {post.id}/>)}
+                            {posts?.map((post) => <Posts refreshPage={requestGetPost} post={post} key= {post.id}/>)}
                         </>
                 } 
             </ScrollContainer>
