@@ -47,7 +47,7 @@ const Timeline = () => {
     return (
        <Main>
             <Header />
-            <Title> timeline </Title>
+            <Title> Timeline </Title>
             <ContainerLinkdr >
                 <Publish getPosts= {getPosts}/>
                 {loading ? 
