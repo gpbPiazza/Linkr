@@ -26,7 +26,7 @@ const customStyles = {
     }
 }
 
-export default function ModalDialog(props) {
+export default function DeletePost(props) {
     const {refreshPage, modalIsOpen, setIsOpen, postId} = props;
     const {userForm} = useContext(LoginContext);
     const [disabled, setDisabled] = useState(false);
@@ -69,7 +69,7 @@ export default function ModalDialog(props) {
                     <BackButton className= 'backButton' onClick = {closeModal}> Não, voltar </BackButton>
                     <DeleteButton onClick = {deletePost}> Sim, excluir </DeleteButton>
                 </ButtonsContainer>
-                {disabled ? <Paragraph> Loading ... </Paragraph>: null}
+                {disabled ? <Loading tall={30} large={30}/> : null}
                 
             </StyledModal>
         </Modal>
