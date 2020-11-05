@@ -33,7 +33,8 @@ export const ProfileImage = styled.img`
 `;
 
 export const FollowButton = styled.button`
-    background-color: ${Colors.midBlue};
+    background-color: ${(props) => props.isFollowing ? Colors.black : Colors.midBlue};
+    width: 8.125rem;
     color: ${Colors.white};
     padding: 0.8rem 1.75rem;
     cursor: pointer;

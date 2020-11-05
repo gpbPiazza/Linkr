@@ -63,7 +63,7 @@ export default function Follow({posts}) {
                 <Title> {`${username}'s posts`} </Title>
             </InfoContainer>
             {isFollowing === null ? null:
-                <FollowButton onClick={isFollowingButton}>
+                <FollowButton isFollowing={isFollowing} onClick={isFollowingButton}>
                     {isFollowing ? 'Unfollow': 'Follow'}
                 </FollowButton>
             }
