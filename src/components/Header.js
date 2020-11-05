@@ -37,12 +37,8 @@ const Header = () => {
         const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/search?username=${nameToFind}`, config);
         request.then(({data}) => {
             setStartSearch(true);
-            console.log(data, 'REQUEST SUCESSO!')
             peopleFiltredByFollow(data.users);            
         });
-        request.catch(({response}) =>{
-            console.log(response.data,  'erreor')
-        })
     }
 
     const showSearch = (e) => {
@@ -51,6 +47,9 @@ const Header = () => {
     }
 
     const closeSearch = (e) => {
+        if(e.relatedTarget?.localName === 'a'){
+            return;
+        }
         e.target.placeholder = placeholderText;
         setStartSearch(false);
         setPeopleSearched([]);
