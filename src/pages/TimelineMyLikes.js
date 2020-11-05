@@ -42,7 +42,7 @@ const TimelineMyLikes = () => {
     return (
         <Main>
             <Header />
-            <Title> {posts.length ? `My like's posts`: ''} </Title>
+            <Title> {posts.length ? `My like's posts`: null} </Title>
             <ContainerLinkdr>            
                 {loading ? 
                     <ContainerLoading>
@@ -50,7 +50,7 @@ const TimelineMyLikes = () => {
                     </ContainerLoading>
                     :
                     booleanError ?
-                        <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
+                        <Error fontSize= {'1.25rem'}> {(error) ? error : null} </Error>
                         :
                         <>
                             {posts.map(post => (<Posts post= {post} key={post.id} userkey= {post.id}/>))}
