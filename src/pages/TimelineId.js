@@ -18,9 +18,11 @@ const TimelineId = () => {
     const { id } = useParams();
     const {config} = userForm;
     const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState(null);
 
     useEffect(() => {
-        requestApi(id);        
+        requestApi(id);
+        requestUserData(id);        
     }, [id]);
 
     const requestApi = (id) => {
@@ -39,14 +41,22 @@ const TimelineId = () => {
             setBooleanError(true);
             setLoading(false);
         }); 
-    } 
+    }
+
+    const requestUserData = (id) => {
+        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${id}`;
+        const request = axios.get(apiLink, config);
+        request.then(({data}) => {
+            setUserData(data);
+        });
+    }
 
 
     return (
         
         <Main>
             <Header />
-            <Follow posts= {posts[0]} />
+            <Follow userData= {userData} />
             <ContainerLinkdr>
                 {loading ? 
                         <ContainerLoading>

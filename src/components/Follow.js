@@ -7,8 +7,8 @@ import {
     FollowButton, ProfileImage, Title
 } from "../styles/Follow.styles";
 
-export default function Follow({posts}) {
-    if(posts === undefined) {
+export default function Follow({userData}) {
+    if(!userData) {
         return null;
     }
 
@@ -16,12 +16,12 @@ export default function Follow({posts}) {
     const {userForm} = useContext(LoginContext);
     const [disabled, setDisabled] = useState(false);
     const [isFollowing, setIsFollowing] = useState(null);
-    const {avatar, username, id: followID} = posts.user;
+    const {avatar, username, id: followID} = userData.user;
     const {config} = userForm;
 
     useEffect(() => {
         isFollowingRequest();
-    }, []);
+    }, [userData]);
 
     const isFollowingRequest = () => {
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/follows`;
@@ -36,7 +36,7 @@ export default function Follow({posts}) {
         setDisabled(true);
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/${followID}/${type}`;
         const request = axios.post(apiLink, object, config);
-        request.then(({data}) => {
+        request.then(() => {
             setIsFollowing(!isFollowing);
             setDisabled(false);
         });
