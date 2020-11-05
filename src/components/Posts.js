@@ -7,9 +7,9 @@ import Tooltip from "react-simple-tooltip";
 import { IoIosHeartEmpty, IoIosHeart, IoIosTrash, IoMdCreate } from "react-icons/io";
 import Modal from 'react-modal';
 
-import { ContainerLike, media } from '../components-style/cmpnt-styles';
 import LoginContext from '../context/LoginContext';
 import Colors from '../utils/Colors';
+import media from "../styles/media";
 
 Modal.setAppElement("#root");
 const customStyles = {
@@ -349,6 +349,20 @@ const StyledPost = styled.article`
         ${media} {
             width: 85%;
         }
+    }
+`;
+
+const ContainerLike = styled.div`
+    display: flex;
+    width: 3rem;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+    color: ${Colors.white};
+    font-size: 0.7rem;
+
+    p {
+      margin-top: 0.3rem;
     }
 `;
 

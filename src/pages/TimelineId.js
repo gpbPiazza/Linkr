@@ -4,24 +4,26 @@ import {useParams} from "react-router-dom";
 
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
-import {Main, Error, ContainerLinkdr, ContainerLoading, Title} from '../components-style/cmpnt-styles';;
+import { Error } from '../components-style/cmpnt-styles';;
 import LoginContext from "../context/LoginContext";
 import Loading from "../components/Loading";
 import Posts from "../components/Posts";
 import Follow from "../components/Follow";
+import { MainPage, ScrollContainer, LoadingContainer, Title } from '../styles/Pages.styles';
 
 const TimelineId = () => {
-    const {userForm} = useContext(LoginContext);
-    const [posts, setPosts] = useState([]);
-    const [booleanError, setBooleanError] = useState(false);
-    const [error, setError] = useState('');
+    const { userForm } = useContext(LoginContext);
+    const [ posts, setPosts ] = useState([]);
+    const [ booleanError, setBooleanError ] = useState(false);
+    const [ error, setError ] = useState('');
     const { id } = useParams();
-    const {config} = userForm;
-    const [loading, setLoading] = useState(true);
-    const [userData, setUserData] = useState(null);
-    const {id: myID} = userForm.userRegister.user;
+    const { config } = userForm;
+    const [ loading, setLoading ] = useState(true);
+    const [ userData, setUserData ] = useState(null);
+    const { id: myID } = userForm.userRegister.user;
 
     useEffect(() => {
+        setBooleanError(false);
         requestApi(id);
         requestUserData(id);        
     }, [id]);
@@ -55,18 +57,18 @@ const TimelineId = () => {
 
     return (
         
-        <Main>
+        <MainPage>
             <Header />
             {parseInt(id) === myID ?
                 <Title> My posts </Title>
                 :
                 <Follow userData= {userData} />
             }
-            <ContainerLinkdr>
+            <ScrollContainer>
                 {loading ? 
-                        <ContainerLoading>
+                        <LoadingContainer>
                             <Loading />
-                        </ContainerLoading>
+                        </LoadingContainer>
                     :
                     booleanError ?
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
@@ -75,9 +77,9 @@ const TimelineId = () => {
                             {posts.map(post => (<Posts post= {post} key= {post.id}/>))}
                         </>
                 }
-            </ContainerLinkdr>
+            </ScrollContainer>
             <Trending />
-        </Main>
+        </MainPage>
     );
 }
 

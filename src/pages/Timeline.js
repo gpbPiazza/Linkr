@@ -5,9 +5,10 @@ import Header from  '../components/Header';
 import Trending from "../components/Trending";
 import Publish from "../components/Publish";
 import Loading from '../components/Loading';
-import {Main, Title, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';
+import { Error } from '../components-style/cmpnt-styles';
 import LoginContext from "../context/LoginContext";
 import Posts from "../components/Posts";
+import { MainPage, ScrollContainer, LoadingContainer, Title } from '../styles/Pages.styles';
 
 const Timeline = () => {
     const { userForm, controlForm } = useContext(LoginContext);
@@ -18,6 +19,7 @@ const Timeline = () => {
     const { loading, setLoading } = controlForm;
 
     useEffect(() => {
+        setBooleanError(false);
         getPosts();
     },[]);
 
@@ -33,7 +35,7 @@ const Timeline = () => {
             setLoading(false);
             if(data.posts.length === 0) {
                 setError('Nenhum post encontrado!');
-                setHasMore(false);
+                setBooleanError(true);
             }
             setPosts(data.posts);
         });
@@ -45,15 +47,15 @@ const Timeline = () => {
     }
  
     return (
-       <Main>
+       <MainPage>
             <Header />
             <Title> Timeline </Title>
-            <ContainerLinkdr >
+            <ScrollContainer>
                 <Publish getPosts= {getPosts}/>
                 {loading ? 
-                        <ContainerLoading>
-                            <Loading />
-                        </ContainerLoading>
+                    <LoadingContainer>
+                        <Loading />
+                    </LoadingContainer>
                     :
                     booleanError ?
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
@@ -62,10 +64,10 @@ const Timeline = () => {
                             {posts.map((post) => <Posts getPosts= {getPosts} post= {post} key= {post.id}/>)}
                         </>
                 } 
-            </ContainerLinkdr>
+            </ScrollContainer>
 
             <Trending />
-       </Main>
+       </MainPage>
     );
 }
 

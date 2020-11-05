@@ -49,7 +49,7 @@ const Trending = () => {
     return (
         <TrendingContainer>
             <TrendingSection>
-                <Subtitle> trending </Subtitle> 
+                <Subtitle> Trending </Subtitle> 
                 <HashtagList>
                     <HashtagSearch>
                         <Input 

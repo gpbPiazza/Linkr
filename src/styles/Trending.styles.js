@@ -1,7 +1,7 @@
-import Colors from '../utils/Colors';
 import styled from 'styled-components';
 
-export const media = '@media (max-width: 600px)';
+import Colors from '../utils/Colors';
+import media from "./media";
 
 export const TrendingContainer = styled.div`
     width: 35%;

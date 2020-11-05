@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 import Colors from '../utils/Colors';
-
-export const media = '@media (max-width: 600px)';
+import media from "./media";
 
 export const MainContainer = styled.main`
     display: flex;

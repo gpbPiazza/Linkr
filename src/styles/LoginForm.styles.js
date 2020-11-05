@@ -2,9 +2,6 @@ import styled from 'styled-components';
 
 import Colors from '../utils/Colors';
 
-export const media = '@media (max-width: 600px)';
-
-
 export const Form = styled.form` 
     margin-top: 0.5rem;
 `;

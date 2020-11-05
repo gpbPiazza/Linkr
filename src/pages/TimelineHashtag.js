@@ -1,24 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import Header from  '../components/Header';
 import Trending from "../components/Trending";
-import {Main, Title, Error, ContainerLinkdr, ContainerLoading} from '../components-style/cmpnt-styles';;
+import { Error } from '../components-style/cmpnt-styles';;
 import LoginContext from "../context/LoginContext";
 import Loading from "../components/Loading";
 import Posts from "../components/Posts";
+import { MainPage, ScrollContainer, LoadingContainer, Title } from '../styles/Pages.styles';
 
-const Timeline = () => {
-    const {userForm, controlForm} = useContext(LoginContext);
-    const [posts, setPosts] = useState([]);
-    const [error, setError] = useState('');
-    const [booleanError, setBooleanError] = useState(false);
+const TimelineHashtag = () => {
+    const { userForm, controlForm } = useContext(LoginContext);
+    const [ posts, setPosts ] = useState([]);
+    const [ error, setError ] = useState('');
+    const [ booleanError, setBooleanError ] = useState(false);
     const { hashtag } = useParams();
-    const {config} = userForm;
-    const {loading, setLoading} = controlForm;
+    const { config } = userForm;
+    const { loading, setLoading } = controlForm;
 
     useEffect(() => {
+        setBooleanError(false);
         requestApi(hashtag);        
     }, [hashtag]);
     
@@ -42,14 +44,14 @@ const Timeline = () => {
     } 
 
     return (
-        <Main>
+        <MainPage>
             <Header />
             <Title> {`# ${hashtag}`} </Title>
-            <ContainerLinkdr>            
+            <ScrollContainer>            
                 {loading ? 
-                    <ContainerLoading>
+                    <LoadingContainer>
                         <Loading />
-                    </ContainerLoading>
+                    </LoadingContainer>
                     :
                     booleanError ?
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
@@ -58,10 +60,10 @@ const Timeline = () => {
                             {posts.map(post => (<Posts post= {post} key= {post.id}/>))}
                         </>
                 }
-            </ContainerLinkdr>
+            </ScrollContainer>
             <Trending />
-        </Main>
+        </MainPage>
     );
 }
 
-export default Timeline;
+export default TimelineHashtag;
