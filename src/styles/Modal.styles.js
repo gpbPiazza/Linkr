@@ -55,3 +55,9 @@ export const DeleteButton = styled.button`
         margin-right: 1.5rem;
     }
 `;
+
+export const BackButton = styled(DeleteButton)`
+    background-color: ${Colors.white};	
+    color: ${Colors.midBlue};	
+    margin-right: 1.5rem;
+`;

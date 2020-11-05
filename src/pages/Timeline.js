@@ -21,22 +21,8 @@ const Timeline = () => {
     useEffect(() => {
         setBooleanError(false);
         requestGetPost();
-<<<<<<< HEAD
-    }
-
-    const requestFollowing = () => {
-        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/follows`;
-        const request = axios.get(apiLink, config);
-        request.then(({data}) => {
-            const listFollow = data.users;
-            setIsFollowing(listFollow.some(user => user.id === followID));
-        });
-    }
-
-=======
     },[]);
     
->>>>>>> 55666cb3e4cb784f41422f50e35a44245a499d54
     const requestGetPost = () => {
         setLoading(true);
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/following/posts?offset=0&limit=10`;
