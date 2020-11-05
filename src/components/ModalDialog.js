@@ -1,10 +1,12 @@
 import Modal from 'react-modal';
 import React, {useContext, useState} from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import LoginContext from '../context/LoginContext';
-import Colors from '../utils/Colors';
-import media from "../styles/media";
+
+import {
+    StyledModal, Paragraph, ButtonsContainer,
+    DeleteButton, BackButton, Title
+} from '../styles/Modal.styles';
 
 Modal.setAppElement("#root");
 
@@ -24,9 +26,9 @@ const customStyles = {
     }
 }
 
-export default function ModalDialog({refreshPage}) {
+export default function ModalDialog(props) {
+    const {refreshPage, modalIsOpen, setIsOpen, postId} = props;
     const {userForm} = useContext(LoginContext);
-    const [modalIsOpen, setIsOpen] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const {config} = userForm;
 
@@ -61,71 +63,15 @@ export default function ModalDialog({refreshPage}) {
             style= {customStyles}
         >   
             <StyledModal>
-                <h1> Tem certeza que deseja<br /> excluir essa publição </h1>
+                <Title> Tem certeza que deseja<br /> excluir essa publição </Title>
 
-                <ModalButtons>
-                    <button className= 'backButton' onClick = {closeModal}> Não, voltar </button>
-                    <button onClick = {deletePost}> Sim, excluir </button>
-                </ModalButtons>
-                {disabled ? <p> Loading ... </p>: null}
+                <ButtonsContainer>
+                    <BackButton className= 'backButton' onClick = {closeModal}> Não, voltar </BackButton>
+                    <DeleteButton onClick = {deletePost}> Sim, excluir </DeleteButton>
+                </ButtonsContainer>
+                {disabled ? <Paragraph> Loading ... </Paragraph>: null}
                 
             </StyledModal>
         </Modal>
     );
 }
-
-const StyledModal = styled.section`
-    text-align: center;
-    font-family: 'Lato', sans-serif;
-    padding: 1rem 4.5rem 1.5rem;
-
-    h1 {
-        font-weight: bold;
-        font-size: 2.125rem;
-        line-height: 2.56rem;
-        color: #FFFFFF;
-        margin-bottom: 1.5rem;
-    }
-
-    p {
-        text-align: center;
-        color: ${Colors.lightRed};
-        font-size: 1.5rem;
-        margin-top: 1rem;
-    }
-
-    ${media} {
-        h1 {
-            font-size: 1.5rem;
-            line-height: 1.5rem;
-        }
-        
-        padding: 0.5rem;
-    }
-`;
-
-const ModalButtons = styled.div`
-    display: flex;
-    justify-content: center;
-
-    button {
-        font-size: 1.125rem;
-        font-weight: bold;
-        color: ${Colors.white};
-        background-color: ${Colors.midBlue};
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        border-radius: 5px;
-        line-height: 1.375rem;
-
-        ${media} {
-            font-size: 1rem;
-        }
-    }
-
-    .backButton {
-        background-color: ${Colors.white};
-        color: ${Colors.midBlue};
-        margin-right: 1.5rem;
-    }
-`;

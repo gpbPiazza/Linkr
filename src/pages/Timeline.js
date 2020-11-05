@@ -5,7 +5,7 @@ import Header from  '../components/Header';
 import Trending from "../components/Trending";
 import Publish from "../components/Publish";
 import Loading from '../components/Loading';
-import { Error } from '../components-style/cmpnt-styles';
+import { Error } from '../styles/Error.styles';
 import LoginContext from "../context/LoginContext";
 import Posts from "../components/Posts";
 import { MainPage, ScrollContainer, LoadingContainer, Title } from '../styles/Pages.styles';

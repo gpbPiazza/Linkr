@@ -30,6 +30,7 @@ export const Title = styled.h1`
 
     ${media} {
       margin-left: 1rem;
+      margin-top: 3rem;
     }
 `;
 

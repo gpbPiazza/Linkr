@@ -9,7 +9,8 @@ export const FollowContainer = styled.header`
     width: 100%;
     margin: 2rem 0rem;
 
-    ${media} {
+    ${media} { 
+        margin-top: 3.33rem;
         padding: 0 1rem;
     }
 `;
@@ -26,8 +27,8 @@ export const ProfileImage = styled.img`
     margin-right: 1rem;
 
     ${media} {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 3.125rem;
+        height: 3.125rem;
         margin-right: 0.5rem;
     }
 `;
@@ -45,6 +46,7 @@ export const FollowButton = styled.button`
     font-weight: bold;
 
     ${media} {
+        width: 30%;
         padding: 0.5rem;
         margin-left: 0.25rem;
     }

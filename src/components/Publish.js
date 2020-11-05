@@ -2,7 +2,7 @@ import React, { useContext, useState } from  'react';
 import axios from 'axios';
 
 import LoginContext from '../context/LoginContext';
-import { Error } from '../components-style/cmpnt-styles';
+import { Error } from '../styles/Error.styles';
 import { 
     Button, ButtonContainer, ImageContainer, 
     Form, Input, ProfileImage, 

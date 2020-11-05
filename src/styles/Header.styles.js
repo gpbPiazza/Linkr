@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { DebounceInput } from 'react-debounce-input';
 
 import Colors from '../utils/Colors';
+import media from  '../styles/media';
 
 export const HeaderContainer = styled.header`
     z-index: 1;
@@ -60,58 +60,4 @@ export const NavLink = styled(Link)`
     line-height: 1.2rem;
     letter-spacing: 0.05rem;
     color: ${Colors.white};
-`;
-
-export const SearchContainer = styled.div`
-    width: 30%;
-    height: 2.3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 1rem;
-    background-color: ${Colors.white};
-    padding: 0.5rem;
-    margin: 0.5rem 0;
-    position: relative;
-`;
-
-export const SearchBar = styled(DebounceInput)`
-    width: 100%;
-    height: 100%;
-    padding-left: 0.5rem;
-    ::placeholder {
-        color: ${Colors.lighterGrey};
-    }
-`;
-
-export const PeopleSearched = styled.ul`
-    height:auto;
-    width: 100%;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    position: absolute;
-    top: 0rem;
-    left: 0rem;
-    z-index: -1;
-    margin-top: 1rem;
-    padding-top: 2rem;
-    background: ${Colors.darkIce};
-`;
-
-export const SomeOne = styled.li`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-items: flex-start;
-    padding-left: 0.5rem;
-    margin: 0.5rem 0;
-`;
-
-export const Text = styled(NavLink)`
-    color: ${Colors.mediumGrey};
-`;
-
-export const Following = styled(Text).attrs({as: "p"})`
-    font-size: 0.8rem;
-    opacity: 0.5;
 `;
