@@ -26,12 +26,22 @@ const Timeline = () => {
     const getPosts = () => {
         requestGetPost();
     }
-    
-    const requestGetPost = () => {
-        setLoading(true);
-        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts?offset=0&limit=10`;
+
+    const requestFollowing = () => {
+        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/follows`;
         const request = axios.get(apiLink, config);
         request.then(({data}) => {
+            const listFollow = data.users;
+            setIsFollowing(listFollow.some(user => user.id === followID));
+        });
+    }
+
+    const requestGetPost = () => {
+        setLoading(true);
+        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/following/posts?offset=0&limit=10`;
+        const request = axios.get(apiLink, config);
+        request.then(({data}) => {
+            console.log(data);
             setLoading(false);
             if(data.posts.length === 0) {
                 setError('Nenhum post encontrado!');
