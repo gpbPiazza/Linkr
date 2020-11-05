@@ -5,13 +5,14 @@ import ReactHashtag from "react-hashtag";
 import axios from 'axios';
 import Tooltip from "react-simple-tooltip";
 import { IoIosHeartEmpty, IoIosHeart, IoIosTrash, IoMdCreate } from "react-icons/io";
-import Modal from 'react-modal';
+/*import Modal from 'react-modal';*/
 
 import LoginContext from '../context/LoginContext';
 import Colors from '../utils/Colors';
 import media from "../styles/media";
+import ModalDialog from "./ModalDialog";
 
-Modal.setAppElement("#root");
+/*Modal.setAppElement("#root");
 const customStyles = {
     content: {
       top: '50%',
@@ -26,9 +27,9 @@ const customStyles = {
     overlay: {
         zIndex: '2',
     }
-}
+}*/
 
-const Posts = ({post, getPosts}) => {
+const Posts = ({post, refreshPage}) => {
     const {userForm} = useContext(LoginContext);
     const {id: postId, link, linkDescription, linkImage, linkTitle, text, user, likes: likesArray} = post;
     const {id: userId, username, avatar} = user;
@@ -38,8 +39,8 @@ const Posts = ({post, getPosts}) => {
     const [toggleLike, setToggleLike]= useState(false);
     const [likes, setLikes] = useState([]);
     const [edit, setEdit] = useState(false);
-    const [modalIsOpen, setIsOpen] = useState(false);
-    const [disabled, setDisabled] = useState(false);
+    /*const [modalIsOpen, setIsOpen] = useState(false);*/
+    /*const [disabled, setDisabled] = useState(false);*/
     const [textAreaDisable, setTextAreaDisable] = useState(false);
     const textInput = useRef();
     const [textEdited, setTextEdited] = useState(text);
@@ -68,7 +69,7 @@ const Posts = ({post, getPosts}) => {
     }
 
     const editPost = () => {
-        setTextAreaDisable(!textAreaDisable);
+        setTextAreaDisable(true);
         const request = axios.put(`https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}`, {"text": textEdited}, config);
         request.then(({data}) => {
             setTextEdited(data.post.text);
@@ -80,7 +81,9 @@ const Posts = ({post, getPosts}) => {
         });
         request.catch(({response}) => {
             alert('Não foi possível fazer as alterações no texto');
-            setTextAreaDisable(!textAreaDisable);
+            setTextAreaDisable(false);
+            setEdit(!edit);
+            setTextEdited(text);
             console.log(response.data);
         });
     } 
@@ -104,7 +107,7 @@ const Posts = ({post, getPosts}) => {
         postDisLike();
     }
 
-    const deletePost = () => {
+    /*const deletePost = () => {
         if(disabled) return;
         const link = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}`;
         const request = axios.delete(link, config);
@@ -135,7 +138,7 @@ const Posts = ({post, getPosts}) => {
         }else {
             setTextEdited(text);
         }
-    }
+    }*/
 
     const handleTextArea = (event) => {
         if(event.key === "Escape"){
@@ -185,7 +188,9 @@ const Posts = ({post, getPosts}) => {
                     :
                     null
                 }
-                <Modal
+
+                <ModalDialog refreshPage= {refreshPage}/>
+                {/*<Modal
                     isOpen= {modalIsOpen}
                     style= {customStyles}
                 >   
@@ -199,7 +204,7 @@ const Posts = ({post, getPosts}) => {
                         {disabled ? <p> Loading ... </p>: null}
                         
                     </StyledModal>
-                </Modal>
+                </Modal>*/}
                 {edit ?
                     <textarea value={textEdited} 
                               disabled={textAreaDisable} 
@@ -376,7 +381,7 @@ const ContainerIcon = styled.div`
     width: 4rem;
 `;
 
-const StyledModal = styled.section`
+/*const StyledModal = styled.section`
     text-align: center;
     font-family: 'Lato', sans-serif;
     padding: 1rem 4.5rem 1.5rem;
@@ -430,4 +435,4 @@ const ModalButtons = styled.div`
         color: ${Colors.midBlue};
         margin-right: 1.5rem;
     }
-`;
+`;*/

@@ -21,10 +21,10 @@ const TimelineHashtag = () => {
 
     useEffect(() => {
         setBooleanError(false);
-        requestApi(hashtag);        
+        requestApi();        
     }, [hashtag]);
     
-    const requestApi = (hashtag) => {
+    const requestApi = () => {
         setLoading(true);
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/hashtags/${hashtag}/posts?offset=0&limit=10`;
         const request = axios.get(apiLink, config); 
@@ -57,7 +57,7 @@ const TimelineHashtag = () => {
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <>
-                            {posts.map(post => (<Posts post= {post} key= {post.id}/>))}
+                            {posts.map(post => (<Posts refreshPage = {requestApi} post = {post} key = {post.id}/>))}
                         </>
                 }
             </ScrollContainer>

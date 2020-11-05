@@ -20,12 +20,8 @@ const Timeline = () => {
 
     useEffect(() => {
         setBooleanError(false);
-        getPosts();
-    },[]);
-
-    const getPosts = () => {
         requestGetPost();
-    }
+    },[]);
     
     const requestGetPost = () => {
         setLoading(true);
@@ -51,7 +47,7 @@ const Timeline = () => {
             <Header />
             <Title> Timeline </Title>
             <ScrollContainer>
-                <Publish getPosts= {getPosts}/>
+                <Publish getPosts= {requestGetPost}/>
                 {loading ? 
                     <LoadingContainer>
                         <Loading />
@@ -61,7 +57,7 @@ const Timeline = () => {
                         <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <>
-                            {posts.map((post) => <Posts getPosts= {getPosts} post= {post} key= {post.id}/>)}
+                            {posts.map((post) => <Posts refreshPage={requestGetPost} post={post} key= {post.id}/>)}
                         </>
                 } 
             </ScrollContainer>
