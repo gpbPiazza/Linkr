@@ -5,10 +5,10 @@ import { IoIosHeartEmpty, IoIosHeart } from 'react-icons/io';
 
 import LoginContext from '../../context/LoginContext';
 import Colors from '../../utils/Colors';
-import {} from "LikePost";
+import { LikeContainer } from "../../styles/Posts.styles";
 
 const LikePost = (props) => {
-    const { likesArray } = props;
+    const { likesArray, postId } = props;
     const { userForm } = useContext(LoginContext);
     const { config } = userForm;
     const { id: myID } = userForm.userRegister.user;
@@ -49,7 +49,7 @@ const LikePost = (props) => {
     }
 
     return (
-        <LikePost>
+        <LikeContainer>
             {toggleLike ? 
                     <IoIosHeart onClick={() => disLike()} color={Colors.darkRed} fontSize='2rem' />
                 :
@@ -66,7 +66,7 @@ const LikePost = (props) => {
                         `${likes[1]['user.username']} e  ${likes.length-1} curtiram`)} placement={'bottom'}>
                 <p>{likes.length === 0 ? '' : `${likes.length} likes`}</p>
             </Tooltip>
-        </LikePost>
+        </LikeContainer>
     );
 }
 

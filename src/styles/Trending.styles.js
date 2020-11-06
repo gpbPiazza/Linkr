@@ -26,6 +26,8 @@ export const HashtagList = styled.ul`
 export const Hashtag = styled.li`
     font-size: 1.5rem;
     margin-bottom: 0.7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `;
 
 export const Subtitle = styled.h2`

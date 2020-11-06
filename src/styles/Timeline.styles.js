@@ -26,7 +26,9 @@ export const Title = styled.h1`
     font-family: 'Oswald', sans-serif;
     font-size: 3rem;
     width: 100%;
-    margin: 2rem 0; 
+    margin: 2rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     ${media} {
       margin-left: 1rem;
