@@ -6,8 +6,9 @@ const LoginContext = createContext();
 
 export default LoginContext;
 
-export function LoginProvider(props) {
+export const LoginProvider = (props) => {
     let history = useHistory();
+
     const [ userRegister, setUserRegister ] = useState({});
     const [ config, setConfig ] = useState({});
     const [ email, setEmail ] = useState('');
@@ -24,13 +25,12 @@ export function LoginProvider(props) {
         const request = axios.post(apiLink, infoUser);
         request.then(({data}) => {
             setUserRegister(data);
-            setConfig({ headers: {"User-Token": data.token} });
+            setConfig({ headers: {'User-Token': data.token} });
             history.push('/timeline');
             cleanInputs();
-            
         });
         request.catch(({response}) => {
-            if(typeRequest === 'sign_up') {
+            if (typeRequest === 'sign_up') {
                 (response.status === 401) ?
                     setAlert('Email inserido já esta cadastrado')
                     :

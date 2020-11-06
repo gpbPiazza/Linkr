@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import Colors from '../utils/Colors';
-import media from "./media";
+import media from './media';
 
 export const PublishSection = styled.section`
     border-radius: 1.25rem;
@@ -47,7 +47,7 @@ export const Input = styled.input`
     margin: 0.25rem 0;
 `;
 
-export const Textarea = styled(Input).attrs({as: "textarea"})`
+export const Textarea = styled(Input).attrs({as: 'textarea'})`
     height: 4.125rem;
 `;
 

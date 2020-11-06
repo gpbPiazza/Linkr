@@ -1,26 +1,27 @@
-import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
-import {useParams} from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 import Header from  '../components/Header';
-import Trending from "../components/Trending";
+import Trending from '../components/Trending';
 import { Error } from '../styles/Error.styles';
-import LoginContext from "../context/LoginContext";
-import Loading from "../components/Loading";
-import Posts from "../components/Posts";
-import Follow from "../components/Follow";
+import LoginContext from '../context/LoginContext';
+import Loading from '../components/Loading';
+import Posts from '../components/Posts';
+import Follow from '../components/Follow';
 import { MainPage, ScrollContainer, LoadingContainer, Title } from '../styles/Pages.styles';
 
 const TimelineId = () => {
+    const { id } = useParams();
     const { userForm } = useContext(LoginContext);
+    const { config } = userForm;
+    const { id: myID } = userForm.userRegister.user;
+
     const [ posts, setPosts ] = useState([]);
     const [ booleanError, setBooleanError ] = useState(false);
     const [ error, setError ] = useState('');
-    const { id } = useParams();
-    const { config } = userForm;
     const [ loading, setLoading ] = useState(true);
     const [ userData, setUserData ] = useState(null);
-    const { id: myID } = userForm.userRegister.user;
 
     useEffect(() => {
         setBooleanError(false);
@@ -33,7 +34,7 @@ const TimelineId = () => {
         const request = axios.get(apiLink, config);
         request.then(({data}) => {
             setLoading(false);
-            if(data.posts.length === 0) {
+            if (data.posts.length === 0) {
                 setError('Nenhum post encontrado!');
                 setBooleanError(true);
             }
@@ -54,14 +55,13 @@ const TimelineId = () => {
         });
     }
 
-
     return (
         <MainPage>
             <Header />
             {parseInt(id) === myID ?
                 <Title> My posts </Title>
                 :
-                <Follow userData= {userData} />
+                <Follow userData={userData} />
             }
             <ScrollContainer>
                 {loading ? 
@@ -70,10 +70,12 @@ const TimelineId = () => {
                         </LoadingContainer>
                     :
                     booleanError ?
-                        <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
+                        <Error fontSize={'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <>
-                            {posts.map(post => (<Posts refreshPage = {requestApi} post = {post} key = {post.id}/>))}
+                            {posts.map(post => (
+                                <Posts refreshPage={requestApi} post={post} key={post.id}/>
+                            ))}
                         </>
                 }
             </ScrollContainer>

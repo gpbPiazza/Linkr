@@ -1,21 +1,22 @@
 import axios from 'axios';
-import React, { useContext, useState, useEffect } from  'react';
-import { IoIosSearch } from "react-icons/io";
+import React, { useContext, useState, useEffect } from 'react';
+import { IoIosSearch } from 'react-icons/io';
 
 import LoginContext from '../context/LoginContext';
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory } from 'react-router-dom';
 import { 
     Button, Hashtag, Input, Subtitle,
     TrendingContainer, HashtagSearch,
     HashtagList, TrendingSection
-} from "../styles/Trending.styles"
+} from '../styles/Trending.styles'
 
 const Trending = () => {
     let history = useHistory();
     const { userForm } = useContext(LoginContext);
+    const { config } = userForm;
+
     const [ treadingHashTags, setTreadingHashtags ] = useState([]);
     const [ hashtagSearch, setHashtagSearch ] = useState('');
-    const { config } = userForm;
 
     useEffect(() => {
         requestApi();        
@@ -53,19 +54,18 @@ const Trending = () => {
                 <HashtagList>
                     <HashtagSearch>
                         <Input 
-                            type= 'text'
-                            onChange= {e => setHashtagSearch(e.target.value)}
-                            value= {hashtagSearch}
-                            placeholder= 'Pesquise hashtags'
+                            type='text'
+                            onChange={e => setHashtagSearch(e.target.value)}
+                            value={hashtagSearch}
+                            placeholder='Pesquise hashtags'
                         />
-                        <Button onClick= {e => searchTrending(e)} type= 'submit'>
+                        <Button onClick={e => searchTrending(e)} type='submit'>
                             <IoIosSearch />
                         </Button>
                     </HashtagSearch>
-
                     {treadingHashTags.map(({id, name}) => (
-                        <Hashtag key= {id}>
-                            <Link to= {`/hashtag/${name}`}># {name} </Link>
+                        <Hashtag key={id}>
+                            <Link to={`/hashtag/${name}`}># {name} </Link>
                         </Hashtag>
                     ))} 
                 </HashtagList>

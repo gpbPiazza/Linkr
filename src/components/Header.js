@@ -1,18 +1,18 @@
 import React, { useContext, useState } from 'react';
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 
+import SearchBar  from '../components/SearchBar';
+import Colors from '../utils/Colors';
 import LoginContext from '../context/LoginContext';
 import {
     HeaderContainer, NavContainer, ProfilePhoto,
     MenuContainer, Logo, NavLink
 } from '../styles/Header.styles';
-import SearchBar  from '../components/SearchBar';
-import Colors from '../utils/Colors';
 
 const Header = () => {
     const { userForm } = useContext(LoginContext);
-    const { userRegister, cleanUser, config } = userForm;
+    const { userRegister, cleanUser } = userForm;
     const { avatar, id } = userRegister.user;
 
     const [ showMenu, setShowMenu ] = useState(false);
@@ -24,10 +24,10 @@ const Header = () => {
             </Link>
             <SearchBar />
             <MenuContainer>
-                { showMenu ?
+                {showMenu ?
                     <>
                         <IoIosArrowUp 
-                            color= {Colors.white} 
+                            color={Colors.white} 
                             fontSize='2.5rem'
                             cursor='pointer' 
                             onClick={() => setShowMenu(!showMenu)}
@@ -35,7 +35,7 @@ const Header = () => {
                         <NavContainer>
                             <NavLink to={`/user/${id}`}> My posts </NavLink>
                             <NavLink to='/my-likes'> My likes </NavLink>
-                            <NavLink to='/'onClick= {cleanUser}> Logout </NavLink>
+                            <NavLink to='/'onClick={cleanUser}> Logout </NavLink>
                         </NavContainer>
                     </>
                     :
@@ -48,7 +48,7 @@ const Header = () => {
                 }
                 <ProfilePhoto 
                     src={avatar} 
-                    alt= "foto de perfil" 
+                    alt='foto de perfil' 
                     onClick={() => setShowMenu(!showMenu)}
                 />
             </MenuContainer>    

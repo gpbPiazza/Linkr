@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import Colors from '../utils/Colors';
-import media from  '../styles/media';
 
 export const HeaderContainer = styled.header`
 	width: 100%;

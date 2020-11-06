@@ -1,24 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 import Header from  '../components/Header';
-import Trending from "../components/Trending";
+import Trending from '../components/Trending';
 import { Error } from '../styles/Error.styles';
-import LoginContext from "../context/LoginContext";
-import Loading from "../components/Loading";
-import Posts from "../components/Posts";
+import LoginContext from '../context/LoginContext';
+import Loading from '../components/Loading';
+import Posts from '../components/Posts';
 import { MainPage, ScrollContainer, LoadingContainer, Title } from '../styles/Pages.styles';
 
 const TimelineHashtag = () => {
-    const { userForm, controlForm } = useContext(LoginContext);
-    const [ posts, setPosts ] = useState([]);
-    const [ error, setError ] = useState('');
-    const [ booleanError, setBooleanError ] = useState(false);
     const { hashtag } = useParams();
+    const { userForm, controlForm } = useContext(LoginContext);
     const { config } = userForm;
     const { loading, setLoading } = controlForm;
 
+    const [ posts, setPosts ] = useState([]);
+    const [ error, setError ] = useState('');
+    const [ booleanError, setBooleanError ] = useState(false);
+    
     useEffect(() => {
         setBooleanError(false);
         requestApi();        
@@ -30,7 +31,7 @@ const TimelineHashtag = () => {
         const request = axios.get(apiLink, config); 
         request.then(({data}) => {
             setLoading(false);
-            if(data.posts.length === 0) {
+            if (data.posts.length === 0) {
                 setError('Nenhum post encontrado!');
                 setBooleanError(true);
             }
@@ -54,10 +55,12 @@ const TimelineHashtag = () => {
                     </LoadingContainer>
                     :
                     booleanError ?
-                        <Error fontSize= {'1.25rem'}> {(error) ? error : ''} </Error>
+                        <Error fontSize={'1.25rem'}> {(error) ? error : ''} </Error>
                         :
                         <>
-                            {posts.map(post => (<Posts refreshPage = {requestApi} post = {post} key = {post.id}/>))}
+                            {posts.map(post => (
+                                <Posts refreshPage={requestApi} post={post} key={post.id}/>
+                            ))}
                         </>
                 }
             </ScrollContainer>

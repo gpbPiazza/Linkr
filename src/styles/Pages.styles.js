@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import Colors from '../utils/Colors';
-import media from "./media";
+import media from './media';
 
 export const MainPage = styled.main`
     width: 70%;

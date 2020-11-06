@@ -3,7 +3,7 @@ import { DebounceInput } from 'react-debounce-input';
 
 import Colors from '../utils/Colors';
 import media from  './media';
-import {NavLink}from './Header.styles';
+import { NavLink } from './Header.styles';
 
 export const SearchContainer = styled.div`
     width: 30rem;
@@ -86,7 +86,7 @@ export const Text = styled(NavLink)`
     color: ${Colors.mediumGrey};
 `;
 
-export const Following = styled(Text).attrs({as: "p"})`
+export const Following = styled(Text).attrs({as: 'p'})`
     font-size: 0.8rem;
     opacity: 0.5;
 `;

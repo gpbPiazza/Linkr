@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { LoginProvider } from './context/LoginContext';
 
 import Login from './pages/Login';
@@ -10,15 +10,14 @@ import TimelineMyLikes from './pages/TimelineMyLikes';
 import ResetCSS from './styles/ResetCSS';
 import GlobalStyle from './styles/GlobalStyle';
 
-export default function App() {
-
+const App = () => {
   return (  
     <Router>
       <LoginProvider>
           <ResetCSS />
           <GlobalStyle />
           <Switch>
-            <Route exact path="/">
+            <Route exact path='/'>
               <Login />
             </Route>
             <Route path='/timeline'>
@@ -39,3 +38,4 @@ export default function App() {
   );
 }
 
+export default App;

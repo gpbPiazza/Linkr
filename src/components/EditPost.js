@@ -1,37 +1,37 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import ReactHashtag from "react-hashtag";
+import ReactHashtag from 'react-hashtag';
 import axios from 'axios';
+
 import { EditBox, Text } from '../styles/Posts.styles';
 import LoginContext from '../context/LoginContext';
-import Loading from "./Loading";
+import Loading from './Loading';
 
-export default function EditPost({text, isEditing, postId}) {
-    const {userForm} = useContext(LoginContext);
-    
-    const [textAreaDisable, setTextAreaDisable] = useState(false);
-    const [textEdited, setTextEdited] = useState(text);
-    const [edit, setEdit] = useState(false)
-    const [textApi, setTextApi] = useState('');
+ const EditPost = ({text, isEditing, postId}) => {
+    const { userForm } = useContext(LoginContext);
+    const { config } = userForm;
     const textInput = useRef();
-    const {config} = userForm;
 
+    const [ textAreaDisable, setTextAreaDisable ] = useState(false);
+    const [ textEdited, setTextEdited ] = useState(text);
+    const [ edit, setEdit ] = useState(false)
+    const [ textApi, setTextApi ] = useState('');
+    
     useEffect(() => {
         refactorText();
-        if(isEditing) {
+        if (isEditing) {
             setEdit(true);
         } else {
             setEdit(false);
         }
-        
-        if(edit) {
+        if (edit) {
             textInput.current.focus();
         }
     },[isEditing]);
 
     const editPost = () => {
         setTextAreaDisable(true);
-        const objectRequest = {"text": textEdited};
+        const objectRequest = {'text': textEdited};
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}`;
         const request = axios.put(apiLink, objectRequest, config);
         request.then(({data}) => {
@@ -54,16 +54,17 @@ export default function EditPost({text, isEditing, postId}) {
     const refactorText = () => {
         if (textEdited === textApi){
             setTextEdited(textApi);
-        }else {
+        } else {
             setTextEdited(text);
         }
     }
 
     const handleTextArea = (event) => {
-        if(event.key === "Escape"){
+        if (event.key === 'Escape'){
             setEdit(!edit);
             setTextEdited(text);
-        }if (event.key === "Enter") {
+        }
+        if (event.key === 'Enter') {
             setTextEdited(event.target.value);
             textEdited === text ? alert('Por favor altere o texto') : editPost();   
         }
@@ -81,13 +82,20 @@ export default function EditPost({text, isEditing, postId}) {
                 />
                 :
                 <Text>
-                    <ReactHashtag renderHashtag= {value => <span key= {value}><Link to={`/hashtag/${value.slice(1)}`}>{value}</Link></span>}>
+                    <ReactHashtag renderHashtag={value => 
+                        <span key={value}>
+                            <Link to={`/hashtag/${value.slice(1)}`}>
+                                {value}
+                            </Link>
+                        </span>
+                    }>
                         {textEdited}
                     </ReactHashtag>
                 </Text>
             }
-
             {textAreaDisable ? <Loading large={30} tall={30}/>: null}
         </>
     );
 };
+
+export default EditPost;

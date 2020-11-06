@@ -13,15 +13,19 @@ const LoginForm = ({firstTime, setFirstTime}) => {
         event.preventDefault();
         if (type === 'sign_in') {
             if (email && password ) {
-                const loginUser = {"email": email, "password": password};
+                const loginUser = {'email': email, 'password': password};
                 requestApi(loginUser, type);
             } else {
                 setAlert('Por favor, preencha todos os campos!');
             }
-        }
-        else {
-            if (email && password && userName && pictureUrl ) {
-                const newUser = {"email": email , "password": password, "username": userName, "pictureUrl": pictureUrl};
+        } else {
+            if (email && password && userName && pictureUrl) {
+                const newUser = {
+                    'email': email,
+                    'password': password,
+                    'username': userName,
+                    'pictureUrl': pictureUrl
+                };
                 requestApi(newUser, type);
             } else {
                 setAlert('Por favor, preencha todos os campos!');
@@ -40,37 +44,41 @@ const LoginForm = ({firstTime, setFirstTime}) => {
         <>
             <Form>
                 <Input 
-                    type= 'email' 
-                    placeholder= 'e-mail'  
-                    onChange= {e => setEmail(e.target.value)} 
-                    value= {email}
+                    type='email' 
+                    placeholder='e-mail'  
+                    onChange={e => setEmail(e.target.value)} 
+                    value={email}
                 />
                 <Input 
-                    type= 'password' 
-                    placeholder= 'password' 
-                    onChange= {e => setPassWord(e.target.value)} 
-                    value= {password} 
+                    type='password' 
+                    placeholder='password' 
+                    onChange={e => setPassWord(e.target.value)} 
+                    value={password} 
                 />
                 {firstTime && (
                     <>        
                         <Input 
-                            type= 'text' 
-                            placeholder= 'username' 
-                            onChange= {e => setUserName(e.target.value)} 
-                            value= {userName} 
+                            type='text' 
+                            placeholder='username' 
+                            onChange={e => setUserName(e.target.value)} 
+                            value={userName} 
                         />
                         <Input 
-                            type= 'text' 
-                            placeholder= 'picture url' 
-                            onChange= {e => setPictureUrl(e.target.value)} 
-                            value= {pictureUrl} 
+                            type='text' 
+                            placeholder='picture url' 
+                            onChange={e => setPictureUrl(e.target.value)} 
+                            value={pictureUrl} 
                         />
                     </>
                 )}
                 {firstTime ?
-                    <Button onClick= {(e) => verifyInputs(e, 'sign_up')} type='submit'> Sing Up </Button>
+                    <Button onClick={(e) => verifyInputs(e, 'sign_up')} type='submit'> 
+                        Sing Up 
+                    </Button>
                     :
-                    <Button onClick= {(e) => verifyInputs(e, 'sign_in')} type='submit'> Log In </Button>
+                    <Button onClick={(e) => verifyInputs(e, 'sign_in')} type='submit'> 
+                        Log In 
+                    </Button>
                 }
             </Form>
             <Text onClick={() => toggleInputs()}> 

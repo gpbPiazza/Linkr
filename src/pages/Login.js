@@ -11,21 +11,22 @@ import {
 
 const Login = () => {
     const { controlForm } = useContext(LoginContext);
-    const [ firstTime, setFirstTime ] = useState(false);
     const { loading, alert } = controlForm;
+
+    const [ firstTime, setFirstTime ] = useState(false);
 
     return (
         <MainContainer>
             <LogoContainer>
                 <Logo> Linkdr </Logo>
-                <Subtitle> save, share and discover<br/>the best links on the web </Subtitle>
+                <Subtitle> save, share and discover <br/> the best links on the web </Subtitle>
             </LogoContainer>
             <FormsContainer>
-                <Error fontSize= {'2rem'}> {(alert) ? alert : null} </Error>
+                <Error fontSize={'2rem'}> {(alert) ? alert : null} </Error>
                 {loading ? 
                     <Loading /> 
                 :
-                    <LoginForm firstTime={firstTime} setFirstTime={setFirstTime}/>
+                    <LoginForm firstTime={firstTime} setFirstTime={setFirstTime} />
                 }
             </FormsContainer>
         </MainContainer>
@@ -33,5 +34,3 @@ const Login = () => {
 }
 
 export default Login;
-
-
