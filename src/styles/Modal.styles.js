@@ -29,6 +29,7 @@ export const Title = styled.h1`
 export const ButtonsContainer = styled.div`
     display: flex;
     justify-content: center;
+    margin-bottom: 1rem;
 `;
 
 export const DeleteButton = styled.button`

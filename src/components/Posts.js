@@ -117,7 +117,12 @@ const Posts = ({post, refreshPage}) => {
                     modalIsOpen={modalIsOpen}
                     postId={postId}
                 />
-                <EditPost text={text} isEditing={isEditing} postId={postId}/>
+                <EditPost 
+                    text={text} 
+                    isEditing={isEditing} 
+                    postId={postId}
+                    setIsEditing={setIsEditing}
+                />
                 <PostLink className='link' href={link} target='_blank'> 
                     <TextContainer>
                         <TitleLink> {linkTitle} </TitleLink>                         

@@ -45,7 +45,7 @@ const TimelineMyLikes = () => {
     return (
         <MainPage>
             <Header />
-            <Title> {posts.length ? `My like's posts`: null} </Title>
+            <Title> My like's posts </Title>
             <ScrollContainer>            
                 {loading ? 
                     <LoadingContainer>

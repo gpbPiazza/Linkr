@@ -7,24 +7,17 @@ import { EditBox, Text } from '../styles/Posts.styles';
 import LoginContext from '../context/LoginContext';
 import Loading from './Loading';
 
- const EditPost = ({text, isEditing, postId}) => {
+ const EditPost = ({text, isEditing, postId, setIsEditing}) => {
     const { userForm } = useContext(LoginContext);
     const { config } = userForm;
-    const textInput = useRef();
-
+    
     const [ textAreaDisable, setTextAreaDisable ] = useState(false);
     const [ textEdited, setTextEdited ] = useState(text);
-    const [ edit, setEdit ] = useState(false)
-    const [ textApi, setTextApi ] = useState('');
+    const [ textApi, setTextApi ] = useState(text);
+    const textInput = useRef();
     
     useEffect(() => {
-        refactorText();
         if (isEditing) {
-            setEdit(true);
-        } else {
-            setEdit(false);
-        }
-        if (edit) {
             textInput.current.focus();
         }
     },[isEditing]);
@@ -38,46 +31,39 @@ import Loading from './Loading';
             setTextEdited(data.post.text);
             setTextApi(data.post.text);
             console.log(data, 'SUCESSO DO SERVER!');
-            setEdit(!edit);
+            setIsEditing(false);
             setTextAreaDisable(false);
-            
         });
         request.catch(({response}) => {
             alert('Não foi possível fazer as alterações no texto');
             setTextAreaDisable(false);
-            setEdit(!edit);
-            setTextEdited(text);
+            setIsEditing(false);
+            setTextEdited(textApi);
             console.log(response.data);
         });
-    }
-    
-    const refactorText = () => {
-        if (textEdited === textApi){
-            setTextEdited(textApi);
-        } else {
-            setTextEdited(text);
-        }
     }
 
     const handleTextArea = (event) => {
         if (event.key === 'Escape'){
-            setEdit(!edit);
-            setTextEdited(text);
+            setIsEditing(false);
+            setTextEdited(textApi);
         }
         if (event.key === 'Enter') {
             setTextEdited(event.target.value);
-            textEdited === text ? alert('Por favor altere o texto') : editPost();   
+            textEdited === textApi ? 
+                alert('Por favor altere o texto') : editPost();   
         }
     }
 
     return (
         <>
-            {edit ?
+            {isEditing ?
                 <EditBox 
                     value={textEdited} 
                     disabled={textAreaDisable} 
-                    onKeyDown={(event) => handleTextArea(event)} 
-                    type='text' onChange={e => setTextEdited(e.target.value)}  
+                    onKeyDown={event => handleTextArea(event)} 
+                    type='text' 
+                    onChange={e => setTextEdited(e.target.value)}  
                     ref={textInput}
                 />
                 :
@@ -93,7 +79,7 @@ import Loading from './Loading';
                     </ReactHashtag>
                 </Text>
             }
-            {textAreaDisable ? <Loading large={30} tall={30}/>: null}
+            {textAreaDisable ? <Loading large={40} tall={40}/>: null}
         </>
     );
 };
