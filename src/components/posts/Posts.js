@@ -1,15 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, /*useEffect*/ useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import Tooltip from 'react-simple-tooltip';
+//import axios from 'axios';
+//import Tooltip from 'react-simple-tooltip';
 import { IoIosHeartEmpty, IoIosHeart, IoIosTrash, IoMdCreate } from 'react-icons/io';
 
 import EditPost from './EditPost';
 import LoginContext from '../../context/LoginContext';
-import Colors from '../../utils/Colors';
+//import Colors from '../../utils/Colors';
 import DeletePost from './DeletePost';
+//import LikePost from "./LikePost";
 import { 
-    ContainerIcon, ContainerLike, Description, 
+    IconContainer, /*LikeContainer*/ Description, 
     ImageLink, PostLink, PostSection, ProfileImage, StyledPost, 
     TitleLink, URL, Username, ImageContainer, TextContainer,
 } from '../../styles/Posts.styles';
@@ -19,34 +20,26 @@ const Posts = ({post, refreshPage}) => {
     const { id: postId, link, linkDescription, linkImage, linkTitle, text, user, likes: likesArray } = post;
     const { id: userId, username, avatar } = user;
     const { id: myID } = userForm.userRegister.user;
-    const { config } = userForm;
+    /*const { config } = userForm;
     const objeto = {};
 
     const [ toggleLike, setToggleLike ]= useState(false);
-    const [ likes, setLikes ] = useState([]);
+    const [ likes, setLikes ] = useState([]);*/
     const [ modalIsOpen, setIsOpen ] = useState(false);
     const [ isEditing, setIsEditing ] = useState(false);
     
-    useEffect(() => {
+    /*useEffect(() => {
         setLikes(likesArray);
         isLiked();
     },[]);
 
-    const postLike = () => {
-        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}/like`;
+    const bothLikeRequest = (type) => {
+        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}/${type}`;
         const request = axios.post(apiLink, objeto, config);
         request.then(({data}) => {
             setLikes(data.post.likes);
         });
     } 
-
-    const postDisLike = () => {
-        const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/posts/${postId}/dislike`;
-        const request = axios.post(apiLink, objeto, config);
-        request.then(({data}) => {
-            setLikes(data.post.likes);
-        });
-    }
 
     const isLiked = () => {
         likesArray.forEach(l => {
@@ -58,13 +51,13 @@ const Posts = ({post, refreshPage}) => {
 
     const like = () => {
         setToggleLike(!toggleLike);
-        postLike();
+        bothLikeRequest('like');
     }
 
     const disLike = () => {
         setToggleLike(!toggleLike);
-        postDisLike();
-    }
+        bothLikeRequest('dislike');
+    }*/
 
     return (
         <StyledPost>
@@ -72,7 +65,10 @@ const Posts = ({post, refreshPage}) => {
                 <Link to={`/user/${userId}`}>
                     <ProfileImage src={avatar} />
                 </Link>
-                <ContainerLike>
+
+                {/*<LikePost likesArray= {likesArray} userId= {userId}/>*/}
+                
+                {/*<LikePost>
                     {toggleLike ? 
                          <IoIosHeart onClick={() => disLike()} color={Colors.darkRed} fontSize='2rem' />
                         :
@@ -89,14 +85,14 @@ const Posts = ({post, refreshPage}) => {
                                 `${likes[1]['user.username']} e  ${likes.length-1} curtiram`)} placement={'bottom'}>
                         <p>{likes.length === 0 ? '' : `${likes.length} likes`}</p>
                     </Tooltip>
-                </ContainerLike>
+                </LikePost>*/}
             </ImageContainer>
             <PostSection>
                 <Username> 
                     <Link to={`/user/${userId}`}> {username} </Link> 
                 </Username>
                 {(userId === myID) ?
-                    <ContainerIcon>
+                    <IconContainer>
                         <IoMdCreate 
                             onClick={() => setIsEditing(!isEditing)} 
                             cursor='pointer' 
@@ -107,7 +103,7 @@ const Posts = ({post, refreshPage}) => {
                             cursor='pointer' 
                             fontSize='1.5rem'
                         />
-                    </ContainerIcon>
+                    </IconContainer>
                     :
                     null
                 }

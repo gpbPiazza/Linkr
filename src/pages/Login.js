@@ -18,7 +18,7 @@ const Login = () => {
     return (
         <MainContainer>
             <LogoContainer>
-                <Logo> Linkdr </Logo>
+                <Logo> Linkr </Logo>
                 <Subtitle> save, share and discover <br/> the best links on the web </Subtitle>
             </LogoContainer>
             <FormsContainer>

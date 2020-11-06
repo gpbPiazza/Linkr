@@ -20,7 +20,7 @@ const Header = () => {
     return (
         <HeaderContainer>
             <Link to='/timeline'>
-                <Logo> Linkdr </Logo>
+                <Logo> Linkr </Logo>
             </Link>
             <SearchBar />
             <MenuContainer>

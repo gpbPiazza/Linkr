@@ -7,7 +7,8 @@ import { EditBox, Text } from '../../styles/Posts.styles';
 import LoginContext from '../../context/LoginContext';
 import Loading from '../common/Loading';
 
-const EditPost = ({text, isEditing, postId, setIsEditing}) => {
+const EditPost = (props) => {
+    const { text, isEditing, postId, setIsEditing } = props;
     const { userForm } = useContext(LoginContext);
     const { config } = userForm;
     
@@ -30,7 +31,6 @@ const EditPost = ({text, isEditing, postId, setIsEditing}) => {
         request.then(({data}) => {
             setTextEdited(data.post.text);
             setTextApi(data.post.text);
-            console.log(data, 'SUCESSO DO SERVER!');
             setIsEditing(false);
             setTextAreaDisable(false);
         });
@@ -39,7 +39,6 @@ const EditPost = ({text, isEditing, postId, setIsEditing}) => {
             setTextAreaDisable(false);
             setIsEditing(false);
             setTextEdited(textApi);
-            console.log(response.data);
         });
     }
 

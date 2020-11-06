@@ -45,7 +45,6 @@ const DeletePost = (props) => {
             setDisabled(false);
         });
         request.catch(({response}) => {
-            console.log('erro', response);
             setIsOpen(false);
             setDisabled(false);
             alert('Não foi possível excluir o post');

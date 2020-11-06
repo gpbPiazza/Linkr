@@ -18,7 +18,7 @@ const Timeline = () => {
     const [ posts, setPosts ] = useState([]);
     const [ error, setError ] = useState('');
     const [ booleanError, setBooleanError ] = useState(false);
-   
+
     useEffect(() => {
         setBooleanError(false);
         requestFollowing();
@@ -31,6 +31,8 @@ const Timeline = () => {
         return () => clearInterval(interval);
     }, []);
 
+    const localHeaders = JSON.parse(localStorage.getItem('headers'));
+
     const requestFollowing = () => {
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/users/follows`;
         const request = axios.get(apiLink, config);
@@ -38,7 +40,7 @@ const Timeline = () => {
             handleFeedFollow(data.users);
         });
     }
-    
+
     const requestGetPost = () => {
         setLoading(true);
         const apiLink = `https://mock-api.bootcamp.respondeai.com.br/api/v1/linkr/following/posts?offset=0&limit=10`;
@@ -74,7 +76,7 @@ const Timeline = () => {
             <Header />
             <Title> Timeline </Title>
             <ScrollContainer>
-                <Publish getPosts={requestGetPost}/>
+                <Publish getPosts={requestFollowing}/>
                 {loading ? 
                     <LoadingContainer>
                         <Loading />
@@ -85,7 +87,7 @@ const Timeline = () => {
                         :
                         <>
                             {posts?.map((post) => (
-                                <Posts refreshPage={requestGetPost} post={post} key={post.id}/>
+                                <Posts refreshPage={requestFollowing} post={post} key={post.id}/>
                             ))}
                         </>
                 } 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Colors from '../utils/Colors';
 import media from '../utils/media';
 
-export const ContainerLike = styled.div`
+export const LikeContainer = styled.div`
     display: flex;
     width: 3rem;
     flex-direction: column;
@@ -17,7 +17,7 @@ export const ContainerLike = styled.div`
     }
 `;
 
-export const ContainerIcon = styled.div`
+export const IconContainer = styled.div`
     position: absolute;
     top: 0.25rem;
     right: 0rem;
