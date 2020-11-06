@@ -34,7 +34,7 @@ const EditPost = (props) => {
             setIsEditing(false);
             setTextAreaDisable(false);
         });
-        request.catch(({response}) => {
+        request.catch(() => {
             alert('Não foi possível fazer as alterações no texto');
             setTextAreaDisable(false);
             setIsEditing(false);
@@ -61,9 +61,14 @@ const EditPost = (props) => {
                     value={textEdited} 
                     disabled={textAreaDisable} 
                     onKeyDown={event => handleTextArea(event)} 
-                    type='text' 
+                    type='text'
                     onChange={e => setTextEdited(e.target.value)}  
                     ref={textInput}
+                    onFocus={e => {
+                        let quantity = e.target.value;
+                        e.target.value = '';
+                        e.target.value = quantity;
+                    }}
                 />
                 :
                 <Text>
