@@ -2,13 +2,13 @@ import React, { useContext, useState } from 'react';
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
 import { Link } from 'react-router-dom';
 
-import SearchBar  from '../components/SearchBar';
-import Colors from '../utils/Colors';
-import LoginContext from '../context/LoginContext';
+import SearchBar  from './SearchBar';
+import Colors from '../../utils/Colors';
+import LoginContext from '../../context/LoginContext';
 import {
     HeaderContainer, NavContainer, ProfilePhoto,
     MenuContainer, Logo, NavLink
-} from '../styles/Header.styles';
+} from '../../styles/Header.styles';
 
 const Header = () => {
     const { userForm } = useContext(LoginContext);

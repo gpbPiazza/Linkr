@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
-import Header from  '../components/Header';
-import Trending from '../components/Trending';
-import Publish from '../components/Publish';
-import Loading from '../components/Loading';
-import { Error } from '../styles/Error.styles';
+import Header from  '../components/header/Header';
+import Trending from '../components/timeline/Trending';
+import Publish from '../components/timeline/Publish';
+import Loading from '../components/common/Loading';
+import { Error } from '../utils/Error';
 import LoginContext from '../context/LoginContext';
-import Posts from '../components/Posts';
-import { MainPage, ScrollContainer, LoadingContainer, Title } from '../styles/Pages.styles';
+import Posts from '../components/posts/Posts';
+import { MainPage, ScrollContainer, LoadingContainer, Title } from '../styles/Timeline.styles';
 
 const Timeline = () => {
     const { userForm, controlForm } = useContext(LoginContext);

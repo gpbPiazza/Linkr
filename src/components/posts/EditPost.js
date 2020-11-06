@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import ReactHashtag from 'react-hashtag';
 import axios from 'axios';
 
-import { EditBox, Text } from '../styles/Posts.styles';
-import LoginContext from '../context/LoginContext';
-import Loading from './Loading';
+import { EditBox, Text } from '../../styles/Posts.styles';
+import LoginContext from '../../context/LoginContext';
+import Loading from '../common/Loading';
 
- const EditPost = ({text, isEditing, postId, setIsEditing}) => {
+const EditPost = ({text, isEditing, postId, setIsEditing}) => {
     const { userForm } = useContext(LoginContext);
     const { config } = userForm;
     

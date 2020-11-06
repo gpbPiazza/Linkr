@@ -2,12 +2,12 @@ import Modal from 'react-modal';
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
 
-import LoginContext from '../context/LoginContext';
-import Loading from './Loading';
+import LoginContext from '../../context/LoginContext';
+import Loading from '../common/Loading';
 import {
     StyledModal, ButtonsContainer,
     DeleteButton, BackButton, Title
-} from '../styles/Modal.styles';
+} from '../../styles/Modal.styles';
 
 Modal.setAppElement('#root');
 

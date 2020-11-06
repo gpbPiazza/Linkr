@@ -7,8 +7,8 @@ import Timeline from './pages/Timeline';
 import TimelineId from './pages/TimelineId';
 import TimelineHashtag from './pages/TimelineHashtag';
 import TimelineMyLikes from './pages/TimelineMyLikes';
-import ResetCSS from './styles/ResetCSS';
-import GlobalStyle from './styles/GlobalStyle';
+import ResetCSS from './styles/global/ResetCSS';
+import GlobalStyle from './styles/global/GlobalStyle';
 
 const App = () => {
   return (  

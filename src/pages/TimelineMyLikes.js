@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
-import Header from  '../components/Header';
-import Trending from '../components/Trending';
-import { Error } from '../styles/Error.styles';
+import Header from  '../components/header/Header';
+import Trending from '../components/timeline/Trending';
+import { Error } from '../utils/Error';
 import LoginContext from '../context/LoginContext';
-import Loading from '../components/Loading';
-import Posts from '../components/Posts';
-import { MainPage, ScrollContainer, LoadingContainer, Title } from '../styles/Pages.styles';
+import Loading from '../components/common/Loading';
+import Posts from '../components/posts/Posts';
+import { MainPage, ScrollContainer, LoadingContainer, Title } from '../styles/Timeline.styles';
 
 const TimelineMyLikes = () => {
     const { userForm, controlForm } = useContext(LoginContext);

@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 
-import Loading from '../components/Loading';
+import Loading from '../components/common/Loading';
 import LoginContext from '../context/LoginContext';
 import LoginForm from '../components/login/LoginForm';
-import { Error } from '../styles/Error.styles';
+import { Error } from '../utils/Error';
 import {
     MainContainer, LogoContainer,
     Logo, Subtitle, FormsContainer

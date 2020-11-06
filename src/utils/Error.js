@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Colors from '../utils/Colors';
+import Colors from './Colors';
 
 export const Error = styled.span`
     color: ${Colors.lightRed};

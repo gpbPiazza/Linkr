@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import Colors from '../utils/Colors';
-import media from './media';
+import media from '../utils/media';
 
 export const PublishSection = styled.section`
     border-radius: 1.25rem;

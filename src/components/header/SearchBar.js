@@ -3,14 +3,14 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { IoIosSearch } from 'react-icons/io';
 
-import LoginContext from '../context/LoginContext';
-import { ProfilePhoto } from '../styles/Header.styles';
-import Colors from '../utils/Colors';
+import LoginContext from '../../context/LoginContext';
+import { ProfilePhoto } from '../../styles/Header.styles';
+import Colors from '../../utils/Colors';
 import {
     SearchContainer,
     PeopleSearched, SomeOne, 
     Input,Text, Following
-} from '../styles/SearchBar.styles';
+} from '../../styles/SearchBar.styles';
 
 const SearchBar = () => {
     const { userForm } = useContext(LoginContext);

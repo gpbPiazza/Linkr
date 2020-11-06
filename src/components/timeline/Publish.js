@@ -1,13 +1,13 @@
 import React, { useContext, useState } from  'react';
 import axios from 'axios';
 
-import LoginContext from '../context/LoginContext';
-import { Error } from '../styles/Error.styles';
+import LoginContext from '../../context/LoginContext';
+import { Error } from '../../utils/Error';
 import { 
     Button, ButtonContainer, ImageContainer, 
     Form, Input, ProfileImage, 
     PublishSection, Subtitle, Textarea
-} from '../styles/Publish.styles';
+} from '../../styles/Publish.styles';
 
 const Publish = ({getPosts}) => {
     const { userForm } = useContext(LoginContext);

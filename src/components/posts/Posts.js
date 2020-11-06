@@ -5,14 +5,14 @@ import Tooltip from 'react-simple-tooltip';
 import { IoIosHeartEmpty, IoIosHeart, IoIosTrash, IoMdCreate } from 'react-icons/io';
 
 import EditPost from './EditPost';
-import LoginContext from '../context/LoginContext';
-import Colors from '../utils/Colors';
+import LoginContext from '../../context/LoginContext';
+import Colors from '../../utils/Colors';
 import DeletePost from './DeletePost';
 import { 
     ContainerIcon, ContainerLike, Description, 
     ImageLink, PostLink, PostSection, ProfileImage, StyledPost, 
     TitleLink, URL, Username, ImageContainer, TextContainer,
-} from '../styles/Posts.styles';
+} from '../../styles/Posts.styles';
 
 const Posts = ({post, refreshPage}) => {
     const { userForm } = useContext(LoginContext);

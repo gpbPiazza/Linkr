@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
-import LoginContext from '../context/LoginContext';
+import LoginContext from '../../context/LoginContext';
 import {
     FollowContainer, InfoContainer, 
     FollowButton, ProfileImage, Title
-} from '../styles/Follow.styles';
+} from '../../styles/Follow.styles';
 
 const Follow = ({userData}) => {
     if(!userData) {

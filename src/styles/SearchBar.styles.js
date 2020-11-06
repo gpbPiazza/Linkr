@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { DebounceInput } from 'react-debounce-input';
 
 import Colors from '../utils/Colors';
-import media from  './media';
+import media from  '../utils/media';
 import { NavLink } from './Header.styles';
 
 export const SearchContainer = styled.div`

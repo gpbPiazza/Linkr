@@ -2,13 +2,13 @@ import axios from 'axios';
 import React, { useContext, useState, useEffect } from 'react';
 import { IoIosSearch } from 'react-icons/io';
 
-import LoginContext from '../context/LoginContext';
+import LoginContext from '../../context/LoginContext';
 import { Link, useHistory } from 'react-router-dom';
 import { 
     Button, Hashtag, Input, Subtitle,
     TrendingContainer, HashtagSearch,
     HashtagList, TrendingSection
-} from '../styles/Trending.styles'
+} from '../../styles/Trending.styles'
 
 const Trending = () => {
     let history = useHistory();
