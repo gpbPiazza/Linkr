@@ -28,8 +28,6 @@ const Trending = () => {
         request.then(({data}) => {
             setTreadingHashtags(data.hashtags);
         });
-        request.catch(() => {
-        }); 
     }
 
     const searchTrending = (event) => {
