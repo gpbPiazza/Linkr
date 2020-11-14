@@ -78,7 +78,7 @@ const Publish = ({getPosts}) => {
                     value={text}
                 />
                 <ButtonContainer>
-                    <Error fontSize={'1rem'}> {(error) ? error : null} </Error>
+                    <Error fontSize={'1rem'}> {(error) && error} </Error>
                     <Button 
                         onClick={e => validationPublish(e)} 
                         type='submit'> 

@@ -53,7 +53,7 @@ const TimelineMyLikes = () => {
                     </LoadingContainer>
                     :
                     booleanError ?
-                        <Error fontSize={'1.25rem'}> {(error) ? error : null} </Error>
+                        <Error fontSize={'1.25rem'}> {(error) && error} </Error>
                         :
                         <>
                             {posts.map(post => (

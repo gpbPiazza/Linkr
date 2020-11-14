@@ -37,7 +37,7 @@ const Posts = ({post, refreshPage}) => {
                 <Username> 
                     <Link to={`/user/${userId}`}> {username} </Link> 
                 </Username>
-                {(userId === myID) ?
+                {(userId === myID) &&
                     <IconContainer>
                         <IoMdCreate 
                             onClick={() => setIsEditing(!isEditing)} 
@@ -50,8 +50,6 @@ const Posts = ({post, refreshPage}) => {
                             fontSize='1.5rem'
                         />
                     </IconContainer>
-                    :
-                    null
                 }
                 <DeletePost
                     refreshPage={refreshPage} 

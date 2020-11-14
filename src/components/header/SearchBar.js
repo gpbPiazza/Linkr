@@ -72,7 +72,7 @@ const SearchBar = () => {
                 onFocus={(e) => showSearch(e)}
                 onBlur={(e) => closeSearch(e)}
             />
-            {startSearch ?
+            {startSearch &&
                 <PeopleSearched>
                     {peopleSearched.map(({avatar, username, isFollowingLoggedUser, id}) => 
                         <SomeOne key={id}>
@@ -81,13 +81,11 @@ const SearchBar = () => {
                             </Link>
                             <Text to={`/user/${id}`}> {username} </Text>
                             <Following> 
-                                {isFollowingLoggedUser ? `• following` : null} 
+                                {isFollowingLoggedUser && `• following`} 
                             </Following>
                         </SomeOne>
                     )}
                 </PeopleSearched>
-                : 
-                null
             }
             <IoIosSearch 
                 color= {Colors.lighterGrey} 

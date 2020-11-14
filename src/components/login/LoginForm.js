@@ -20,12 +20,7 @@ const LoginForm = ({firstTime, setFirstTime}) => {
             }
         } else {
             if (email && password && userName && pictureUrl) {
-                const newUser = {
-                    'email': email,
-                    'password': password,
-                    'username': userName,
-                    'pictureUrl': pictureUrl
-                };
+                const newUser = { email, password, userName, pictureUrl};
                 requestApi(newUser, type);
             } else {
                 setAlert('Por favor, preencha todos os campos!');

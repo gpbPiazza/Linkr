@@ -22,7 +22,7 @@ const Login = () => {
                 <Subtitle> save, share and discover <br/> the best links on the web </Subtitle>
             </LogoContainer>
             <FormsContainer>
-                <Error fontSize={'2rem'}> {(alert) ? alert : null} </Error>
+                <Error fontSize={'2rem'}> {(alert) && alert} </Error>
                 {loading ? 
                     <Loading /> 
                 :

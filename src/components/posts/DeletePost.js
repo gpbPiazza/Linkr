@@ -67,7 +67,7 @@ const DeletePost = (props) => {
                     <BackButton onClick={closeModal}> Não, voltar </BackButton>
                     <DeleteButton onClick={deletePost}> Sim, excluir </DeleteButton>
                 </ButtonsContainer>
-                {disabled ? <Loading tall={60} large={60}/> : null}
+                {disabled && <Loading tall={60} large={60}/>}
             </StyledModal>
         </Modal>
     );

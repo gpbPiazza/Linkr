@@ -83,7 +83,7 @@ const EditPost = (props) => {
                     </ReactHashtag>
                 </Text>
             }
-            {textAreaDisable ? <Loading large={40} tall={40}/>: null}
+            {textAreaDisable && <Loading large={40} tall={40}/>}
         </>
     );
 };
