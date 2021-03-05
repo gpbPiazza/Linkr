@@ -6,7 +6,7 @@
 
 ## Objective
 <p>
-   This project was developed throughout the Bootcamp of "Respode Aí", is a Single-Page Application project for social media, using React. The user could register, log in, posts his favorites links to share with the community and navigate in the social media seeing the posts communities.
+   This project was developed throughout the Bootcamp of "Respode Aí", It is a Single Page Application project for social media, using React. The user could register, log in, posts his favorites links to share with the community and navigate in the social media seeing the posts communities.
 </p>
 
 ### Features
@@ -40,8 +40,7 @@ The following tools and frameworks were used in the construction of the project:
     <img src='https://img.shields.io/badge/react-icon%20-%2320232a.svg?&style=for-the-badge&logo=react-icon&logoColor=%2361DAFB'>
     <img src='https://img.shields.io/badge/styled-components%20-%2320232a.svg?&style=for-the-badge&logo=styled-components&logoColor=%2361DAFB'>
 
-#Folow the link project.
-
+# Folow the link project.
 - [Link](https://milhomem-piazza-linkdr.netlify.app/)
 
 
